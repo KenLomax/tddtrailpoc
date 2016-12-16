@@ -12,13 +12,13 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetup {
 
-	// TrailSnippetStart hybrisInstallationIsWhereIExpectIt
+	// YaaSBiteSnippetStart hybrisInstallationIsWhereIExpectIt
 	@Test 
 	public void hybrisInstallationIsWhereIExpectIt(){		
 		// The folder TddTrail should be sitting alongside the folder hybris-commerce-suite-6.2.0.1
 		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform" ) );
 	}
-	// TrailSnippetEnd
+	// YaaSBiteSnippetEnd
 	
 	@Test 
 	public void test2ExtensionAddedOk(){
