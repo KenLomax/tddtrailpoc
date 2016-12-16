@@ -2,7 +2,6 @@ package tddTrail;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
 import java.io.File;
 
 import org.junit.FixMethodOrder;
