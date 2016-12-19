@@ -32,7 +32,6 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
-(At present the snippets are piggybacking on YaasBitesAdmin)
 
 <h3>A Trail Step with Dynamically included Test Code</h3>
 
@@ -43,16 +42,38 @@ Example step:
 <li>In the folder above <code>hybris-commerce-suite-6.2.0.1</code> run <code>git clone https://github.com/KenLomax/tddtrailpoc.git</code>.  You should now have the folder <code>tddtrailpoc</code> alongside <code>hybris-commerce-suite-6.2.0.1</code>.
 
 <br>
-Can run with <code>mvn -Dtest=TrailSetupTest#testHybrisInstallationIsWhereIExpectIt test</code> or
-<button id="testHybrisInstallationIsWhereIExpectIt" name="testHybrisInstallationIsWhereIExpectIt">Call testHybrisInstallationIsWhereIExpectIt </button>
-<span id="testHybrisInstallationIsWhereIExpectItResult" name="testHybrisInstallationIsWhereIExpectItResult">Result</span>
-<div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippethybrisInstallationIsWhereIExpectIt" name="snippethybrisInstallationIsWhereIExpectIt"></div>
-<br>
-Can run with <code>mvn -Dtest=TrailSetupTest#test2ExtensionAddedOk test</code> or
-<button id="test2ExtensionAddedOk" name="test2ExtensionAddedOk">Call test2ExtensionAddedOk </button>
-<span id="test2ExtensionAddedOkResult" name="test2ExtensionAddedOkResult">Result</span>
+Can run with <code>mvn -Dtest=TrailSetupTest#testA test</code> or<br>
+<button class=runTest id="testA" name="testA">Call testA</button>
+<span id="testAResult" name="testAResult">Result</span>
+<div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippetTestA" name="snippetTestA"></div>
 
-<div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippetest2ExtensionAddedOk" name="snippetest2ExtensionAddedOk"></div>
+<br>
+<button class=runTest id="testB" name="testB">Call testB</button>
+<span id="testBResult" name="testBResult">Result</span>
+<div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippetTestB" name="snippetTestB"></div>
+
+<br>
+<button class=runTest id="testC" name="testC">Call testC</button>
+<span id="testCResult" name="testCResult">Result</span>
+<div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippetTestC" name="snippetTestC"></div>
+
+
+<script>// <![CDATA[
+$( ".runTest" ).click(function() {
+	var item_id = $(this).attr('id');
+ 	$.ajax({url: "http://localhost:8080/tdd?test="+item_id, success: function(result){
+        $("#"+item_id+"Result").html(result);
+    }});
+    $("#"+item_id+"Result").addClass("isa_success")
+});
+
+$('#snippetTestA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/hybrisInstallationIsWhereIExpectIt.html?nocache='+ (new Date()).getTime());
+$('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/test2ExtensionAddedOk.html?nocache='+ (new Date()).getTime());
+$('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/test2ExtensionAddedOk.html?nocache='+ (new Date()).getTime());
+
+window.scrollTo(0,0);
+// ]]></script>
+
 
 <div class="isa_info">
     <i class="fa fa-info-circle"></i>
@@ -66,25 +87,5 @@ Can run with <code>mvn -Dtest=TrailSetupTest#test2ExtensionAddedOk test</code> o
    <i class="fa fa-times-circle"></i>
    Replace this text with your own text.
 </div>
-
-<script>// <![CDATA[
-$( "#showHideCode" ).click(function() {
-    $('[id^=snippet]').toggle();
-});
-$("#testHybrisInstallationIsWhereIExpectIt").click(function(){
-    $.ajax({url: "http://localhost:8080/tdd?test=testHybrisInstallationIsWhereIExpectIt", success: function(result){
-        $("#testHybrisInstallationIsWhereIExpectItResult").html(result);
-    }});
-});
-$("#test2ExtensionAddedOk").click(function(){
-    $.ajax({url: "http://localhost:8080/tdd?test=test2ExtensionAddedOkResult", success: function(result){
-        $("#test2ExtensionAddedOkResult").html(result);
-    }});
-});
-$('#snippethybrisInstallationIsWhereIExpectIt').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/hybrisInstallationIsWhereIExpectIt.html?nocache='+ (new Date()).getTime());
-
-$('#snippetest2ExtensionAddedOk').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/test2ExtensionAddedOk.html?nocache='+ (new Date()).getTime());
-window.scrollTo(0,0);
-// ]]></script>
 </body>
 </html>

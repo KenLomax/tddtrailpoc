@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hybris.tddTrailTests.TrailSetupTest;
 
-
 @RestController
 public class TDDController {
 
@@ -19,12 +18,18 @@ public class TDDController {
     @RequestMapping( "/tdd" )
     public ResponseEntity<String> greetings( @RequestParam( value="test", defaultValue="") String test) {
     	try {
-    		if (test.equals("testHybrisInstallationIsWhereIExpectIt"))
-    			new TrailSetupTest().testHybrisInstallationIsWhereIExpectIt();
-    		if (test.equals("test2ExtensionAddedOk"))
-    			new TrailSetupTest().test2ExtensionAddedOk();
+    		if (test.equals("testA"))
+    			new TrailSetupTest().testA_HybrisInstallationIsWhereIExpectIt();
+    		else if (test.equals("testB"))
+    			new TrailSetupTest().testB_ExtensionAddedOk();
+    		else if (test.equals("testC"))
+    			new TrailSetupTest().testC_ExtensionModelOk();
+    		else
+    			throw new Exception ("Not recognised");
     	}catch (Error e){
         	return new ResponseEntity<String>( "Fail" , HttpStatus.OK);   		
+    	}catch (Exception e) {
+    		return new ResponseEntity<String>( "Fail" , HttpStatus.OK);   	
     	}  	
     	return new ResponseEntity<String>( "Success" , HttpStatus.OK); 
     }
