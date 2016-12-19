@@ -1,38 +1,9 @@
 <html>
 <head>
-<style type="text/css">
-		body {
-    		font-family: Arial, Helvetica, sans-serif;
-		}
-		.isa_info, .isa_success, .isa_warning, .isa_error {
-			margin: 10px 0px;
-			padding:12px;
-			}
-		.isa_info {
-		    color: #00529B;
-		    background-color: #BDE5F8;
-		}
-		.isa_success {
-		    color: #4F8A10;
-		    background-color: #DFF2BF;
-		}
-		.isa_warning {
-		    color: #9F6000;
-		    background-color: #FEEFB3;
-		}
-		.isa_error {
-		    color: #D8000C;
-		    background-color: #FFBABA;
-		}
-		.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
-		    margin:10px 22px;
-		    font-size:2em;
-		    vertical-align:middle;
-		}
-</style>
+<link rel="stylesheet" type="text/css" href="style/mystyle.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
-
 <h3>A Trail Step with Dynamically included Test Code</h3>
 
 Example step:
@@ -40,11 +11,13 @@ Example step:
 <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.</li>
 <li>Follow the instructions <code>hybris-commerce-suite-6.2.0.1/README</code>.</li>
 <li>In the folder above <code>hybris-commerce-suite-6.2.0.1</code> run <code>git clone https://github.com/KenLomax/tddtrailpoc.git</code>.  You should now have the folder <code>tddtrailpoc</code> alongside <code>hybris-commerce-suite-6.2.0.1</code>.
-
+<li>In <code>tddtrailpoc</code> run <code>java -jar target/tddTrail-0.0.1-SNAPSHOT.war</code> and open <a href="http://localhost:8080/">http://localhost:8080/</a> where you will see the TddTrail Page</li>
 <br>
-Can run with <code>mvn -Dtest=TrailSetupTest#testA test</code> or<br>
-<button class=runTest id="testA" name="testA">Call testA</button>
-<span id="testAResult" name="testAResult">Result</span>
+
+<p id="tests" name="tests" >
+
+<button class=runTest id="testA" name="testA">Call testA</button> 
+<span id="testAResult" name="testAResult">Result</span> Can run with <code>mvn -Dtest=TrailSetupTest#testA test</code> or<br>
 <div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippetTestA" name="snippetTestA"></div>
 
 <br>
@@ -57,35 +30,35 @@ Can run with <code>mvn -Dtest=TrailSetupTest#testA test</code> or<br>
 <span id="testCResult" name="testCResult">Result</span>
 <div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippetTestC" name="snippetTestC"></div>
 
+</p>
 
 <script>// <![CDATA[
+
+window.alert(window.location.href);
+if (window.location.href.includes("http://localhost"))
+	$('#tests').show();
+else
+	$('#tests').hide();
+
 $( ".runTest" ).click(function() {
 	var item_id = $(this).attr('id');
+	$("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_info")
  	$.ajax({url: "http://localhost:8080/tdd?test="+item_id, success: function(result){
         $("#"+item_id+"Result").html(result);
+        if (result.includes("Success"))
+	         $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success")
+        else
+	         $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error")    
     }});
-    $("#"+item_id+"Result").addClass("isa_success")
 });
 
-$('#snippetTestA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/hybrisInstallationIsWhereIExpectIt.html?nocache='+ (new Date()).getTime());
-$('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/test2ExtensionAddedOk.html?nocache='+ (new Date()).getTime());
-$('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/test2ExtensionAddedOk.html?nocache='+ (new Date()).getTime());
+$('#snippetTestA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testA.html?nocache='+ (new Date()).getTime());
+$('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testB.html?nocache='+ (new Date()).getTime());
+$('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testC.html?nocache='+ (new Date()).getTime());
 
 window.scrollTo(0,0);
 // ]]></script>
 
 
-<div class="isa_info">
-    <i class="fa fa-info-circle"></i>
-    Replace this text with your own text.
-</div>
-<div class="isa_success">
-     <i class="fa fa-check"></i>
-     Replace this text with your own text.
-</div>
-<div class="isa_error">
-   <i class="fa fa-times-circle"></i>
-   Replace this text with your own text.
-</div>
 </body>
 </html>
