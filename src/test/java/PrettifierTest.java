@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import tddTrail.CodePrettifierEngine;
 
+
 public class PrettifierTest {	// Using https://github.com/google/code-prettify	
 	private static CodePrettifierEngine pe = new CodePrettifierEngine();	
 	   	
@@ -21,6 +22,7 @@ public class PrettifierTest {	// Using https://github.com/google/code-prettify
 			new URL("https://raw.githubusercontent.com/KenLomax/tddtrailpoc/master/src/main/java/tddTrail/TrailSetupTest.java?nocache="+System.currentTimeMillis()));
 		pe.saveSnippets(targetDir, snippets);
 		assertTrue(new File( targetDir+"/hybrisInstallationIsWhereIExpectIt.html").exists());		
+	
 	}
 
 }
