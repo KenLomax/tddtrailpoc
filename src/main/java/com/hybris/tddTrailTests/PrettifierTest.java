@@ -23,7 +23,7 @@ public class PrettifierTest {	// Using https://github.com/google/code-prettify
 			new URL("https://raw.githubusercontent.com/KenLomax/tddtrailpoc/master/src/main/java/com/hybris/tddTrailTests/TrailSetupTest.java?nocache="+System.currentTimeMillis()));
 		
 		pe.saveSnippets(targetDir, snippets);
-		assertTrue(new File( targetDir+"/hybrisInstallationIsWhereIExpectIt.html").exists());		
+		assertTrue(new File( targetDir+"/testA.html").exists());		
 	
 	}
 
