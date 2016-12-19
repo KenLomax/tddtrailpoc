@@ -4,6 +4,31 @@
 		body {
     		font-family: Arial, Helvetica, sans-serif;
 		}
+		.isa_info, .isa_success, .isa_warning, .isa_error {
+			margin: 10px 0px;
+			padding:12px;
+			}
+		.isa_info {
+		    color: #00529B;
+		    background-color: #BDE5F8;
+		}
+		.isa_success {
+		    color: #4F8A10;
+		    background-color: #DFF2BF;
+		}
+		.isa_warning {
+		    color: #9F6000;
+		    background-color: #FEEFB3;
+		}
+		.isa_error {
+		    color: #D8000C;
+		    background-color: #FFBABA;
+		}
+		.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+		    margin:10px 22px;
+		    font-size:2em;
+		    vertical-align:middle;
+		}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
@@ -25,7 +50,20 @@ Example step:
 <button id="test2ExtensionAddedOk" name="test2ExtensionAddedOk">Call test2ExtensionAddedOk </button>
 <span id="test2ExtensionAddedOkResult" name="test2ExtensionAddedOkResult">Result</span>
 
-<div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippethytest2ExtensionAddedOk" name="snippethytest2ExtensionAddedOk"></div>
+<div STYLE="background-color: #edf1f5; border:1px solid lightgray" id="snippetest2ExtensionAddedOk" name="snippetest2ExtensionAddedOk"></div>
+
+<div class="isa_info">
+    <i class="fa fa-info-circle"></i>
+    Replace this text with your own text.
+</div>
+<div class="isa_success">
+     <i class="fa fa-check"></i>
+     Replace this text with your own text.
+</div>
+<div class="isa_error">
+   <i class="fa fa-times-circle"></i>
+   Replace this text with your own text.
+</div>
 
 <script>// <![CDATA[
 $( "#showHideCode" ).click(function() {
@@ -41,9 +79,9 @@ $("#test2ExtensionAddedOk").click(function(){
         $("#test2ExtensionAddedOkResult").html(result);
     }});
 });
-$('#snippethybrisInstallationIsWhereIExpectIt').load('https://yaasbitesadmin.cfapps.us10.hana.ondemand.com/demotests/hybrisInstallationIsWhereIExpectIt.html?nocache='+ (new Date()).getTime());
+$('#snippethybrisInstallationIsWhereIExpectIt').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/hybrisInstallationIsWhereIExpectIt.html?nocache='+ (new Date()).getTime());
 
-$('#snippetest2ExtensionAddedOk').load('https://yaasbitesadmin.cfapps.us10.hana.ondemand.com/demotests/test2ExtensionAddedOk.html?nocache='+ (new Date()).getTime());
+$('#snippetest2ExtensionAddedOk').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/test2ExtensionAddedOk.html?nocache='+ (new Date()).getTime());
 window.scrollTo(0,0);
 // ]]></script>
 </body>
