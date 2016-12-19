@@ -45,20 +45,18 @@ public class CodePrettifierEngine {
 	}
 
 	public Map<String, String> convertStringOfSnippetsToHTMLBlocks(String in) throws Exception {
-		Pattern pattern = Pattern.compile("YaaSBiteSnippetStart(.*)YaaSBiteSnippetEnd", Pattern.DOTALL);
+		Pattern pattern = Pattern.compile("TddTrailSnippetStart(.*?)TddTrailSnippetEnd", Pattern.DOTALL);
 		Matcher matcher = pattern.matcher(in);
 		Map<String, String> prettifiedSnippets = new HashMap<>();
-		if (matcher.find()) {
-			for (int g = 0; g < matcher.groupCount(); g++) {
-				String snippet = matcher.group(0);		
-				String snippetName = snippet.substring(snippet.indexOf("YaaSBiteSnippetStart") + 20, snippet.indexOf("\n") + 1).trim();
-				snippet = snippet.substring(snippet.indexOf("\n") + 1);
-				snippet = snippet.substring(0, snippet.lastIndexOf("\n"));		
-				snippet = shiftLeft(snippet);					
-				snippet = convertStringToHTML(snippet);
-				snippet = snippet.substring(snippet.indexOf("<code>"), snippet.indexOf("</code>") + 7);		
-				prettifiedSnippets.put(snippetName, snippet);
-			}
+		while(matcher.find()) {
+            String snippet = in.substring( matcher.start(),  matcher.end());	
+			String snippetName = snippet.substring(snippet.indexOf("TddTrailSnippetStart") + 20, snippet.indexOf("\n") + 1).trim();
+			snippet = snippet.substring(snippet.indexOf("\n") + 1);
+			snippet = snippet.substring(0, snippet.lastIndexOf("\n"));		
+			snippet = shiftLeft(snippet);					
+			snippet = convertStringToHTML(snippet);
+			snippet = snippet.substring(snippet.indexOf("<code>"), snippet.indexOf("</code>") + 7);		
+			prettifiedSnippets.put(snippetName, snippet);
 		}
 		return prettifiedSnippets;
 	}

@@ -11,21 +11,21 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
 
-	// YaaSBiteSnippetStart hybrisInstallationIsWhereIExpectIt
+	// TddTrailSnippetStart hybrisInstallationIsWhereIExpectIt
 	@Test 
 	public void testHybrisInstallationIsWhereIExpectIt(){		
 		// The folder TddTrail should be sitting alongside the folder hybris-commerce-suite-6.2.0.1
 		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform" ) );
 	}
-	// YaaSBiteSnippetEnd
+	// TddTrailSnippetEnd
 	
-	// YaaSBiteSnippetStart test2ExtensionAddedOk
+	// TddTrailSnippetStart test2ExtensionAddedOk
 	@Test 
 	public void test2ExtensionAddedOk(){
 		// If you have correctly added an extension there should be some new foldes and files
 		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc" ) );
 	}	
-	// YaaSBiteSnippetEnd
+	// TddTrailSnippetEnd
 
 		
 	//@Test 
