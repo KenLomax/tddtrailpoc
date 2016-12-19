@@ -1,7 +1,7 @@
 package com.hybris.tddTrailTests;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
