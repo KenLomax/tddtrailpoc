@@ -2,7 +2,7 @@
 ---
 applications:
 - name: tddTrail
-  path: target/tddTrail-0.0.1-SNAPSHOT.war
+  path: target/tddTrailSite-0.0.1-SNAPSHOT.war
   domain: cfapps.us10.hana.ondemand.com
   instances: 1
   memory: 512M

@@ -24,6 +24,8 @@ public class TDDController {
     			new TrailSetupTest().testB_ExtensionAddedOk();
     		else if (test.equals("TestC"))
     			new TrailSetupTest().testC_ExtensionModelOk();
+    		else if (test.equals("TestD"))
+    			new TrailSetupTest().testD_ExtensionModelOk();
     		else
     			throw new Exception ("Not recognised");
     	}catch (Error e){

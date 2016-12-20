@@ -36,6 +36,13 @@ public class TrailSetupTest {
 	}
 	// TddTrailSnippetEnd
 	
+	// TddTrailSnippetStart testD
+	public void testD_ExtensionModelOk(){
+		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java" ) );
+		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/model/BandModel.java" ) );
+	}
+	// TddTrailSnippetEnd
+	
 	private boolean directoryExists( String f){
 		System.out.println("CHECKING IF THIS FILE EXISTS "+new File(f).getPath());
 		return new File( f ).exists();
