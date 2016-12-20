@@ -97,6 +97,7 @@ Example step:
 <br>
 
 <table>
+
 <tr><td>
 <div class=isa_info  STYLE="border:1px solid lightgray" id="snippetTestA" name="snippetTestA"></div>
 </td>
@@ -106,6 +107,7 @@ Example step:
 Can also run with <code>mvn -Dtest=< classname >#< testname > test</code><br>
 </td>
 </tr>
+
 <tr><td>
 <div class=isa_info STYLE=" border:1px solid lightgray" id="snippetTestB" name="snippetTestB"></div>
 </td>
@@ -117,6 +119,15 @@ Can also run with <code>mvn -Dtest=< classname >#< testname > test</code><br>
 <li>The Ant script will now create a skeleton extension for you in YOURPATH/bin/custom/tddtrail.</li>
 </ol>
 </li>
+</ol>
+</td></tr>
+
+<tr>
+<td>
+<div class=isa_info STYLE=" border:1px solid lightgray" id="snippetTestD" name="snippetTestD"></div>
+</td>
+<td><button id="TestD" class="runTest" name="TestD">Call testD</button> <span id="TestDResult"></span>
+<ol>
 <li>Add the new extension to your Suite</li>
 <ol>
 <li>Append the new extension to <code>config/localextensions.xml</code>: <code>&lt;extensions&gt; ... &lt;extension name="cuppytrail" /&gt; &lt;/extensions&gt;</code></li>
@@ -189,10 +200,10 @@ $( ".runTest" ).click(function() {
     }});
 });
 
-$('#snippetTestA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testA.html?nocache='+ (new Date()).getTime());
-$('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testB.html?nocache='+ (new Date()).getTime());
-$('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testC.html?nocache='+ (new Date()).getTime());
-$('#snippetTestD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testD.html?nocache='+ (new Date()).getTime());
+$('#snippetTestA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestA.html?nocache='+ (new Date()).getTime());
+$('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestB.html?nocache='+ (new Date()).getTime());
+$('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestC.html?nocache='+ (new Date()).getTime());
+$('#snippetTestD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestD.html?nocache='+ (new Date()).getTime());
 
 window.scrollTo(0,0);
 // ]]></script>

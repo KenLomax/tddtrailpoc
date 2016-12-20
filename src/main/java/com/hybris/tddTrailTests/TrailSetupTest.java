@@ -12,7 +12,7 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
 
-	// TddTrailSnippetStart testA
+	// TddTrailSnippetStart TestA
 	@Test 
 	public void testA_HybrisInstallationIsWhereIExpectIt(){		
 		// Confirm that the TddTrail folder is sitting alongside the hybris-commerce-suite-6.2.0.1 folder
@@ -21,7 +21,7 @@ public class TrailSetupTest {
 	}
 	// TddTrailSnippetEnd
 	
-	// TddTrailSnippetStart testB
+	// TddTrailSnippetStart TestB
 	@Test 
 	public void testB_ExtensionAddedOk(){
 		// If you have correctly added an extension there should be some new foldes and files
@@ -29,14 +29,14 @@ public class TrailSetupTest {
 	}	
 	// TddTrailSnippetEnd
 		
-	// TddTrailSnippetStart testC
+	// TddTrailSnippetStart TestC
 	public void testC_ExtensionModelOk(){
 		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java" ) );
 		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/model/BandModel.java" ) );
 	}
 	// TddTrailSnippetEnd
 	
-	// TddTrailSnippetStart testD
+	// TddTrailSnippetStart TestD
 	public void testD_ExtensionModelOk(){
 		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java" ) );
 		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/model/BandModel.java" ) );
