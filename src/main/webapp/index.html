@@ -112,9 +112,9 @@ Can also run with <code>mvn -Dtest=< classname >#< testname > test</code><br>
 <div class=isa_info STYLE=" border:1px solid lightgray" id="snippetTestB" name="snippetTestB"></div>
 </td>
 <td><button id="TestB" class="runTest" name="TestB">Call testB</button> <span id="TestBResult"></span>
-<ol style="margin-bottom: 0px;">
+<ol style="margin-bottom: 0px;margin-top: 0px;">
 <li>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040">Notes..</a>)
-<ol type="I">
+<ol type="I" style="margin-bottom: 0px;margin-top: 0px;">
 <li>Navigate to <code>hybris-commerce-suite-6.2.0.1/hybris/bin/platform,</code>&nbsp;run the command <code>ant extgen</code> and supply the following input<br />Select <code>yempty</code> for the extension template<br />Enter the name <code>tddtrail</code> for the extension.<br />Enter the package prefix <code>com.hybris.tddtrail</code></li>
 <li>The Ant script will now create a skeleton extension for you in YOURPATH/bin/custom/tddtrail.</li>
 </ol>
@@ -124,15 +124,24 @@ Can also run with <code>mvn -Dtest=< classname >#< testname > test</code><br>
 
 <tr>
 <td>
-<div class=isa_info STYLE=" border:1px solid lightgray" id="snippetTestD" name="snippetTestD"></div>
+<div class=isa_info STYLE=" border:1px solid lightgray" id="snippetTestC" name="snippetTestC"></div>
 </td>
-<td><button id="TestD" class="runTest" name="TestD">Call testD</button> <span id="TestDResult"></span>
-<ol>
+<td><button id="TestC" class="runTest" name="TestC">Call TestC</button> <span id="TestCResult"></span>
+<ol style="margin-bottom: 0px;margin-top: 0px;">
 <li>Add the new extension to your Suite</li>
-<ol>
+<ol style="margin-bottom: 0px;margin-top: 0px;">
 <li>Append the new extension to <code>config/localextensions.xml</code>: <code>&lt;extensions&gt; ... &lt;extension name="cuppytrail" /&gt; &lt;/extensions&gt;</code></li>
 <li>Run <code>ant</code> to ???</li>
 </ol>
+</td>
+</tr>
+<tr><td>
+<div class=isa_info  STYLE="border:1px solid lightgray" id="snippetTestD" name="snippetTestD"></div>
+</td>
+<td>
+<button class=runTest id="TestD" name="TestD">Call TestD</button><br>
+<span id="TestDResult" name="TestDResult"></span>
+<ol style="margin-bottom: 0px;margin-top: 0px;">
 <li>Confirm the extension is recognized by the Suite.
 <ol>
 <li>Restart the commerce suite: <code>hybrisserver.bat</code> or <code>./hybrisserver.sh </code></li>
@@ -140,23 +149,15 @@ Can also run with <code>mvn -Dtest=< classname >#< testname > test</code><br>
 </ol>
 </li>
 <li>Import this new extension into your EclipseIDE</li>
-</ol>
+
 </td>
 </tr>
 <tr><td>
-<div class=isa_info  STYLE="border:1px solid lightgray" id="snippetTestC" name="snippetTestC"></div>
+<div class=isa_info  STYLE="border:1px solid lightgray" id="snippetTestE" name="snippetTestE"></div>
 </td>
 <td>
-<button class=runTest id="TestC" name="TestC">Call testC</button><br>
-<span id="TestCResult" name="TestCResult"></span>
-</td>
-</tr>
-<tr><td>
-<div class=isa_info  STYLE="border:1px solid lightgray" id="snippetTestD" name="snippetTestD"></div>
-</td>
-<td>
-<button class=runTest id="TestD" name="TestD">Call testD</button><br>
-<span id="TestDResult" name="TestDResult"></span>
+<button class=runTest id="TestE" name="TestE">Call TestE</button><br>
+<span id="TestEResult" name="TestEResult"></span>
 </td>
 </tr>
 </table>
@@ -204,6 +205,7 @@ $('#snippetTestA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotest
 $('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestB.html?nocache='+ (new Date()).getTime());
 $('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestC.html?nocache='+ (new Date()).getTime());
 $('#snippetTestD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestD.html?nocache='+ (new Date()).getTime());
+$('#snippetTestE').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestE.html?nocache='+ (new Date()).getTime());
 
 window.scrollTo(0,0);
 // ]]></script>

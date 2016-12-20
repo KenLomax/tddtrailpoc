@@ -38,8 +38,13 @@ public class TrailSetupTest {
 	
 	// TddTrailSnippetStart TestD
 	public void testD_ExtensionModelOk(){
-		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java" ) );
-		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/model/BandModel.java" ) );
+		assertTrue(false);
+	}
+	// TddTrailSnippetEnd
+	
+	// TddTrailSnippetStart TestE
+	public void testE_ExtensionModelOk(){
+		assertTrue(false);
 	}
 	// TddTrailSnippetEnd
 	
