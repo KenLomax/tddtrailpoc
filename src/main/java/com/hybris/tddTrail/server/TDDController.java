@@ -18,11 +18,11 @@ public class TDDController {
     @RequestMapping( "/tdd" )
     public ResponseEntity<String> greetings( @RequestParam( value="test", defaultValue="") String test) {
     	try {
-    		if (test.equals("testA"))
+    		if (test.equals("TestA"))
     			new TrailSetupTest().testA_HybrisInstallationIsWhereIExpectIt();
-    		else if (test.equals("testB"))
+    		else if (test.equals("TestB"))
     			new TrailSetupTest().testB_ExtensionAddedOk();
-    		else if (test.equals("testC"))
+    		else if (test.equals("TestC"))
     			new TrailSetupTest().testC_ExtensionModelOk();
     		else
     			throw new Exception ("Not recognised");
