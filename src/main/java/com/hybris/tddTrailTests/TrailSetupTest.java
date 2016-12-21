@@ -6,7 +6,7 @@ package com.hybris.tddTrailTests;
  * git add .
  * git commit -m 'Adjusted tests'
  * git push      (to push this file)
- * mvn clean install  (to generate new prettified test files)
+ * Run prettifierTest.java
  * git add .
  * git commit -m 'Adjusted tests'
  * git push      (to push new prettified files)
