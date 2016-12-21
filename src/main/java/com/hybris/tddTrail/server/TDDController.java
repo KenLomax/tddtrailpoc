@@ -23,7 +23,7 @@ public class TDDController {
     		else if (test.equals("TestB"))
     			new TrailSetupTest().testB_ExtensionAddedOk();
     		else if (test.equals("TestC"))
-    			new TrailSetupTest().testC_ExtensionModelOk();
+    			new TrailSetupTest().testC_LocalExtensionsContainsTDDTrail();
     		else if (test.equals("TestD"))
     			new TrailSetupTest().testD_ExtensionModelOk();
     		else
