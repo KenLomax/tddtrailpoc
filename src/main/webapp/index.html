@@ -105,13 +105,13 @@ color: #0486e0;}
 <tr>
 <td width=50%>
 <h4>Confirm setup</h4>
-Run the Acceptrance Test on the right to confirm your TddTrail is placed correctly alongside your commerce suite.</td>
+Run the Acceptance Test on the right to confirm your TddTrail is placed correctly alongside your commerce suite.</td>
 <td>&nbsp;</td>
 <td>
 <h4>&nbsp;</h4>
-<button class=runTest id="TestA" name="TestA">Run Acceptance Test</button>.
-Status: <span class=isa_info id="TestAResult" name="TestAResult">Not yet run</span>
-<p class=isa_info STYLE="border:1px solid lightgray" id="snippetTestA" name="snippetTestA"></p>
+<button class=runTest id="testA" name="testA">Run Acceptance Test</button>.
+Status: <span class=isa_info id="testAResult" name="testAResult">Not yet run</span>
+<p class=isa_info STYLE="border:1px solid lightgray" id="testASnippet" name="testASnippet"></p>
 </td>
 </tr>
 
@@ -119,11 +119,11 @@ Status: <span class=isa_info id="TestAResult" name="TestAResult">Not yet run</sp
 <tr>
 <td width=50%>
 <h4>Confirm setup</h4>
-Run the Acceptrance Test on the right to confirm that install.sh -r b2b_acc was run.</td>
+Run the Acceptance Test on the right to confirm that install.sh -r b2b_acc was run.</td>
 <td>&nbsp;</td>
 <td>
 <h4>&nbsp;</h4>
-<button class=runTest id="TestA" name="TestA2">Run Acceptance Test</button>.
+<button class=runTest id="TestA2" name="TestA2">Run Acceptance Test</button>.
 Status: <span class=isa_info id="TestA2Result" name="TestA2Result">Not yet run</span>
 <p class=isa_info STYLE="border:1px solid lightgray" id="snippetTestA2" name="snippetTestA2"></p>
 </td>
@@ -250,7 +250,8 @@ $( ".runTest" ).click(function() {
     }});
 });
 
-$('#snippetTestA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestA.html?nocache='+ (new Date()).getTime());
+$('#testASnippet').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testA.html?nocache='+ (new Date()).getTime());
+$('#snippetTestA2').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestA2.html?nocache='+ (new Date()).getTime());
 $('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestB.html?nocache='+ (new Date()).getTime());
 $('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestC.html?nocache='+ (new Date()).getTime());
 $('#snippetTestD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestD.html?nocache='+ (new Date()).getTime());

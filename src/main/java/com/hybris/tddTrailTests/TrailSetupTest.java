@@ -30,9 +30,9 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
 
-	// TddTrailSnippetStart TestA
+	// TddTrailSnippetStart testA
 	@Test 
-	public void testA_HybrisInstallationIsWhereIExpectIt(){		
+	public void testA(){		
 		// Confirm that the TddTrail folder is sitting alongside the hybris-commerce-suite-6.2.0.1 folder:
 		// <someFolder>
 		// |-- hybris-commerce-suite-6.2.0.1
@@ -46,15 +46,24 @@ public class TrailSetupTest {
 	@Test 
 	public void testA2_ConfirmInstallWasRunWithb2b_acc() throws IOException{		
 		// Confirm that  './install.sh -r b2b_acc' was run
-		assertTrue( fileExistsAndContains( "../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "<extension name=\"b2bacceleratoraddon\" />" ) );
+		assertTrue( fileExistsAndContains( "../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "extension name='b2bacceleratoraddon'" ) );
 	}
 	// TddTrailSnippetEnd
 	
 	
 	// TddTrailSnippetStart TestB
 	@Test 
-	public void testB_ExtensionAddedOk(){
+	public void testB_ExtensionCreateddOk(){
 		// If you have correctly added an extension there should be some new foldes and files
+		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo/TddtrailManager.java:" ) );
+	}	
+	// TddTrailSnippetEnd
+	
+	// TddTrailSnippetStart TestB2
+	@Test 
+	public void testB2_ExtensionAddedAndCodeGeneratedOk() throws IOException{
+		// If you have correctly added an extension there should be some new foldes and files
+		assertTrue( fileExistsAndContains( "hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml",  "tddtrail" ) );
 		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc" ) );
 	}	
 	// TddTrailSnippetEnd
@@ -88,7 +97,7 @@ public class TrailSetupTest {
 	}
 	
 	private boolean fileExistsAndContains( String f, String s) throws IOException{
-		 String content = new String(Files.readAllBytes(Paths.get("duke.java")));
+		 String content = new String(Files.readAllBytes(Paths.get(f)));
 		 return content.contains(s);
 	}
 }
