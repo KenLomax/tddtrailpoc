@@ -12,6 +12,9 @@ package com.hybris.tddTrailTests;
  * git push      (to push new prettified files)
  * cf push
  * 
+ * To idtify new files Use find . -type f -mtime -120s 
+ * 
+ * 
  */
 import static org.junit.Assert.assertTrue;
 
@@ -33,13 +36,20 @@ public class TrailSetupTest {
 		// Confirm that the TddTrail folder is sitting alongside the hybris-commerce-suite-6.2.0.1 folder:
 		// <someFolder>
 		// |-- hybris-commerce-suite-6.2.0.1
-		//     |-- README
-		//     |-- hybris
-		//     |-- ...
+		//     |-- hybris and other subfolders
 		// |-- tddTrailSite
 		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform" ) );
 	}
 	// TddTrailSnippetEnd
+
+	// TddTrailSnippetStart TestA2	
+	@Test 
+	public void testA2_ConfirmInstallWasRunWithb2b_acc() throws IOException{		
+		// Confirm that  './install.sh -r b2b_acc' was run
+		assertTrue( fileExistsAndContains( "../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "<extension name=\"b2bacceleratoraddon\" />" ) );
+	}
+	// TddTrailSnippetEnd
+	
 	
 	// TddTrailSnippetStart TestB
 	@Test 
