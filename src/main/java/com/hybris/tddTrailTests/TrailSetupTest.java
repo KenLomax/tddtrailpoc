@@ -10,6 +10,7 @@ package com.hybris.tddTrailTests;
  * git add .
  * git commit -m 'Adjusted tests'
  * git push      (to push new prettified files)
+ * cf push
  * 
  */
 import static org.junit.Assert.assertTrue;
