@@ -20,10 +20,12 @@ public class PrettifierTest {	// Using https://github.com/google/code-prettify
 		String targetDir = "src/main/webapp/demotests";
 		
 		Map<String, String> snippets = pe.getSnippets( 
-			new URL("https://raw.githubusercontent.com/KenLomax/tddtrailpoc/master/src/main/java/com/hybris/tddTrailTests/TrailSetupTest.java?nocache="+System.currentTimeMillis()));
+			new File ("src/main/java/com/hybris/tddTrailTests/TrailSetupTest.java")
+//			new URL("https://raw.githubusercontent.com/KenLomax/tddtrailpoc/master/src/main/java/com/hybris/tddTrailTests/TrailSetupTest.java?nocache="+System.currentTimeMillis())
+			);
 		
 		pe.saveSnippets(targetDir, snippets);
-		assertTrue(new File( targetDir+"/testA.html").exists());		
+		assertTrue(new File( targetDir+"/testTddTrailIsNextToTheSuite.html").exists());		
 	
 	}
 

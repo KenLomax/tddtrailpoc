@@ -30,9 +30,9 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
 
-	// TddTrailSnippetStart testA
 	@Test 
-	public void testA(){		
+	// TddTrailSnippetStart testTddTrailIsNextToTheSuite
+	public void testTddTrailIsNextToTheSuite(){
 		// Confirm that the TddTrail folder is sitting alongside the hybris-commerce-suite-6.2.0.1 folder:
 		// <someFolder>
 		// |-- hybris-commerce-suite-6.2.0.1
@@ -42,26 +42,26 @@ public class TrailSetupTest {
 	}
 	// TddTrailSnippetEnd
 
-	// TddTrailSnippetStart TestA2	
+	// TddTrailSnippetStart testSuiteInitializedWithb2b_acc	
 	@Test 
-	public void testA2_ConfirmInstallWasRunWithb2b_acc() throws IOException{		
+	public void testSuiteInitializedWithb2b_acc() throws IOException{		
 		// Confirm that  './install.sh -r b2b_acc' was run
 		assertTrue( fileExistsAndContains( "../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "extension name='b2bacceleratoraddon'" ) );
 	}
 	// TddTrailSnippetEnd
 	
 	
-	// TddTrailSnippetStart TestB
+	// TddTrailSnippetStart testExtensionCreateddOk
 	@Test 
-	public void testB_ExtensionCreateddOk(){
+	public void testExtensionCreateddOk(){
 		// If you have correctly added an extension there should be some new foldes and files
-		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo/TddtrailManager.java:" ) );
+		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo/TddtrailManager.java" ) );
 	}	
 	// TddTrailSnippetEnd
 	
-	// TddTrailSnippetStart TestB2
+	// TddTrailSnippetStart testCodeGeneratedOk
 	@Test 
-	public void testB2_ExtensionAddedAndCodeGeneratedOk() throws IOException{
+	public void testCodeGeneratedOk() throws IOException{
 		// If you have correctly added an extension there should be some new foldes and files
 		assertTrue( fileExistsAndContains( "hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml",  "tddtrail" ) );
 		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc" ) );

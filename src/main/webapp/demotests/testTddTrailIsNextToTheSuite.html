@@ -1,0 +1,9 @@
+<button onclick='runATest("testTddTrailIsNextToTheSuite")'>Run Acceptance Test</button>Status: <span class=isa_info id='testTddTrailIsNextToTheSuiteResult' name='testTddTrailIsNextToTheSuiteResult'>Not yet run</span><p id=testTddTrailIsNextToTheSuiteSnippet name=testTddTrailIsNextToTheSuiteSnippet><code>
+<font color="#404040"><b>public&nbsp;</b></font><font color="#7f0055"><b>void&nbsp;</b></font><font color="#000000">testTddTrailIsNextToTheSuite</font><font color="#000000">(){</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;Confirm&nbsp;that&nbsp;the&nbsp;TddTrail&nbsp;folder&nbsp;is&nbsp;sitting&nbsp;alongside&nbsp;the&nbsp;hybris-commerce-suite-6.2.0.1&nbsp;folder:</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;&lt;someFolder&gt;</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;|--&nbsp;hybris-commerce-suite-6.2.0.1</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;hybris&nbsp;and&nbsp;other&nbsp;subfolders</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;|--&nbsp;tddTrailSite</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">assertTrue</font><font color="#000000">(&nbsp;</font><font color="#000000">directoryExists</font><font color="#000000">(&nbsp;</font><font color="#2a00ff">&#34;../hybris-commerce-suite-6.2.0.1/hybris/bin/platform&#34;&nbsp;</font><font color="#000000">)&nbsp;)</font><font color="#000000">;</font><br />
+<font color="#000000">}</font></code></p>
