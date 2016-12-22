@@ -29,7 +29,7 @@ import de.java2html.util.RGB;
 public class CodePrettifierEngine {
 	private final Logger LOG = LoggerFactory.getLogger(CodePrettifierEngine.class);
 	
-	private final String tddTrailPrefix="<button onclick='runATest(\"xxx\")'>Run Acceptance Test</button>"+
+	private final String tddTrailPrefix="<h4>&nbsp;</h4><button onclick='runATest(\"xxx\")'>&#9658;</button> "+
 			"Status: <span class=isa_info id='xxxResult' name='xxxResult'>Not yet run</span>"+
 			"<p id=xxxSnippet name=xxxSnippet>";
 	private final String tddTrailPostfix="</p>";

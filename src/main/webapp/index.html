@@ -56,157 +56,183 @@ color: #0486e0;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
-<h1>PoC of a TDD Trail</h1>
-<h2>Prerequisites </h2>
+  <h1>PoC of a TDD Trail</h1>
+<table><tr><td>  <h2>Prerequisites </h2>
+  <ol>
+      <li>Software
+          <ul>
+              <li><a target="_blank" href="https://maven.apache.org/index.html">Maven 3.0</a> </li>
+              <li><a target="_blank" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> to clone the examples</li>
+              <li>Java 8 JDK to write and compile the example code, available at <a target="_blank" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle JDK</a> or <a target="_blank" href="http://openjdk.java.net/">OpenJDK</a>
+              </li>
+              <li><a target="_blank" href="https://eclipse.org/downloads/">Eclipse IDE</a> or a similar development environment</li>
+          </ul>
+      </li>
+      <li>Install the hybris Suite
+          <ul type="i">
+              <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.</li>
+          </ul>
+      </li>
+      <li> Install and run the TDD Trail
+          <code<hybris-commerce-suite-6.2.0.1</code> alongside the commerce suite
+              <ol style="margin-bottom: 0px;margin-top: 0px;" ">
+     <li>In the parent folder of <code>hybris-commerce-suite-6.2.0.1</code> run
+     <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git ">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button>.</li>
+  </li>
+  <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside <code>hybris-commerce-suite-6.2.0.1</code>.
+    <li>In a second command line, navigate in to the folder <code>tddtrailpoc</code> and run
+    <button data-clipboard-text="java -jar target/tddTrail-0.0.1-SNAPSHOT.war ">java -jar target/tddTrail-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
+    <li>Open <a target="_blank " href="http://localhost:8080 ">localhost:8080</a> and follow the tests below.</li>
+
+  </ol></ol>
+</td><td>
+     <h3>ToDos:</h3>
+     Need diagram showing when to run ant, ant clean all, initialize etc.<br>
+     Clarify with Stephen about Trail contents<br>
+     Automtate the left side to so is fully tested all the time and we are notified of breakages<br>
+     ...
+     <h3>Bugs/Qns</h3>
+     <ol>
+     <li>Unclear steps at end of extgen saying "removing template extensions", ..</li>
+     <li>installer/README says the installer will start the server - it does not??</li>
+     <li>When ant, ant clean all, init etc.</li>
+     </ol>
+</td></tr></table>
+
+
+  <table>
+  <tr>
+    <td width=50%>
+      <h2>Steps</h2>
+    </td>
+    <td>&nbsp;</td>
+    <td><h2>Acceptance Tests</h2></td>
+  </tr>    
+    
+  <tr>
+  <td width=50%>
+  <h4>Configure the Suite with a recipe</h4>
 <ol>
-<li>Software <ul>
- <li><a target="_blank" href="https://maven.apache.org/index.html" >Maven 3.0</a> </li>
- <li><a target="_blank" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" >Git</a> to clone the examples</li>
- <li>Java 8 JDK to write and compile the example code, available at <a target="_blank" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" >Oracle JDK</a> or <a target="_blank" href="http://openjdk.java.net/" >OpenJDK</a></li>
- <li><a target="_blank" href="https://eclipse.org/downloads/" >Eclipse IDE</a> or a similar development environment</li>
- </ul></li>
-<li>Install the hybris Suite locally<ol type="i">
-  <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.</li>
-  <li>Navigate in to <code>hybris-commerce-suite-6.2.0.1</code> and initialize the commerce suite:<ul>
-<li>on a Mac/Linux run
-<button data-clipboard-text="cd Installer; ./install.sh -r b2b_acc">cd Installer; ./install.sh -r b2b_acc [Copy Me]</button>.</li>
-<li>on Windows run
-<button data-clipboard-text="cd Installer & install.bat -r b2b_acc">cd Installer & install.bat -r b2b_acc [Copy Me]</button>.</li>
-  </ul>
-  </li>
-  </ol></li>
-  <li>Set up the commerce Suite in Eclipse IDE  (<a href="https://wiki.hybris.com/display/prodandtech/Preparing+to+Develop+with+the+Eclipse+IDE">Notes..</a>)<ol>
-  <li>Import the platform and config projects into a new Eclipse Workspace</li>
-  </ol>
-  </li>
-<li>  Install and run the TDD Trail<code<hybris-commerce-suite-6.2.0.1</code> alongside the commerce suite
-  <ol style="margin-bottom: 0px;margin-top: 0px;"">
-   <li>In the parent folder of <code>hybris-commerce-suite-6.2.0.1</code> run
-   <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button>.</li>
-</li>
-<li>Verify that you now have the folder <code>tddtrailpoc</code> alongside <code>hybris-commerce-suite-6.2.0.1</code>.
-  <li>In a second command line, navigate in to the folder <code>tddtrailpoc</code> and run
-  <button data-clipboard-text="java -jar target/tddTrail-0.0.1-SNAPSHOT.war">java -jar target/tddTrail-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
-  <li>Open <a target="_blank" href="http://localhost:8080">localhost:8080</a> and follow the tests below.</li>
-
-</ol></ol>
-
-<br>
-
-<table>
-<tr>
-  <td width=50%>
-    <h2>Step</h2>
-  </td>
-  <td>&nbsp;</td>
-  <td><h2>Acceptance Test</h2></td>
-</tr>
-
-<tr>
-<td width=50%>
-<h4>TddTrail setup</h4>
-Run the Acceptance Test on the right to confirm your TddTrail is placed correctly alongside your commerce suite.</td>
-<td>&nbsp;</td>
-
-<td id=testA name=testA></td>
-<script>
-$('#testA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testTddTrailIsNextToTheSuite.html?nocache='+ (new Date()).getTime());
-</script>
-</tr>
-
-<tr>
-<td width=50%>
-<h4>Initialize Suite with B2B Accelarator</h4>
-Run the Acceptance Test on the right to confirm that install.sh -r b2b_acc was run.</td>
-<td>&nbsp;</td>
-<td id=testA2 name=testA2></td>
-<script>
-$('#testA2').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testSuiteInitializedWithb2b_acc.html?nocache='+ (new Date()).getTime());
-</script>
-</tr>
-</tr>
-
-<tr>
-  <td width=50%>
-    <h4>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040">Notes..</a>)</h4>
-    <ol>
-      <li>Navigate to <code>hybris-commerce-suite-6.2.0.1/hybris/bin/platform</code></li>
-      <li>Run the command <code>ant extgen</code> and supply the following input<br />Select <code>yempty</code> for the extension template<br />Enter the name <code>tddtrail</code> for the extension.<br />Enter the package prefix <code>com.hybris.tddtrail</code></li>
+  <li>Navigate in to <code>hybris-commerce-suite-6.2.0.1</code> and configure the commerce suite with the B2B Accelerator Recipe
+    <ul>
+        <li>on a Mac/Linux run
+            <button data-clipboard-text="cd Installer; ./install.sh -r b2b_acc">cd Installer; ./install.sh -r b2b_acc [Copy Me]</button>.</li>
+        <li>on Windows run
+            <button data-clipboard-text="cd Installer & install.bat -r b2b_acc">cd Installer & install.bat -r b2b_acc [Copy Me]</button>.</li>
+    </ul></li>
+    <li>Navigate in to <code>hybris-commerce-suite-6.2.0.1/bin/platform</code> and configure your <code>ant</code> <ul>
+        <li>on a Mac/Linux run
+            <button data-clipboard-text=". ./setantenv.sh">. ./setantenv.sh [Copy Me]</button>.</li>
+        <li>on Windows run
+            <button data-clipboard-text="setantenv.bat">setantenv.bat [Copy Me]</button>.</li>
+    </ul></li>
+    <li>Run <code>ant</code> to compile your Suite</li>
     </ol>
   </td>
   <td>&nbsp;</td>
- <td id=testB name=testB></td>
-<script>
-$('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());
-</script>
-</tr>
-</tr>
+  <td id=testA />
+  <script>$('#testA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testTddTrailPrerequisites.html?nocache='+ (new Date()).getTime());  </script>
+  </tr>
 
-<tr>
-  <td width=50%>
-    <h4>Add the new extension to your Suite</h4>
-    <ol style="margin-bottom: 0px;margin-top: 0px;">
-    <li>Append the new extension to <code>config/localextensions.xml</code>: <code>&lt;extensions&gt; ... &lt;extension name="tddtrail" /&gt; &lt;/extensions&gt;</code></li>
-    <li>Run <code>ant</code> to ???</li>
+  <tr>
+    <td width=50%>
+      <h4>Run your hybris Suite</h4>
+    <ol><li>Navigate in to <code>hybris-commerce-suite-6.2.0.1/bin/platform</code> run your Suite:
+    <ul>
+        <li>on a Mac/Linux run  <button data-clipboard-text="./hybrisserver.sh">./hybrisserver.sh [Copy Me]</button></li>
+        <li>on Windows run <button data-clipboard-text="./hybrisserver.bat">./hybrisserver.bat [Copy Me]</button> on Windows</li>
+    </ul>
+    </li>
+    <li>Once started, open the Suite at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a>.</li>
+    <li>Stop the Suite.</li>
     </ol>
+    </td>
+    <td>&nbsp;</td>
+    <td>Confirm that you can access the hybris Administration Console at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a><br> <a href="images/initialHAC.png" target="_blank"><img width=200 src="images/initialHAC.png"/></a></td>
+  </tr>
+
+
+  <tr>
+    <td width=50%>
+      <h4>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040 ">Notes..</a>)</h4>
+      <ol>
+        <li>Navigate to <code>hybris-commerce-suite-6.2.0.1/hybris/bin/platform</code></li>
+        <li>Run the command <button data-clipboard-text="ant extgen">ant extgen [Copy Me]</button> and supply the following input<br />Select <button data-clipboard-text="yempty">yempty [Copy Me]</button> for the extension template<br />
+        Enter the name <button data-clipboard-text="tddtrail">tddtrail [Copy Me]</button> for the extension.<br />
+        Enter the package prefix <button data-clipboard-text="com.hybris.tddtrail">com.hybris.tddtrail [Copy Me]</button> com.hybris.tddtrail</li>
+        <li>Ignore the steps that the ant command then provides in the console (such as "[echo] 1) Add your extension..."), as these are given more explicitly below.</li>
+      </ol>
+    </td>
+    <td>&nbsp;</td>
+   <td id=testB name=testB></td>
+  <script>
+  $('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());
+  </script>
+  </tr>
+
+  <tr>
+    <td width=50%>
+      <h4>Add the new extension to your Suite</h4>
+      Upon success, the <code>ant extgen</code> task in the last step will list the steps you now need to take.  
+      These steps are given more explicitly here..      
+      <ol style="margin-bottom: 0px;margin-top: 0px; ">
+        <li>Open the file <code>hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml</code> and <ol>
+        <li>Add <button data-clipboard-text='<extension dir="../custom/tddtrail"/>'> < extension dir="../custom/tddtrail" / > [Copy Me]</button> to the list of extensions.</li>
+       </ol>
+        </li>
+        <li>Stop the application server if it is running.</li>
+        <li>Run <code>ant clean all</code> in your hybris/platform directory.</li>
+        </ul>
+    </td>
+    <td>&nbsp;</td>
+   <td id=testC name=testC></td>
+  <script>
+  $('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
+  </script>
+  </tr>
+
+  <tr>
+    <td width=50%>
+      <h4>Confirm the extension is recognized by the Suite</h4>
+      <ol>
+      <li>Restart the application server</li>
+      <li>Open the hybris administration console <a target="_blank" href="http://localhost:9001/platform/extensions">http://localhost:9001/platform/extensions</a> in a web browser and log in as admin nimda. You will get an overview on the available extensions and, if the extension comes with a core extension module, an hmc extension module, a webmodule depicted by the webroot and a core + extension module. As you can see, tddtrail contains a core module and a web module.</li>
+      </ol>
+    </td>
+    <td>&nbsp;</td>
+    <td>
+    Some image showing the tddtrail extension
+   </td>
+  </tr>
+
+    <tr>
+    <td width=50%>
+    <h4>Import into Eclipse</h4>
+    Set up the commerce Suite in Eclipse IDE (<a href="https://wiki.hybris.com/display/prodandtech/Preparing+to+Develop+with+the+Eclipse+IDE">Notes..</a>)
+        <ol>
+            <li>Import the platform, config and tddTrail extension into a new Eclipse Workspace</li>
+            <li>Ensure the projects appear in Eclipse with no errors</li>
+        </ol>
   </td>
-  <td>&nbsp;</td>
- <td id=testC name=testC></td>
-<script>
-$('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
-</script>
-</tr>
-</tr>
+    <td>&nbsp;</td>
+    <td >Some picture showing Eclipse projects with no errors</td>
+    </tr>
 
-<tr>
-  <td width=50%>
-    <h4>Confirm the extension is recognized by the Suite</h4>
-    <ol>
-    <li>Restart the commerce suite: <code>hybrisserver.bat</code> or <code>./hybrisserver.sh </code></li>
-    <li>Open the hybris administration console http://localhost:9001/platform/extensions in a web browser and log in as admin nimda. You will get an overview on the available extensions and, if the extension comes with a core extension module, an hmc extension module, a webmodule depicted by the webroot and a core + extension module. As you can see, tddtrail contains a core module and a web module.</li>
-    </ol>
-  </td>
-  <td>&nbsp;</td>
-  <td>
-    <button id="TestD" class="runTest" name="TestD">Run Acceptance test</button>.
-    Status: <span class=isa_info id="TestDResult" name="TestDResult">Not yet run</span>
-   <p class=isa_info STYLE="border:1px solid lightgray" id="snippetTestD" name="snippetTestD"></p>
- </td>
-</tr>
+  <tr>
+    <td width=50%>
+      <h4>Extend the data model</h4>
+      <ol>
+      <li>Steps</li>  </ol>
+    </td>
+    <td>&nbsp;</td>
+    <td id=testD name=testD></td>
+   <script>
+   $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
+   </script>
+  </tr>
 
 
-<tr>
-  <td width=50%>
-    <h4>Import this new extension into your EclipseIDE</h4>
-    <ol>
-    <li>Steps</li>  </ol>
-  </td>
-  <td>&nbsp;</td>
-  <td>
-    <button id="TestX" class="runTest" name="TestX">Run Acceptance test</button>.
-    Status: <span class=isa_info id="TestXResult" name="TestXResult">Not yet run</span>
-   <p class=isa_info STYLE="border:1px solid lightgray" id="snippetTestX" name="snippetTestX"></p>
- </td>
-</tr>
-
-
-<tr>
-  <td width=50%>
-    <h4>StepTitle</h4>
-    <ol>
-    <li>Steps</li>  </ol>
-  </td>
-  <td>&nbsp;</td>
-  <td>
-    <button id="TestX" class="runTest" name="TestX">Run Acceptance test</button>.
-    Status: <span class=isa_info id="TestXResult" name="TestXResult">Not yet run</span>
-   <p class=isa_info STYLE="border:1px solid lightgray" id="snippetTestX" name="snippetTestX"></p>
- </td>
-</tr>
-
-
-</table>
-
+  </table>
 
 <script>
 /*!

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hybris.tddTrailTests.TrailSetupTest;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 
@@ -21,7 +23,9 @@ public class TDDController {
     	try {
     	  Method method = trailTest.getClass().getMethod(methodName);
     	  method.invoke(trailTest);
-    	}catch (Error | Exception ex) {
+    	}catch (InvocationTargetException e ){
+    		return new ResponseEntity<String>( "Fail "+e.getTargetException().getMessage() , HttpStatus.OK);   	
+    	}catch (Error | Exception e ){
     		return new ResponseEntity<String>( "Fail" , HttpStatus.OK);   	
     	}  	
     	return new ResponseEntity<String>( "Success" , HttpStatus.OK); 

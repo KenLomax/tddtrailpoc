@@ -30,74 +30,80 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
 
-	@Test 
-	// TddTrailSnippetStart testTddTrailIsNextToTheSuite
-	public void testTddTrailIsNextToTheSuite(){
-		// Confirm that the TddTrail folder is sitting alongside the hybris-commerce-suite-6.2.0.1 folder:
+	@Test
+	// TddTrailSnippetStart testTddTrailPrerequisites
+	public void testTddTrailPrerequisites() throws IOException {
+		// Confirm that the TddTrail folder is sitting alongside the
+		// hybris-commerce-suite-6.2.0.1 folder:
 		// <someFolder>
 		// |-- hybris-commerce-suite-6.2.0.1
-		//     |-- hybris and other subfolders
+		// |-- hybris and other subfolders
 		// |-- tddTrailSite
-		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform" ) );
+		assertTrue("TddTrail and Suite need to be in the same folder",
+				directoryExists("../hybris-commerce-suite-6.2.0.1/hybris/bin/platform"));
+		// This trail assumes you have initialized the suite with the b2b_acc
+		// recipe
+		assertTrue("You should have installed the recipe b2b_acc",
+				fileExistsAndContains("../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml",
+						"extension name='b2bacceleratoraddon'"));
 	}
 	// TddTrailSnippetEnd
 
-	// TddTrailSnippetStart testSuiteInitializedWithb2b_acc	
-	@Test 
-	public void testSuiteInitializedWithb2b_acc() throws IOException{		
-		// Confirm that  './install.sh -r b2b_acc' was run
-		assertTrue( fileExistsAndContains( "../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "extension name='b2bacceleratoraddon'" ) );
-	}
-	// TddTrailSnippetEnd
-	
-	
 	// TddTrailSnippetStart testExtensionCreateddOk
-	@Test 
-	public void testExtensionCreateddOk(){
-		// If you have correctly added an extension there should be some new foldes and files
-		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo/TddtrailManager.java" ) );
-	}	
-	// TddTrailSnippetEnd
-	
-	// TddTrailSnippetStart testCodeGeneratedOk
-	@Test 
-	public void testCodeGeneratedOk() throws IOException{
-		// If you have correctly added an extension there should be some new foldes and files
-		assertTrue( fileExistsAndContains( "hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml",  "tddtrail" ) );
-		assertTrue( directoryExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc" ) );
-	}	
+	@Test
+	public void testExtensionCreateddOk() {
+		// If you have correctly added an extension there should be some new
+		// folders and files
+		assertTrue("I cannot find files expected for a new extension", directoryExists(
+				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo"));
+	}
 	// TddTrailSnippetEnd
 
-	// TddTrailSnippetStart TestC
-	public void testC_LocalExtensionsContainsTDDTrail() throws IOException{
-		assertTrue( fileExistsAndContains( "../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "<extension name=\"tddtrail\" />"));
+	// TddTrailSnippetStart testCodeGeneratedOk
+	@Test
+	public void testCodeGeneratedOk() throws IOException {
+		// If you have correctly added an extension there should be some new
+		// foldes and files
+		assertTrue("You should have included tddtrail in localextensions.xml", fileExistsAndContains(
+				"../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "tddtrail"));
+		assertTrue("Running ant should have generated some sources for tddtrail",
+				directoryExists("../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc"));
 	}
 	// TddTrailSnippetEnd
-	
-	// TddTrailSnippetStart TestD
-	public void testD_ExtensionModelOk(){
-		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java" ) );
-		assertTrue( fileExists( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/model/BandModel.java" ) );
+
+	// TddTrailSnippetStart testExtensionModelOk
+	public void testExtensionModelOk() {
+		assertTrue(fileExists(
+				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java"));
+		assertTrue(fileExists(
+				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/src/com/hybris/tddtrail/jalo/Band.java"));
+		assertTrue(fileExists(
+				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/model/BandModel.java"));
 	}
 	// TddTrailSnippetEnd
-	
+
 	// TddTrailSnippetStart TestE
-	public void testE_ExtensionModelOk(){
+	public void testE_ExtensionModelOk() {
 		assertTrue(false);
 	}
 	// TddTrailSnippetEnd
-	
-	private boolean directoryExists( String f){
-		System.out.println("CHECKING IF THIS FILE EXISTS "+new File(f).getPath());
-		return new File( f ).exists();
+
+	private boolean directoryExists(String f) {
+		System.out.println("CHECKING IF THIS FILE EXISTS " + new File(f).getPath());
+		return new File(f).exists();
 	}
-	
-	private boolean fileExists( String f){
-		return new File( f ).exists();
+
+	private boolean fileExists(String f) {
+		return new File(f).exists();
 	}
-	
-	private boolean fileExistsAndContains( String f, String s) throws IOException{
-		 String content = new String(Files.readAllBytes(Paths.get(f)));
-		 return content.contains(s);
+
+	private boolean fileExistsAndContains(String f, String s)  {
+		String content;
+		try {
+			content = new String(Files.readAllBytes(Paths.get(f)));
+		} catch (IOException e) {
+			return false;
+		}
+		return content.contains(s);
 	}
 }

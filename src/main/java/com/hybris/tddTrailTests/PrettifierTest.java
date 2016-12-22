@@ -25,7 +25,7 @@ public class PrettifierTest {	// Using https://github.com/google/code-prettify
 			);
 		
 		pe.saveSnippets(targetDir, snippets);
-		assertTrue(new File( targetDir+"/testTddTrailIsNextToTheSuite.html").exists());		
+		assertTrue(new File( targetDir+"/testTddTrailPrerequisites.html").exists());		
 	
 	}
 

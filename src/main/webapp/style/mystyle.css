@@ -32,4 +32,7 @@ cursor: pointer;
 color: #0486e0;
 text-align: left;
 }
+p {    
+    margin-bottom: 24px;
+}
 code { color: #0486e0; background:none; }
