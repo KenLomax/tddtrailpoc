@@ -60,8 +60,8 @@ color: #0486e0;}
   On github @ https://github.com/KenLomax/tddtrailpoc<br>
   A PoC to show how we can embed live, real acceptance/test-driven tests into a new TddTrail, that the reader runs from their local web browser.
   <br> <br>
-  
-  
+
+
 <table><tr><td>  <h2>Prerequisites </h2>
   <ol>
       <li>Software
@@ -112,8 +112,8 @@ color: #0486e0;}
     </td>
     <td>&nbsp;</td>
     <td><h2>Acceptance Tests</h2></td>
-  </tr>    
-    
+  </tr>
+
   <tr>
   <td width=50%>
   <h4>Configure the Suite with a recipe</h4>
@@ -124,12 +124,6 @@ color: #0486e0;}
             <button data-clipboard-text="cd Installer; ./install.sh -r b2b_acc">cd Installer; ./install.sh -r b2b_acc [Copy Me]</button>.</li>
         <li>on Windows run
             <button data-clipboard-text="cd Installer & install.bat -r b2b_acc">cd Installer & install.bat -r b2b_acc [Copy Me]</button>.</li>
-    </ul></li>
-    <li>Navigate in to <code>hybris-commerce-suite-6.2.0.1/bin/platform</code> and configure your <code>ant</code> <ul>
-        <li>on a Mac/Linux run
-            <button data-clipboard-text=". ./setantenv.sh">. ./setantenv.sh [Copy Me]</button>.</li>
-        <li>on Windows run
-            <button data-clipboard-text="setantenv.bat">setantenv.bat [Copy Me]</button>.</li>
     </ul></li>
     <li>Run <code>ant</code> to compile your Suite</li>
     </ol>
@@ -162,10 +156,10 @@ color: #0486e0;}
       <h4>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040 ">Notes..</a>)</h4>
       <ol>
         <li>Navigate to <code>hybris-commerce-suite-6.2.0.1/hybris/bin/platform</code></li>
-        <li>Run the command <button data-clipboard-text="ant extgen">ant extgen [Copy Me]</button> and supply the following input<br />Select <button data-clipboard-text="yempty">yempty [Copy Me]</button> for the extension template<br />
-        Enter the name <button data-clipboard-text="tddtrail">tddtrail [Copy Me]</button> for the extension.<br />
-        Enter the package prefix <button data-clipboard-text="com.hybris.tddtrail">com.hybris.tddtrail [Copy Me]</button> com.hybris.tddtrail</li>
-        <li>Ignore the steps that the ant command then provides in the console (such as "[echo] 1) Add your extension..."), as these are given more explicitly below.</li>
+        <li>Run the command <button data-clipboard-text='ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"
+'>ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"
+ [Copy Me]</button> </li>
+        <li>Ignore the steps that the ant command then prints in the console (such as "[echo] 1) Add your extension..."), as these are given more explicitly below.</li>
       </ol>
     </td>
     <td>&nbsp;</td>
@@ -178,8 +172,7 @@ color: #0486e0;}
   <tr>
     <td width=50%>
       <h4>Add the new extension to your Suite</h4>
-      Upon success, the <code>ant extgen</code> task in the last step will list the steps you now need to take.  
-      These steps are given more explicitly here..      
+    
       <ol style="margin-bottom: 0px;margin-top: 0px; ">
         <li>Open the file <code>hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml</code> and <ol>
         <li>Add <button data-clipboard-text='<extension dir="../custom/tddtrail"/>'> < extension dir="../custom/tddtrail" / > [Copy Me]</button> to the list of extensions.</li>
