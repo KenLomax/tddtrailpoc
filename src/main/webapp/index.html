@@ -85,7 +85,7 @@ color: #0486e0;}
      <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git ">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button>.</li>
   </li>
   <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside <code>hybris-commerce-suite-6.2.0.1</code>.
-    <li>In a second command line, navigate in to the folder <code>tddtrailpoc</code> and run
+    <li>Navigate in to the folder <code>tddtrailpoc</code> and run
     <button data-clipboard-text="java -jar target/tddTrail-0.0.1-SNAPSHOT.war ">java -jar target/tddTrail-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
     <li>Open <a target="_blank " href="http://localhost:8080 ">localhost:8080</a> and follow the tests below.</li>
 
@@ -99,8 +99,10 @@ color: #0486e0;}
      <h3>Bugs/Qns</h3>
      <ol>
      <li>Unclear steps at end of extgen saying "removing template extensions", ..</li>
-     <li>installer/README says the installer will start the server - it does not??</li>
      <li>When ant, ant clean all, init etc.</li>
+     <li>Fastest way to a basic working suite and shop?  https://localhost:9002/platform/extensions</li>
+     <li>Fastest way to a basic working suite and shop? https://wiki.hybris.com/display/acc/Install+b2b_acc+responsive </li>
+     <li>Fastest way to a basic working suite and shop? https://wiki.hybris.com/display/R5T/Using+Modulegen+to+Create+a+B2C+Telco+Setup</li>
      </ol>
 </td></tr></table>
 
@@ -118,14 +120,29 @@ color: #0486e0;}
   <td width=50%>
   <h4>Configure the Suite with a recipe</h4>
 <ol>
-  <li>Navigate in to <code>hybris-commerce-suite-6.2.0.1</code> and configure the commerce suite with the B2B Accelerator Recipe
+  <li>In a new command window, navigate in to <code>hybris-commerce-suite-6.2.0.1</code> and configure the commerce suite with the B2B Accelerator Recipe
     <ul>
         <li>on a Mac/Linux run
-            <button data-clipboard-text="cd Installer; ./install.sh -r b2b_acc">cd Installer; ./install.sh -r b2b_acc [Copy Me]</button>.</li>
+            <button data-clipboard-text="cd Installer; ./install.sh -r b2b_acc setup">cd Installer; ./install.sh -r b2b_acc setup[Copy Me]</button>.</li>
         <li>on Windows run
-            <button data-clipboard-text="cd Installer & install.bat -r b2b_acc">cd Installer & install.bat -r b2b_acc [Copy Me]</button>.</li>
+            <button data-clipboard-text="cd Installer & install.bat -r b2b_acc setup">cd Installer & install.bat -r b2b_acc setup[Copy Me]</button>.</li>
     </ul></li>
-    <li>Run <code>ant</code> to compile your Suite</li>
+    <li>Initialize the commerce suite with the B2B Accelerator Recipe
+      <ul>
+          <li>on a Mac/Linux run
+              <button data-clipboard-text="cd Installer; ./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me]</button>.</li>
+          <li>on Windows run
+              <button data-clipboard-text="cd Installer & install.bat -r b2b_acc initialize">install.bat -r b2b_acc initialize [Copy Me]</button>.</li>
+      </ul></li>
+
+      <li>Start the commerce suite with the B2B Accelerator Recipe
+        <ul>
+            <li>on a Mac/Linux run
+                <button data-clipboard-text="cd Installer; ./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button>.</li>
+            <li>on Windows run
+                <button data-clipboard-text="cd Installer & install.bat -r b2b_acc start">install.bat -r b2b_acc start [Copy Me]</button>.</li>
+        </ul></li>
+        <li>Open the suite at <a href="http://localhost:9001">http://localhost:9001</a></li>
     </ol>
   </td>
   <td>&nbsp;</td>
@@ -172,7 +189,7 @@ color: #0486e0;}
   <tr>
     <td width=50%>
       <h4>Add the new extension to your Suite</h4>
-    
+
       <ol style="margin-bottom: 0px;margin-top: 0px; ">
         <li>Open the file <code>hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml</code> and <ol>
         <li>Add <button data-clipboard-text='<extension dir="../custom/tddtrail"/>'> < extension dir="../custom/tddtrail" / > [Copy Me]</button> to the list of extensions.</li>
