@@ -73,7 +73,8 @@ public class TrailSetupTest {
 
 	// TddTrailSnippetStart testExtensionModelOk
 	public void testExtensionModelOk() {
-		assertTrue(fileExists(
+		assertTrue(
+				"File hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java does not exist. Have you done ABC?", fileExists(
 				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java"));
 		assertTrue(fileExists(
 				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/src/com/hybris/tddtrail/jalo/Band.java"));
