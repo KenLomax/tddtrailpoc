@@ -62,6 +62,8 @@ color: #0486e0;}
   <br> <br>
 
 
+<code>pwd</code>
+<code>ls</code>
 <table><tr><td>  <h2>Prerequisites </h2>
   <ol>
       <li>Software
@@ -75,18 +77,18 @@ color: #0486e0;}
       </li>
       <li>Install the hybris Suite
           <ul type="i">
-              <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.</li>
+              <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.
+              In this tutorial we assume you place it here: <code>~/Trail/hybris-commerce-suite-6.2.0.1</code>.</li>
           </ul>
       </li>
-      <li> Install and run the TDD Trail
-          <code<hybris-commerce-suite-6.2.0.1</code> alongside the commerce suite
+      <li> Install and run the TDD Trail alongside the commerce suite
               <ol style="margin-bottom: 0px;margin-top: 0px;" ">
-     <li>In the parent folder of <code>hybris-commerce-suite-6.2.0.1</code> run
+     <li>In the folder <code>~/Trail</code> run
      <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git ">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button>.</li>
   </li>
-  <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside <code>hybris-commerce-suite-6.2.0.1</code>.
-    <li>Navigate in to the folder <code>tddtrailpoc</code> and run
-    <button data-clipboard-text="java -jar target/tddTrail-0.0.1-SNAPSHOT.war ">java -jar target/tddTrail-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
+  <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside the folder <code>hybris-commerce-suite-6.2.0.1</code>.
+    <li>Navigate in to the folder <code>~/Trail/tddtrailpoc</code> and run
+    <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war ">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
     <li>Open <a target="_blank " href="http://localhost:8080 ">localhost:8080</a> and follow the tests below.</li>
 
   </ol></ol>
@@ -166,7 +168,6 @@ color: #0486e0;}
     <td>&nbsp;</td>
     <td>Confirm that you can access the hybris Administration Console at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a><br> <a href="images/initialHAC.png" target="_blank"><img width=200 src="images/initialHAC.png"/></a></td>
   </tr>
-
 
   <tr>
     <td width=50%>

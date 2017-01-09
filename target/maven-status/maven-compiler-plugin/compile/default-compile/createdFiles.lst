@@ -1,6 +1,0 @@
-com/hybris/tddTrail/server/WebConfig.class
-com/hybris/tddTrail/prettifier/CodePrettifierEngine.class
-com/hybris/tddTrail/server/TDDController.class
-com/hybris/tddTrailTests/TrailSetupTest.class
-com/hybris/tddTrail/server/Application.class
-com/hybris/tddTrailTests/PrettifierTest.class
