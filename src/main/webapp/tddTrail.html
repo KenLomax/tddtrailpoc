@@ -37,7 +37,7 @@
 			text-align: left;
 		}
 		td { vertical-align:top}
-		code { font: inherit;color: #0486e0; background:none; }
+		code { font: inherit;color: #00dd00; background:none; }
 		a:link {
     color: red;
 }
@@ -57,14 +57,7 @@ color: #0486e0;}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
   <h1>PoC of a TDD Trail</h1>
-  On github @ https://github.com/KenLomax/tddtrailpoc<br>
-  A PoC to show how we can embed live, real acceptance/test-driven tests into a new TddTrail, that the reader runs from their local web browser.
-  <br> <br>
-
-trial for script
-<code>pwd</code>
-<code>ls</code>
-
+ 
 
   <table>
   <tr>
@@ -75,18 +68,18 @@ trial for script
     <td><h2>Acceptance Tests</h2></td>
   </tr>
 
-  <tr>
+ <tr>
     <td width=50%>
       <h4>Initial quick dive</h4>
       <ol>
          <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.
-         In this tutorial we assume it unzips here: <code>~/Trail/hybris-commerce-suite-6.2.0.1</code>.</li>
-         <li>Navigate to the installer directory: <button  data-clipboard-text="cd ~/Trails/hybris-commerce-suite-6.2.0.1/installer">cd ~/Trails/hybris-commerce-suite-6.2.0.1/installer[Copy Me]</button></li>
+         In this tutorial we assume it unzips here: ~/Trail/hybris-commerce-suite-6.2.0.1.</li>
+         <li>Navigate to the installer directory: <button  data-clipboard-text="cd ~/Trail/hybris-commerce-suite-6.2.0.1/installer"><code>cd ~/Trail/hybris-commerce-suite-6.2.0.1/installer</code>[Copy Me]</button></li>
          <li>Setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
             <li>on a Mac/Linux run:<ol type="i">
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup[Copy Me]</button></li>
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me]</button></li>
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button></li></ol>
+              <li><button data-clipboard-text="./install.sh -r b2b_acc setup"><code>./install.sh -r b2b_acc setup</code> [Copy Me]</button> (Takes < 1 minute)</li>
+              <li><button data-clipboard-text="./install.sh -r b2b_acc initialize"><code>./install.sh -r b2b_acc initialize</code> [Copy Me]</button> (Takes ~ 10 minutes)</li>
+              <li><button data-clipboard-text="./install.sh -r b2b_acc start"><code>./install.sh -r b2b_acc start</code> [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
             </li>
             <li>on Windows run:<ol type="i">
               <li><button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup[Copy Me]</button>.</li>
@@ -96,30 +89,130 @@ trial for script
          </li>
          <li>Open the Storefront at <a target="_blank" href="https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true">https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true</a></li>
          <li>Open the suite's backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a></li>
-         <li> Bla bla about what they can see and do.</li>
+         <li>Bla bla about what they can see and do.</li>
       </ol>
     </td>
     <td>&nbsp;</td>
-  <td><h4>&nbsp;</h4>
+   <td >
   Confirm you can reach the Storefront @ <a target="_blank" href="https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true">https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true</a>
-   and backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a> </td>
+   and backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a> 
+  <p id=testCanReachStoreFrontAndBackend >
+  <script>$('#testCanReachStoreFrontAndBackend').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCanReachStoreFrontAndBackend.html?nocache='+ (new Date()).getTime());  </script>
+  </p>
+    <code>mvn -f./.. -Dtest=TrailSetupTest#testCanReachStoreFrontAndBackend test</code>  
+  </td>
+   
+   </td>
+  </tr>
+  
+ <tr>
+  <td width=50%>
+  <h4>Tdd Trail Setup</h4>
+  Confirm this TddTrail is located alongside the Suite. 
+  </td>
+  <td>&nbsp;</td>
+  <td >
+  <p id=testA >
+  <script>$('#testA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testTddTrailPrerequisites.html?nocache='+ (new Date()).getTime());  </script>
+  </p>
+    <code>mvn -f./.. -Dtest=TrailSetupTest#testTddTrailPrerequisites test</code>
+    
+  </td>
   </tr>
 
   <tr>
-  <td width=50%>
-  <h4>Download and run the TddTrail</h4>
-  <ol>
-    <li>In the folder ~/Trail run 
-      <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git[Copy Me]</button></li>  
-    <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside the folder <code>hybris-commerce-suite-6.2.0.1</code>.
-    <li>Navigate in to the folder <code>~/Trail/tddtrailpoc</code> and run
-      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war ">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
-    <li>Open <a target="_blank" href="http://localhost:8080/tddTrail.html">localhost:8080/tddTrail.html</a> and follow the Trail.</li>
-  </ol>
+    <td width=50%>
+      <h4>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040 ">Notes..</a>)</h4>
+      <ol>
+        <li>Navigate into the platform: <button  data-clipboard-text="cd ~/Trail/hybris-commerce-suite-6.2.0.1/hybris/bin/platform;"><code>cd ~/Trail/hybris-commerce-suite-6.2.0.1/hybris/bin/platform</code> [Copy Me]</button></li>
+        <li>Configure your local Ant command:<ul>
+          <li>On a Mac/Linux run <button  data-clipboard-text=". ./setantenv.sh"><code>. ./setantenv.sh</code>[Copy Me]</button> </li>
+          <li>On Windows run <button  data-clipboard-text="./setantenv.bat">./setantenv.bat[Copy Me]</button> </li>
+          </ul></li>
+        <li>Run the command <button data-clipboard-text='ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"
+'><code>ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"</code>
+ [Copy Me]</button> </li>
+        <li><b>Ask Stephen</b> Ignore the steps that the ant command then prints in the console (such as "[echo] 1) Add your extension..."), as these are given more explicitly below.</li>
+      </ol>
+    </td>
+    <td>&nbsp;</td>
+  <td >
+  <p id=testB >
+  <script>$('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());</script>
+  </p>
+  <code>mvn -f./.. -Dtest=TrailSetupTest#testExtensionCreateddOk test</code>
+    </td>
+  </tr>
 
-  </td>
-  <td>&nbsp;</td>
-  <td></td>  </tr>
+  <tr>
+    <td width=50%>
+      <h4>Add the new extension to your Suite</h4>
+      <ol style="margin-bottom: 0px;margin-top: 0px; ">
+        <li>Open the file hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml and add <button data-clipboard-text='<extension dir="../custom/tddtrail"/>'> < extension dir="../custom/tddtrail" / > [Copy Me]</button> to the list of extensions.
+<p><code>sed -i '' 's/<\/extensions>/<extension dir="..\/custom\/tddtrail"\/><\/extensions>/' ../../config/localextensions.xml</code></p>
+     </li>
+        <li><b>Ask stephen</b>Stop the application server if it is running.</li>
+        <li>Run <button data-clipboard-text='ant clean all'><code>ant clean all</code> [Copy Me]</button> in your hybris/bin/platform directory.</li>
+        </ul>
+    </td>
+    <td>&nbsp;</td>
+    <td>
+    <p id=testC>
+  <script>
+  $('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
+  </script>
+    </p>
+  <code>mvn -f./.. -Dtest=TrailSetupTest#testCodeGeneratedOk test</code>
+    </td>
+  
+  </tr>
+
+  <tr>
+    <td width=50%>
+      <h4>Confirm the extension is recognized by the Suite</h4>
+      <ol>
+      <li>Restart the application server <p hidden=false osxcode>cd ~/Trail/hybris-commerce-suite-6.2.0.1/installer;./install.sh -r b2b_acc start">./install.sh -r b2b_acc start</p></li>
+      <li>Open the hybris administration console <a target="_blank" href="http://localhost:9001/platform/extensions">http://localhost:9001/platform/extensions</a> in a web browser and log in as admin nimda. You will get an overview of the available extensions which should now include tddtrail.</li>
+      </ol>
+    </td>
+    <td>&nbsp;</td>
+    <td>
+    Confirm you can see the TddTrail listed in the exentions.  Some image showing the tddtrail extension
+   </td>
+  </tr>
+
+  <tr>
+    <td width=50%>
+      <h4>Extend the data model</h4>
+      <ol>
+      <li>Replace ~/Trail/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml with Trail/TddTrail/trailMaterial/tddtrail-items.xml
+      <p ><code>cp ~/Trail/TddTrail/trailMaterial/tddtrail-items.xml ~/Trail/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</code></p></li>  
+      <li>Rebuild the suite: <button data-clipboard-text='ant build'><code>ant build</code> [Copy Me]</button></li>
+      </ol>
+    </td>
+    <td>&nbsp;</td>
+    <td>
+    <p id=testD>
+   <script>
+   $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
+   </script>
+   </p>
+     <code>mvn -f./.. -Dtest=TrailSetupTest#testExtensionModelOk test</code>
+   </td>
+      </tr>
+
+    <tr>
+    <td width=50%>
+    <h4>Import into Eclipse</h4>
+    Set up the commerce Suite in Eclipse IDE (<a href="https://wiki.hybris.com/display/prodandtech/Preparing+to+Develop+with+the+Eclipse+IDE">Notes..</a>)
+        <ol>
+            <li>Import the platform, config and tddTrail extension into a new Eclipse Workspace</li>
+            <li>Ensure the projects appear in Eclipse with no errors</li>
+        </ol>
+    </td>
+    <td>&nbsp;</td>
+    <td >Some picture showing Eclipse projects with no errors</td>
+   </tr>
 
 
   </table>
@@ -143,6 +236,31 @@ window.setTimeout(function() {
 event.trigger.textContent = event.trigger.textContent.toString().replace('Copied!','Copy Me');
 }, 2000);
 })
+
+$( ".runTest" ).prop("disabled", !window.location.href.includes("http://localhost") );
+
+function runATest(item_id) {
+	$("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_info")
+ 	$.ajax({url: "http://localhost:8080/tdd?test="+item_id, success: function(result){
+        $("#"+item_id+"Result").html(result);
+        if (result.includes("Success")){
+	         $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
+	         $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
+	    }
+        else {
+	         $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
+	         $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error");
+	    }
+    }});
+};
+
+$('#snippetTestA2').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestA2.html?nocache='+ (new Date()).getTime());
+$('#snippetTestB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestB.html?nocache='+ (new Date()).getTime());
+$('#snippetTestC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestC.html?nocache='+ (new Date()).getTime());
+$('#snippetTestD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestD.html?nocache='+ (new Date()).getTime());
+$('#snippetTestE').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestE.html?nocache='+ (new Date()).getTime());
+
+window.scrollTo(0,0);
 // ]]></script>
 
 

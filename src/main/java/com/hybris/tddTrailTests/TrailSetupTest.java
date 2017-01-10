@@ -1,27 +1,26 @@
 package com.hybris.tddTrailTests;
 
-/**
- * When you add/adjust a test..
- * mvn clean install  (to test for mistakes)
- * git add .
- * git commit -m 'Adjusted tests'
- * git push      (to push this file)
- * Run prettifierTest.java
- * git add .
- * git commit -m 'Adjusted tests'
- * git push      (to push new prettified files)
- * cf push
- * 
- * To idtify new files Use find . -type f -mtime -120s 
- * 
- * 
- */
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -30,6 +29,58 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
 
+	 private TrustManager[ ] get_trust_mgr() {
+	     TrustManager[ ] certs = new TrustManager[ ] {
+	        new X509TrustManager() {
+	        	@Override
+	        	public X509Certificate[ ] getAcceptedIssuers() { return null; }
+	        	@Override
+	        	public void checkClientTrusted(X509Certificate[ ] certs, String t) { }
+	        	@Override
+	        	public void checkServerTrusted(X509Certificate[ ] certs, String t) { }
+	         }
+	      };
+	      return certs;
+	  }
+
+	@Test
+	// TddTrailSnippetStart testCanReachStoreFrontAndBackend
+	public void testCanReachStoreFrontAndBackend() throws Exception {
+	    allowHttps();
+	    URL url = new URL("https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true");
+	    URLConnection con = url.openConnection();
+	    String content = getWebsiteContent(con);
+        assertTrue("Did not find storefront", content.contains("Our Bestselling Products"));    
+        
+        url = new URL("http://localhost:9001");
+        con = url.openConnection();
+	    content = getWebsiteContent(con);
+        assertEquals("Expected redirect", HttpURLConnection.HTTP_MOVED_TEMP,  ((HttpURLConnection)con).getResponseCode());               
+	}
+	// TddTrailSnippetEnd
+	
+	private void allowHttps() throws KeyManagementException, NoSuchAlgorithmException{
+		// Create a context that doesn't check certificates.
+        SSLContext ssl_ctx = SSLContext.getInstance("TLS");
+        TrustManager[ ] trust_mgr = get_trust_mgr();
+        ssl_ctx.init(null,                // key manager
+                     trust_mgr,           // trust manager
+                     new SecureRandom()); // random number generator
+        HttpsURLConnection.setDefaultSSLSocketFactory(ssl_ctx.getSocketFactory());  	
+	    HttpsURLConnection.setDefaultHostnameVerifier ((hostname, session) -> true);
+	}
+	
+	private String getWebsiteContent(URLConnection con) throws IOException{
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream()));
+		String input;
+		while ((input = br.readLine()) != null){
+			sb.append(input);
+		}
+		br.close();	
+		return sb.toString();
+	}
+	
 	@Test
 	// TddTrailSnippetStart testTddTrailPrerequisites
 	public void testTddTrailPrerequisites() throws IOException {
@@ -56,6 +107,8 @@ public class TrailSetupTest {
 		// folders and files
 		assertTrue("I cannot find files expected for a new extension", directoryExists(
 				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo"));
+		assertTrue("I cannot find files expected for a new extension", directoryExists(
+				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/service"));
 	}
 	// TddTrailSnippetEnd
 
@@ -72,20 +125,13 @@ public class TrailSetupTest {
 	// TddTrailSnippetEnd
 
 	// TddTrailSnippetStart testExtensionModelOk
+	@Test
 	public void testExtensionModelOk() {
 		assertTrue(
 				"File hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java does not exist. Have you done ABC?", fileExists(
-				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java"));
+				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedBand.java"));
 		assertTrue(fileExists(
-				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/src/com/hybris/tddtrail/jalo/Band.java"));
-		assertTrue(fileExists(
-				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/model/BandModel.java"));
-	}
-	// TddTrailSnippetEnd
-
-	// TddTrailSnippetStart TestE
-	public void testE_ExtensionModelOk() {
-		assertTrue(false);
+				"../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/BandModel.java"));
 	}
 	// TddTrailSnippetEnd
 
@@ -107,4 +153,5 @@ public class TrailSetupTest {
 		}
 		return content.contains(s);
 	}
+
 }

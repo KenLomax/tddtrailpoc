@@ -2,9 +2,11 @@
 
 
 # Try getting with 
-# awk -F "</*code>" '/<\/*code>.*[a-z]/ {print $2}' ../src/main/webapp/index.html | bash
+# awk -F "</*code>" '/<\/*code>.*[a-z]/ {print $2}' ../src/main/webapp/tddTrail.html | bash
 # mvn -Dtest=TrailSetupTest#testTddTrailPrerequisites test
 
+# Find files less than one minute old
+# find . -cmin -1
 
 #Configure the Suite with a recipe
 rm -rf ~/Trail/hybris-commerce-suite-6.2.0.1
