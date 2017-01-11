@@ -79,14 +79,15 @@ trial for script
     <td width=50%>
       <h4>Initial quick dive</h4>
       <ol>
-         <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.
-         In this tutorial we assume it unzips here: <code>~/Trail/hybris-commerce-suite-6.2.0.1</code>.</li>
+       <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a>.
+         This Trail assumes you place the zip at the location ~/Trail/hybris-commerce-suite-6.2.0.1.zip</li>
+         <li>Unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> to give you  <code>~/Trail/hybris-commerce-suite-6.2.0.1</code>.</li>
          <li>Navigate to the installer directory: <button  data-clipboard-text="cd ~/Trails/hybris-commerce-suite-6.2.0.1/installer">cd ~/Trails/hybris-commerce-suite-6.2.0.1/installer[Copy Me]</button></li>
          <li>Setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
             <li>on a Mac/Linux run:<ol type="i">
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup[Copy Me]</button></li>
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me]</button></li>
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button></li></ol>
+              <li><button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup[Copy Me]</button> (Takes ~ 1 minutes) </li>
+              <li><button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me] (Takes ~ 10 minutes)</button></li>
+              <li><button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button>  (Takes ~ 3 minutes)</li></ol>
             </li>
             <li>on Windows run:<ol type="i">
               <li><button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup[Copy Me]</button>.</li>
@@ -111,7 +112,7 @@ trial for script
   <ol>
     <li>In the folder ~/Trail run 
       <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git[Copy Me]</button></li>  
-    <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside the folder <code>hybris-commerce-suite-6.2.0.1</code>.
+    <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside the zip file<code>hybris-commerce-suite-6.2.0.1.zip</code>.
     <li>Navigate in to the folder <code>~/Trail/tddtrailpoc</code> and run
       <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war ">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
     <li>Open <a target="_blank" href="http://localhost:8080/tddTrail.html">localhost:8080/tddTrail.html</a> and follow the Trail.</li>

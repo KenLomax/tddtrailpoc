@@ -44,17 +44,17 @@ public class TrailSetupTest {
 	  }
 
 	@Test
-	// TddTrailSnippetStart testCanReachStoreFrontAndBackend
-	public void testCanReachStoreFrontAndBackend() throws Exception {
-	    allowHttps();
+	// TddTrailSnippetStart testSuiteIsOnline
+	public void testSuiteIsOnline() throws Exception {
+	    /*allowHttps();
 	    URL url = new URL("https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true");
 	    URLConnection con = url.openConnection();
 	    String content = getWebsiteContent(con);
         assertTrue("Did not find storefront", content.contains("Our Bestselling Products"));    
-        
-        url = new URL("http://localhost:9001");
-        con = url.openConnection();
-	    content = getWebsiteContent(con);
+        */
+		URL url = new URL("http://localhost:9001");
+		URLConnection con = url.openConnection();
+		String content = getWebsiteContent(con);
         assertEquals("Expected redirect", HttpURLConnection.HTTP_MOVED_TEMP,  ((HttpURLConnection)con).getResponseCode());               
 	}
 	// TddTrailSnippetEnd
@@ -90,13 +90,8 @@ public class TrailSetupTest {
 		// |-- hybris-commerce-suite-6.2.0.1
 		// |-- hybris and other subfolders
 		// |-- tddTrailSite
-		assertTrue("TddTrail and Suite need to be in the same folder",
-				directoryExists("../hybris-commerce-suite-6.2.0.1/hybris/bin/platform"));
-		// This trail assumes you have initialized the suite with the b2b_acc
-		// recipe
-		assertTrue("You should have installed the recipe b2b_acc",
-				fileExistsAndContains("../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml",
-						"extension name='b2bacceleratoraddon'"));
+		assertTrue("TddTrail and Zip need to be in the same folder",
+				fileExists("../hybris-commerce-suite-6.2.0.1.zip"));
 	}
 	// TddTrailSnippetEnd
 

@@ -38,9 +38,9 @@
 		}
 		td { vertical-align:top}
 		code { font: inherit;color: #00dd00; background:none; }
-		a:link {
-    color: red;
-}
+		a:link,a:visited {
+		    color: red;
+		}
 
 /* visited link */
 a:visited {
@@ -67,44 +67,7 @@ color: #0486e0;}
     <td>&nbsp;</td>
     <td><h2>Acceptance Tests</h2></td>
   </tr>
-
- <tr>
-    <td width=50%>
-      <h4>Initial quick dive</h4>
-      <ol>
-         <li>Download and unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> into a folder near the top of your file system.
-         In this tutorial we assume it unzips here: ~/Trail/hybris-commerce-suite-6.2.0.1.</li>
-         <li>Navigate to the installer directory: <button  data-clipboard-text="cd ~/Trail/hybris-commerce-suite-6.2.0.1/installer"><code>cd ~/Trail/hybris-commerce-suite-6.2.0.1/installer</code>[Copy Me]</button></li>
-         <li>Setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
-            <li>on a Mac/Linux run:<ol type="i">
-              <li><button data-clipboard-text="./install.sh -r b2b_acc setup"><code>./install.sh -r b2b_acc setup</code> [Copy Me]</button> (Takes < 1 minute)</li>
-              <li><button data-clipboard-text="./install.sh -r b2b_acc initialize"><code>./install.sh -r b2b_acc initialize</code> [Copy Me]</button> (Takes ~ 10 minutes)</li>
-              <li><button data-clipboard-text="./install.sh -r b2b_acc start"><code>./install.sh -r b2b_acc start</code> [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
-            </li>
-            <li>on Windows run:<ol type="i">
-              <li><button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup[Copy Me]</button>.</li>
-              <li><button data-clipboard-text="install.bat -r b2b_acc initialize">install.bat -r b2b_acc initialize [Copy Me]</button>.</li>
-              <li><button data-clipboard-text="install.bat -r b2b_acc start">install.bat -r b2b_acc start [Copy Me]</button></li></ol>
-            </li></ul>
-         </li>
-         <li>Open the Storefront at <a target="_blank" href="https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true">https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true</a></li>
-         <li>Open the suite's backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a></li>
-         <li>Bla bla about what they can see and do.</li>
-      </ol>
-    </td>
-    <td>&nbsp;</td>
-   <td >
-  Confirm you can reach the Storefront @ <a target="_blank" href="https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true">https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true</a>
-   and backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a> 
-  <p id=testCanReachStoreFrontAndBackend >
-  <script>$('#testCanReachStoreFrontAndBackend').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCanReachStoreFrontAndBackend.html?nocache='+ (new Date()).getTime());  </script>
-  </p>
-    <code>mvn -f./.. -Dtest=TrailSetupTest#testCanReachStoreFrontAndBackend test</code>  
-  </td>
-   
-   </td>
-  </tr>
-  
+ 
  <tr>
   <td width=50%>
   <h4>Tdd Trail Setup</h4>
@@ -115,15 +78,59 @@ color: #0486e0;}
   <p id=testA >
   <script>$('#testA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testTddTrailPrerequisites.html?nocache='+ (new Date()).getTime());  </script>
   </p>
-    <code>mvn -f./.. -Dtest=TrailSetupTest#testTddTrailPrerequisites test</code>
-    
+    <code>mvn -f./.. -Dtest=TrailSetupTest#testTddTrailPrerequisites test|| { echo "Test testTddTrailPrerequisites Unsuccessful"; exit 1; }</code>
   </td>
   </tr>
+  
+ <tr>
+    <td width=50%>
+      <h4>Setup minimal Suite</h4>
+      <ol>
+         <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a>.
+         This Trail assumes you place the zip at the location ~/Trail/hybris-commerce-suite-6.2.0.1.zip</li>     
+         <li>Unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> the folder ~/Trail so you have a new folder ~/Trail/hybris-commerce-suite-6.2.0.1 
+         <p><code>cd ~/Trail; unzip hybris-commerce-suite-6.2.0.1.zip -d hybris-commerce-suite-6.2.0.1</code></p></li>
+         <li>Navigate to the installer directory: <button  data-clipboard-text="cd ~/Trail/hybris-commerce-suite-6.2.0.1/installer"><code>cd ~/Trail/hybris-commerce-suite-6.2.0.1/installer</code>[Copy Me]</button></li>
+         <li>Setup, initialize and start your suite with minimal installation<ul >
+            <li>on a Mac/Linux run:<ol type="i">
+              <li><button data-clipboard-text="./install.sh -r platform_only setup"><code>./install.sh -r platform_only setup</code> [Copy Me]</button> (Takes < 1 minute)</li>
+              <li><button data-clipboard-text="./install.sh -r platform_only initialize"><code>./install.sh -r platform_only initialize</code> [Copy Me]</button> (Takes ~ 1 minutes)</li>
+              <li><button data-clipboard-text="./install.sh -r platform_only start"><code>./install.sh -r platform_only start</code> [Copy Me]</button> (Takes ~ 1 minute)</li></ol>
+            </li>
+            <li>on Windows run:<ol type="i">
+              <li><button data-clipboard-text="install.bat -r platform_only setup">install.bat -r platform_only setup[Copy Me]</button>.</li>
+              <li><button data-clipboard-text="install.bat -r platform_only initialize">install.bat -r platform_only initialize [Copy Me]</button>.</li>
+              <li><button data-clipboard-text="install.bat -r platform_only start">install.bat -r platform_only start [Copy Me]</button></li></ol>
+            </li></ul>
+         </li>
+         <li>Open the suite's backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a></li>
+         <li>Bla bla about what they can see and do.</li>
+      </ol>
+    </td>
+    <td>&nbsp;</td>
+   <td>
+  Confirm you can reach the Suite at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a> 
+  <p id=testSuiteIsOnline >
+  <script>$('#testSuiteIsOnline').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testSuiteIsOnline.html?nocache='+ (new Date()).getTime());  </script>
+  </p>
+    <code>mvn -f../../TddTrail -Dtest=TrailSetupTest#testSuiteIsOnline test|| { echo "Test testSuiteIsOnline Unsuccessful"; exit 1; }</code>  
+  </td>
+   
+   </td>
+  </tr>
+ 
 
   <tr>
     <td width=50%>
       <h4>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040 ">Notes..</a>)</h4>
+      <p>jumpTo1</p>
+      Jump straight here by executing
+      <button  data-clipboard-text="./runBashUntil.sh jumpTo1">./runBashUntil.sh jumpTo1 [Copy Me]</button>
+      from in ~/Trail/TddTrail/scripts </br>
+      
       <ol>
+        <li>Stop the hybris Suite: 
+          <button  data-clipboard-text="pkill -f 'hybris-commerce-suite-6.2.0.1/hybris/bin/platform/tomcat/bin'"><code>pkill -f 'hybris-commerce-suite-6.2.0.1/hybris/bin/platform/tomcat/bin'</code> [Copy Me]</button></li>
         <li>Navigate into the platform: <button  data-clipboard-text="cd ~/Trail/hybris-commerce-suite-6.2.0.1/hybris/bin/platform;"><code>cd ~/Trail/hybris-commerce-suite-6.2.0.1/hybris/bin/platform</code> [Copy Me]</button></li>
         <li>Configure your local Ant command:<ul>
           <li>On a Mac/Linux run <button  data-clipboard-text=". ./setantenv.sh"><code>. ./setantenv.sh</code>[Copy Me]</button> </li>
@@ -140,13 +147,17 @@ color: #0486e0;}
   <p id=testB >
   <script>$('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());</script>
   </p>
-  <code>mvn -f./.. -Dtest=TrailSetupTest#testExtensionCreateddOk test</code>
+  <code>mvn -f../../../../TddTrail -Dtest=TrailSetupTest#testExtensionCreateddOk test || { echo "Test testExtensionCreateddOk Unsuccessful"; exit 1; }</code>
     </td>
   </tr>
 
   <tr>
     <td width=50%>
       <h4>Add the new extension to your Suite</h4>
+       <p>jumpTo2</p>
+      Jump straight here by executing
+      <button  data-clipboard-text="./runBashUntil.sh jumpTo2">./runBashUntil.sh jumpTo2 [Copy Me]</button>
+      from in ~/Trail/TddTrail/scripts </br>
       <ol style="margin-bottom: 0px;margin-top: 0px; ">
         <li>Open the file hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml and add <button data-clipboard-text='<extension dir="../custom/tddtrail"/>'> < extension dir="../custom/tddtrail" / > [Copy Me]</button> to the list of extensions.
 <p><code>sed -i '' 's/<\/extensions>/<extension dir="..\/custom\/tddtrail"\/><\/extensions>/' ../../config/localextensions.xml</code></p>
@@ -162,7 +173,7 @@ color: #0486e0;}
   $('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
   </script>
     </p>
-  <code>mvn -f./.. -Dtest=TrailSetupTest#testCodeGeneratedOk test</code>
+  <code>mvn -f../../../../TddTrail -Dtest=TrailSetupTest#testCodeGeneratedOk test|| { echo "Test testCodeGeneratedOk Unsuccessful"; exit 1; }</code>
     </td>
   
   </tr>
@@ -197,13 +208,18 @@ color: #0486e0;}
    $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
    </script>
    </p>
-     <code>mvn -f./.. -Dtest=TrailSetupTest#testExtensionModelOk test</code>
+     <code>mvn -f../../../../TddTrail -Dtest=TrailSetupTest#testExtensionModelOk test|| { echo "Test testExtensionModelOk Unsuccessful"; exit 1; }</code>
    </td>
       </tr>
 
     <tr>
     <td width=50%>
     <h4>Import into Eclipse</h4>
+          <p>jumpTo3</p>
+      Jump straight here by executing
+      <button  data-clipboard-text="./runBashUntil.sh jumpTo3">./runBashUntil.sh jumpTo3 [Copy Me]</button>
+      from in ~/Trail/TddTrail/scripts </br>
+ 
     Set up the commerce Suite in Eclipse IDE (<a href="https://wiki.hybris.com/display/prodandtech/Preparing+to+Develop+with+the+Eclipse+IDE">Notes..</a>)
         <ol>
             <li>Import the platform, config and tddTrail extension into a new Eclipse Workspace</li>
@@ -263,6 +279,9 @@ $('#snippetTestE').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotest
 window.scrollTo(0,0);
 // ]]></script>
 
+<a href="https://wiki.hybris.com/display/prodandtech/Platform+Trails">Stephen's platform trail</a><br>
+<a href="https://help.hybris.com/6.2.0/hcd/d5582c7cd2d5443891003ed071b26193.html">6.2 Core Trail</a><br>
+<a href="https://wiki.hybris.com/display/R5T/hybris+5+Developer+Training+Trails+5.7+-+Part+II+-+Commerce">y5 Commerce Trail</a><br>
 
 </body>
 </html>
