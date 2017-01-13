@@ -1,96 +1,31 @@
 <html>
 <head>
-<!--link rel="stylesheet" type="text/css" href="style/mystyle.css"-->
-<style>
-    body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .isa_info, .isa_success, .isa_warning, .isa_error {
-            }
-        .isa_info {
-            color: #00529B;
-            background-color: #edf1f5;
-        }
-        .isa_success {
-            color: #4F8A10;
-            background-color: #DFF2BF;
-        }
-        .isa_warning {
-            color: #9F6000;
-            background-color: #FEEFB3;
-        }
-        .isa_error {
-            color: #D8000C;
-            background-color: #FFBABA;
-        }
-        .isa_info i, .isa_success i, .isa_warning i, .isa_error i {
-            font-size:2em;
-            vertical-align:middle;
-        }
-		button {
-			background:none!important;
-			border:none;
-			padding:0!important;
-			font: inherit;
-			cursor: pointer;
-			color: #0486e0;
-			text-align: left;
-		}
-		td { vertical-align:top}
-		code { font: inherit;color: #0486e0; background:none; }
-		a:link {
-    color: red;
-}
-
-/* visited link */
-a:visited {
-color: #0486e0;}
-
-/* mouse over link */
-a:hover {
-color: #0486e0;}
-
-/* selected link */
-a:active {
-color: #0486e0;}
-</style>
+<link rel="stylesheet" type="text/css" href="style/mystyle.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
+
   <h1>PoC of a TDD Trail</h1>
+  
   On github @ https://github.com/KenLomax/tddtrailpoc<br>
   A PoC to show how we can embed live, real acceptance/test-driven tests into a new TddTrail, that the reader runs from their local web browser.
   <br> <br>
 
-trial for script
-<code>pwd</code>
-<code>ls</code>
-
-
-  <table>
-  <tr>
-    <td width=50%>
-      <h2>Steps</h2>
-    </td>
-    <td>&nbsp;</td>
-    <td><h2>Acceptance Tests</h2></td>
-  </tr>
-
-  <tr>
-    <td width=50%>
-      <h4>Initial quick dive</h4>
+	<h4>Initial quick dive</h4>
       <ol>
-       <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a>.
-         This Trail assumes you place the zip at the location ~/Trail/hybris-commerce-suite-6.2.0.1.zip</li>
-         <li>Unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> to give you  <code>~/Trail/hybris-commerce-suite-6.2.0.1</code>.</li>
-         <li>Navigate to the installer directory: <button  data-clipboard-text="cd ~/Trails/hybris-commerce-suite-6.2.0.1/installer">cd ~/Trails/hybris-commerce-suite-6.2.0.1/installer[Copy Me]</button></li>
+      <li>Create a folder near the top of your file system, for example ~/Trail on *nix or C:/Trail on Windows.  This is referred to here as {TRAILHOME}. </li>
+       <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
+       to {TRAILHOME}</li>
+        <li>Unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
+        to give you  <code>{TRAILHOME}/hybris-commerce-suite-6.2.0.1</code>.</li>
+         <li>Navigate to the installer directory: {TRAILHOME}/hybris-commerce-suite-6.2.0.1/installer</li>
          <li>Setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
             <li>on a Mac/Linux run:<ol type="i">
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup[Copy Me]</button> (Takes ~ 1 minutes) </li>
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me] (Takes ~ 10 minutes)</button></li>
-              <li><button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button>  (Takes ~ 3 minutes)</li></ol>
+              <li><button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup [Copy Me]</button> (Takes ~ 1 minutes) </li>
+              <li><button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me] </button> (Takes ~ 10 minutes)</li>
+              <li><button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
             </li>
             <li>on Windows run:<ol type="i">
-              <li><button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup[Copy Me]</button>.</li>
+              <li><button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup [Copy Me]</button>.</li>
               <li><button data-clipboard-text="install.bat -r b2b_acc initialize">install.bat -r b2b_acc initialize [Copy Me]</button>.</li>
               <li><button data-clipboard-text="install.bat -r b2b_acc start">install.bat -r b2b_acc start [Copy Me]</button></li></ol>
             </li></ul>
@@ -99,31 +34,24 @@ trial for script
          <li>Open the suite's backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a></li>
          <li> Bla bla about what they can see and do.</li>
       </ol>
-    </td>
-    <td>&nbsp;</td>
-  <td><h4>&nbsp;</h4>
-  Confirm you can reach the Storefront @ <a target="_blank" href="https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true">https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true</a>
-   and backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a> </td>
-  </tr>
+  
 
-  <tr>
-  <td width=50%>
   <h4>Download and run the TddTrail</h4>
   <ol>
-    <li>In the folder ~/Trail run 
-      <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git[Copy Me]</button></li>  
-    <li>Verify that you now have the folder <code>tddtrailpoc</code> alongside the zip file<code>hybris-commerce-suite-6.2.0.1.zip</code>.
-    <li>Navigate in to the folder <code>~/Trail/tddtrailpoc</code> and run
-      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war ">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war [Copy Me]</button></li>
-    <li>Open <a target="_blank" href="http://localhost:8080/tddTrail.html">localhost:8080/tddTrail.html</a> and follow the Trail.</li>
+    <li>Navigate to the folder {TRAILHOME} and run 
+      <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button></li>  
+    <li>Verify that you now have the folder <code>{TRAILHOME}/tddtrailpoc</code>.
+    <li>Navigate in to the folder <code>{TRAILHOME}/tddtrailpoc</code> and run<br>
+      <code>java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome={trailhome}</code><br>
+      for example<br>
+      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail [Copy Me]</button> <br>
+      or<br>
+      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail [Copy Me]</button>l <br>
+      ( Use the full path, avoid using "~" )
+      </li>
+    <li>Open <a target="_blank" href="http://localhost:8080/tddTrail.html">localhost:8080/tddTrail.html</a> and follow the TddTrail.</li>
   </ol>
 
-  </td>
-  <td>&nbsp;</td>
-  <td></td>  </tr>
-
-
-  </table>
 
 <script>
 /*!
@@ -144,6 +72,19 @@ window.setTimeout(function() {
 event.trigger.textContent = event.trigger.textContent.toString().replace('Copied!','Copy Me');
 }, 2000);
 })
+
+$(document).ready(function() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/trailhome',
+        async:false,
+        success: function(data) {
+	        $("#trailhome").text(data);
+        	window.alert(data);
+        }
+    });
+});
+
 // ]]></script>
 
 

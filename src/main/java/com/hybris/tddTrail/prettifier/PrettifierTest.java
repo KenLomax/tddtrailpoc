@@ -1,15 +1,12 @@
-package com.hybris.tddTrailTests;
+package com.hybris.tddTrail.prettifier;
 
 
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.net.URL;
 import java.util.Map;
 
 import org.junit.Test;
-
-import com.hybris.tddTrail.prettifier.CodePrettifierEngine;
 
 
 public class PrettifierTest {	// Using https://github.com/google/code-prettify	
@@ -20,7 +17,7 @@ public class PrettifierTest {	// Using https://github.com/google/code-prettify
 		String targetDir = "src/main/webapp/demotests";
 		
 		Map<String, String> snippets = pe.getSnippets( 
-			new File ("src/main/java/com/hybris/tddTrailTests/TrailSetupTest.java")
+			new File ("src/main/java/com/hybris/tddTrail/TrailSetupTest.java")
 //			new URL("https://raw.githubusercontent.com/KenLomax/tddtrailpoc/master/src/main/java/com/hybris/tddTrailTests/TrailSetupTest.java?nocache="+System.currentTimeMillis())
 			);
 		
