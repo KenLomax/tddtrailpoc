@@ -1,7 +1,19 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="style/mystyle.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
+  <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+  <style>
+  cite {
+    display:block;
+line-height:0;
+height: 0;
+overflow: hidden;
+  }
+  q{
+    color: #444444;
+  }
+
+
+  </style><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
 
   <h1>PoC of a TDD Trail</h1>
@@ -10,11 +22,15 @@
   A PoC to show how we can embed live, real acceptance/test-driven tests into a new TddTrail, that the reader runs from their local web browser.
   <br> <br>
 
+	<h4>Download</h4>
+	  <ol>
+        <li>Create a folder near the top of your file system, for example ~/Trail on *nix or C:/Trail on Windows.  This is referred to here as {TRAILHOME}. </li>
+        <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
+       to {TRAILHOME}</li>
+      </ol>
+      
 	<h4>Initial quick dive</h4>
       <ol>
-      <li>Create a folder near the top of your file system, for example ~/Trail on *nix or C:/Trail on Windows.  This is referred to here as {TRAILHOME}. </li>
-       <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
-       to {TRAILHOME}</li>
         <li>Unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
         to give you  <code>{TRAILHOME}/hybris-commerce-suite-6.2.0.1</code>.</li>
          <li>Navigate to the installer directory: {TRAILHOME}/hybris-commerce-suite-6.2.0.1/installer</li>
@@ -38,7 +54,7 @@
 
   <h4>Download and run the TddTrail</h4>
   <ol>
-    <li>Navigate to the folder {TRAILHOME} and run 
+    <li>Navigate in to the folder {TRAILHOME} and run 
       <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button></li>  
     <li>Verify that you now have the folder <code>{TRAILHOME}/tddtrailpoc</code>.
     <li>Navigate in to the folder <code>{TRAILHOME}/tddtrailpoc</code> and run<br>

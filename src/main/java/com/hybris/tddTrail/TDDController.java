@@ -21,13 +21,15 @@ public class TDDController {
 	@Autowired
 	TrailSetupTest trailTest;
 
-	@Value("${trailHome:'Undefined, pass in when with exucting war file: java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=YOURTRAILHOMEDIR'}")
+	@Value("${trailHome:'Undefined, pass in the absolute path when running: java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=absolutePathToYourTrailHomeFolder  --os=xnix|Windows'}")
 	private String trailHome;
+	
+	@Value("${os:'Undefined, pass in the os when running: java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war  --trailHome=absolutePathToYourTrailHomeFolder --os=xnix|windows'}")
+	private String os;
 
 	@CrossOrigin()
 	@RequestMapping("/tdd")
 	public ResponseEntity<String> greetings(@RequestParam(value = "test", defaultValue = "") String methodName) {
-		// TrailSetupTest trailTest = new TrailSetupTest();
 		try {
 			Method method = trailTest.getClass().getMethod(methodName);
 			method.invoke(trailTest);
@@ -40,9 +42,15 @@ public class TDDController {
 	}
 
 	@CrossOrigin()
-	@RequestMapping({"/trailhome","/trailHome"})
+	@RequestMapping({"/trailsetup","/trailsetup"})
 	public ResponseEntity<String> trailhome() {
-		return new ResponseEntity<String>(trailHome, HttpStatus.OK);
+		String home = trailHome;
+		if (!home.endsWith("/"))
+			home = home.concat("/");
+		if (os.toLowerCase().contains("indows"))
+			return new ResponseEntity<String>("Windows|"+home, HttpStatus.OK);	
+		return new ResponseEntity<String>("xnix|"+home, HttpStatus.OK);
 	}
+	
 
 }

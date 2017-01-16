@@ -14,17 +14,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.springframework.beans.factory.annotation.Value;
 
 @ManagedBean
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
-
 
 	@Test
 	// TddTrailSnippetStart testTddTrailPrerequisites
