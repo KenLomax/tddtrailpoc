@@ -1,4 +1,4 @@
-package com.hybris.tddTrail;
+package com.hybris.tddTrail.controller;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.hybris.tddTrail.TrailSetupTest;
 
 @ManagedBean
 @RestController

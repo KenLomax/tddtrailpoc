@@ -33,6 +33,7 @@
 			
 			var actualOS = 	homeAndOS.split("|")[0];
 			var actualTrailHome = 	homeAndOS.split("|")[1];
+			actualTrailHome = actualTrailHome.replace(/\/$/, "");
 												
             $("#setup").text("OS:"+actualOS +", TrailHome: "+actualTrailHome);
 
@@ -221,7 +222,15 @@
 	                </ol>
 	                </td>
 	                <td>&nbsp;</td>
-	                <td>Confirm you can see the TddTrail listed in the exentions. Some image showing the tddtrail extension</td>
+	                <td>Confirm you can see the TddTrail listed in the exentions. Some image showing the tddtrail extension
+	                
+	                
+	                <p id="testnewex">
+                 	 <script>// <![CDATA[
+                    $('#testnewex').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/loginAndCheckForTddTrailExtension.html?nocache='+ (new Date()).getTime());
+                    // ]]></script>
+                    </p>
+                    <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#loginAndCheckForTddTrailExtension test|| { echo "Test loginAndCheckForTddTrailExtension Unsuccessful";  }</q><button>[Copy Me]</button></td>
      	    </tr>
 	
             <tr id=row6>

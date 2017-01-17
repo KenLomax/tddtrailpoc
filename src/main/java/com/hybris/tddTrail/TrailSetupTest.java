@@ -1,23 +1,41 @@
 package com.hybris.tddTrail;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.File;
 import java.io.IOException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URL;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLConnection;
+import java.net.URLConnection;
 import java.nio.file.Files;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.Paths;
 
 import javax.annotation.ManagedBean;
 
 import org.junit.FixMethodOrder;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.junit.runners.MethodSorters;
+
+import com.hybris.tddTrail.prettifier.helper.HelperToLoginToSuite;
 
 @ManagedBean
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -39,6 +57,16 @@ public class TrailSetupTest {
 				directoryExists("../TddTrail"));
 	}
 	// TddTrailSnippetEnd
+	
+	@Test
+	// TddTrailSnippetStart loginAndCheckForTddTrailExtension
+	public void loginAndCheckForTddTrailExtension() throws Exception {
+		HelperToLoginToSuite suiteAccess = new HelperToLoginToSuite();
+		suiteAccess.login();
+		String content = suiteAccess.onceLoggedOnGetContentFrom("https://localhost:9002/platform/extensions");	
+		assertTrue("Content should include tddtrail", content.contains("tddtrail"));               
+	}
+	//TddTrailSnippetEnd
 	
 	@Test
 	// TddTrailSnippetStart testSuiteIsOnline
@@ -117,5 +145,6 @@ public class TrailSetupTest {
 		}
 		return content.contains(s);
 	}
+	
 
 }
