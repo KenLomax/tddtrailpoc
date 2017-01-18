@@ -15,6 +15,7 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.ManagedBean;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -25,11 +26,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+@ManagedBean
 public class HelperToLoginToSuite { 
 	// Adapted from https://www.mkyong.com/java/how-to-automate-login-a-website-java-example/
 
-	private static String ylogin = "https://localhost:9002/login.jsp";
-	private static String ylogin2 = "https://localhost:9002/j_spring_security_check";
+	private String ylogin = "https://localhost:9002/login.jsp";
+	private String ylogin2 = "https://localhost:9002/j_spring_security_check";
 	private List<String> cookies;
 	private HttpsURLConnection conn;
 	private final String USER_AGENT = "Mozilla/5.0";

@@ -1,38 +1,22 @@
 package com.hybris.tddTrail;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.File;
 import java.io.IOException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URL;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLConnection;
 import java.net.URLConnection;
 import java.nio.file.Files;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Paths;
 
 import javax.annotation.ManagedBean;
 
 import org.junit.FixMethodOrder;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
 import org.junit.runners.MethodSorters;
 
 import com.hybris.tddTrail.prettifier.helper.HelperToLoginToSuite;
@@ -45,16 +29,13 @@ public class TrailSetupTest {
 	// TddTrailSnippetStart testTddTrailPrerequisites
 	public void testTddTrailPrerequisites() throws IOException {
 		// Confirm that the TddTrail folder is sitting alongside hybris-commerce-suite-6.2.0.1 :
-		// <someFolder>
+		// <yourTrailHome>
 		// |-- hybris-commerce-suite-6.2.0.1
 		// |-- hybris-commerce-suite-6.2.0.1.zip
 		// |-- tddTrailSite
-		assertTrue("TddTrail and Zip need to be in the same folder",
-				fileExists("../hybris-commerce-suite-6.2.0.1.zip"));
-		assertTrue("TddTrail and Zip need to be in the same folder",
-				directoryExists("../hybris-commerce-suite-6.2.0.1"));
-		assertTrue("TddTrail and Zip need to be in the same folder",
-				directoryExists("../TddTrail"));
+		assertTrue("TddTrail and Zip need to be in the same folder", fileExists("../hybris-commerce-suite-6.2.0.1.zip"));
+		assertTrue("TddTrail and Zip need to be in the same folder", directoryExists("../hybris-commerce-suite-6.2.0.1"));
+		assertTrue("TddTrail and Zip need to be in the same folder", directoryExists("../TddTrail"));
 	}
 	// TddTrailSnippetEnd
 	
@@ -77,18 +58,6 @@ public class TrailSetupTest {
         assertEquals("Expected redirect", HttpURLConnection.HTTP_MOVED_TEMP,  ((HttpURLConnection)con).getResponseCode());               
 	}
 	// TddTrailSnippetEnd
-
-	private String getWebsiteContent(URLConnection con) throws IOException{
-		StringBuffer sb = new StringBuffer();
-		BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream()));
-		String input;
-		while ((input = br.readLine()) != null){
-			sb.append(input);
-		}
-		br.close();	
-		return sb.toString();
-	}
-	
 
 
 	// TddTrailSnippetStart testExtensionCreateddOk
@@ -146,5 +115,15 @@ public class TrailSetupTest {
 		return content.contains(s);
 	}
 	
-
+	private String getWebsiteContent(URLConnection con) throws IOException{
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream()));
+		String input;
+		while ((input = br.readLine()) != null){
+			sb.append(input);
+		}
+		br.close();	
+		return sb.toString();
+	}
+	
 }

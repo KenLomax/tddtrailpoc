@@ -49,6 +49,8 @@ public class TDDController {
 		String home = trailHome;
 		if (!home.endsWith("/"))
 			home = home.concat("/");
+		if (os.contains("Undefined"))
+			return new ResponseEntity<String>(os+"|"+home, HttpStatus.OK);	
 		if (os.toLowerCase().contains("indows"))
 			return new ResponseEntity<String>("Windows|"+home, HttpStatus.OK);	
 		return new ResponseEntity<String>("xnix|"+home, HttpStatus.OK);
