@@ -98,8 +98,7 @@
                   $('#testA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testTddTrailPrerequisites.html?nocache='+ (new Date()).getTime());
                   // ]]></script>
               </p>
-              <q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testTddTrailPrerequisites test|| { echo "Test testTddTrailPrerequisites Unsuccessful"; }</q>
-              <span>[Copy Step WX]</span>
+              
             </td>
            <td>&nbsp;</td>
               <td width="50%">
@@ -112,7 +111,8 @@
                 <ul><li>xnix: <q>cd trailhome; unzip hybris-commerce-suite-6.2.0.1.zip -d hybris-commerce-suite-6.2.0.1</q><span > [Copy Step X]</span></li>
                 <li>windows: create a new directory trailhome/hybris-commerce-suite-6.2.0.1 and unzip hybris-commerce-suite-6.2.0.1.zip into that.</li></ul>
                 </li>
-                <li>Run the test on the left to confirm.</li>
+                <li>Run the test on the left to confirm<ul><li><q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testTddTrailPrerequisites test|| { echo "Test testTddTrailPrerequisites Unsuccessful"; }</q>
+              <span>[Copy Step WX]</span></li></ul></li>
               </ol>
             </td>
        </tr>
@@ -128,7 +128,7 @@
             $('#testSuiteIsOnline').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testSuiteIsOnline.html?nocache='+ (new Date()).getTime());
             // ]]></script>
             </p>
-            <q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testSuiteIsOnline test|| { echo "Test testSuiteIsOnline Unsuccessful";  }</q> <span>[Copy Step WX]</span></td>
+            </td>
            <td>&nbsp;</td>
  
            <td width="50%">
@@ -152,6 +152,7 @@
           </li>
           <li>Open the back office at <a href="http://localhost:9001" target="_blank">http://localhost:9001</a></li>
           <li>Bla bla about what they can see and do.</li>
+          <li>Run the test<ul><li><q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testSuiteIsOnline test|| { echo "Test testSuiteIsOnline Unsuccessful";  }</q> <span>[Copy Step WX]</span></li></ul></li>
           </ol>
           </td>
        	</tr>
@@ -165,7 +166,7 @@
                   $('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());
                   // ]]></script>
                   </p>
-                  <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionCreateddOk test || { echo "Test testExtensionCreateddOk Unsuccessful"; }</q><span>[Copy Step WX]</span></td>
+                  </td>
                 <td>&nbsp;</td>
            <td width="50%">
 
@@ -187,7 +188,7 @@
                 </li>
                 <li>Execute the ant task extgen to create a new extension: <ul><li> <q>ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"</q><span> [Copy Step WX]</span></li></ul></li>
                 <li><strong>Ask Stephen</strong> Ignore the steps that the ant command then prints in the console (such as "[echo] 1) Add your extension..."), as these are given more explicitly below.</li>
-                </ol>
+                <li>Run the test <ul><li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionCreateddOk test || { echo "Test testExtensionCreateddOk Unsuccessful"; }</q><span>[Copy Step WX]</span></li></ul></li></ol>
                 </td>
              </tr>
        <tr><td colspan=3><br><hr/><br></td></tr>
@@ -200,7 +201,7 @@
                     $('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
                     // ]]></script>
                     </p>
-                    <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testCodeGeneratedOk test|| { echo "Test testCodeGeneratedOk Unsuccessful";  }</q><span>[Copy Step WX]</span></td>
+                    </td>
                   <td>&nbsp;</td>
                  <td width="50%">
                   <table><tr><td><cite class=windows id=row4cmdswindows /></cite><span class=windows>[Copy Steps W]</span></td><td>
@@ -213,7 +214,7 @@
                   </ul></li>
                   <li><strong>Ask stephen</strong>Stop the application server if it is running.</li>
                   <li>Rebuild the suite: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant clean all</q><span> [Copy Step WX]</span></li></ul></li>
-                  </ol>
+                  <li>Run the test <ul><li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testCodeGeneratedOk test|| { echo "Test testCodeGeneratedOk Unsuccessful";  }</q><span>[Copy Step WX]</span></li></ul></li></ol>
                   </td>
              </tr>
        <tr><td colspan=3><br><hr/><br></td></tr>
@@ -228,7 +229,7 @@
                     $('#testnewex').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/loginAndCheckForTddTrailExtension.html?nocache='+ (new Date()).getTime());
                     // ]]></script>
                     </p>
-                    <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#loginAndCheckForTddTrailExtension test|| { echo "Test loginAndCheckForTddTrailExtension Unsuccessful";  }</q><span>[Copy Step WX]</span></td>
+                    </td>
   	                <td>&nbsp;</td>
    
    	                <td width="50%">
@@ -242,7 +243,7 @@
 	                </ul>
 	                </li>
 	                <li>Open the hybris administration console <a href="http://localhost:9001/platform/extensions" target="_blank">http://localhost:9001/platform/extensions</a> in a web browser and log in as admin nimda. You will get an overview of the available extensions which must now include tddtrail.</li>
-	                </ol>
+	                <li>Run the test <ul><li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#loginAndCheckForTddTrailExtension test|| { echo "Test loginAndCheckForTddTrailExtension Unsuccessful";  }</q><span>[Copy Step WX]</span></li></ul></li></ol>
 	                </td>
   	    </tr>
        <tr><td colspan=3><br><hr/><br></td></tr>
@@ -255,7 +256,7 @@
                   $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
                   // ]]></script>
                   </p>
-                  <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test|| { echo "Test testExtensionModelOk Unsuccessful";  }</q><span>[Copy Step WX]</span></td>
+                  </td>
                 <td>&nbsp;</td>
  
                <td width="50%">
@@ -269,7 +270,7 @@
                 </ul>
                 </li>
                 <li>Rebuild the suite: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant build</q> <span>[Copy Step WX]</span></li></ul></li>
-                </ol>
+                <li>Run the test <ul><li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test|| { echo "Test testExtensionModelOk Unsuccessful";  }</q><span>[Copy Step WX]</span></li></ul></li></ol>
                 </td>
          	 </tr>
        <tr><td colspan=3><br><hr/><br></td></tr>
