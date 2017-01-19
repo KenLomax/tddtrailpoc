@@ -12,10 +12,10 @@
 	  q{
 	    color: #444444;
 	  }
-	  img {height: 2em;} 
-	  span:active{ box-shadow: 0px 0px 5px #222222; }
-	  
-	  
+	  code {
+		  border: 1px solid gray;
+		  display:block;
+	  }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 
@@ -28,12 +28,13 @@
           type: 'GET',
           url: 'http://localhost:8080/trailsetup',
           async:false,
-          success: function(homeAndOS) {
-          
+          success: function(homeAndOS) {  
    			if (homeAndOS.includes("Undefined")){
+   				$("#onlyifsetupnotok").show();
    				$("#onlyifsetupok").hide();
 				return;
 			}
+			$("#onlyifsetupnotok").hide();
 			
 			var actualOS = 	homeAndOS.split("|")[0];
 			var actualTrailHome = 	homeAndOS.split("|")[1];
@@ -45,19 +46,19 @@
 
             // Set Fastforward commands
             $('#row1cmdsMac').text($('#row1').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
-            $('#row1cmdsWindows').text($('#row1').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row1cmdswindows').text($('#row1').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#row2cmdsMac').text($('#row2').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
-            $('#row2cmdsWindows').text($('#row2').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row2cmdswindows').text($('#row2').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#row3cmdsMac').text($('#row3').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
-            $('#row3cmdsWindows').text($('#row3').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row3cmdswindows').text($('#row3').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#row4cmdsMac').text($('#row4').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
-            $('#row4cmdsWindows').text($('#row4').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row4cmdswindows').text($('#row4').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#row5cmdsMac').text($('#row5').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
-            $('#row5cmdsWindows').text($('#row5').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row5cmdswindows').text($('#row5').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#row6cmdsMac').text($('#row6').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
-            $('#row6cmdsWindows').text($('#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row6cmdswindows').text($('#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
 
-            $('#rowWindowscmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+            $('#rowwindowscmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#rowxnixcmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
 
 			//if (actualOS.includes("indows"))
@@ -65,86 +66,88 @@
 			//else
 			//	$("[class='windows']").hide()
 			
-            $('q').css( "color", "red" )
+            $('q').css( "color", "#dddddd" )
           }
         });
       });
       
       // ]]></script>
   <body>
-
-    <h1>PoC of a TDD Trail</h1>
-
-	<p id=setup>Supply your operating system and the location of your zip when launching this webapp: <br>
-	java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war <strong>--trailHome=absolutePath --os=xnix|windows</strong></p>
-	              <cite id=rowWindowscmds /></cite><span class=windows>[&#10064;W]</span>
-              <cite id=rowxnixcmds /></cite><span class=xnix>[&#10064;X]</span>
-	
-      <table id=onlyifsetupok>
+      <table >
         <tbody>
-
-          <tr>
-            <td>
-              <h2>Acceptance Tests</h2>
-            </td>
-            <td>&nbsp;</td>
-            <td width="50%">
-              <h2>Steps</h2>
-            </td>
+			<tr>
+				<td >
+					<h1>PoC of a TDD Trail</h1>
+					<p id=onlyifsetupnotok>Supply your operating system and the location of your zip when launching this webapp: <br>
+						java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war <strong>--trailHome=absolutePath --os=xnix|windows</strong></p>
+					<table><tr><td><cite id=rowwindowscmds /></cite><span class=windows>[Copy Complete Steps W]</span></td><td>
+			        <cite id=rowxnixcmds /></cite><span class=xnix>[Copy Complete Steps X]</span></td></tr></table>
+			    </td>
+			    <td></td>
+			    <td>
+			    	<p id=setup></p>
+			    </td>
           </tr>
+   
 
           <tr id=row1>
               <td>
-               <h4>Tdd Trail Setup</h4>
+               <h2>Tdd Trail Setup</h2>          
              <p id="testA">
                 <script>// <![CDATA[
                   $('#testA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testTddTrailPrerequisites.html?nocache='+ (new Date()).getTime());
                   // ]]></script>
               </p>
               <q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testTddTrailPrerequisites test|| { echo "Test testTddTrailPrerequisites Unsuccessful"; }</q>
-              <span>[&#10064;WX]</span>
+              <span>[Copy Step WX]</span>
             </td>
            <td>&nbsp;</td>
               <td width="50%">
-              <cite class=windows id=row1cmdsWindows /></cite><span  class=windows>[&#10064;W]</span>
-              <cite class=xnix id=row1cmdsMac /></cite><span class=xnix>[&#10064;X]</span>
+              <h3>&nbsp;</h3>
+              To make the acceptance test pass you need to do the following 
+              <table><tr><td><cite class=windows id=row1cmdswindows /></cite><span  class=windows>[Copy Steps W]</span></td>
+              <td><cite class=xnix id=row1cmdsMac /></cite><span class=xnix>[Copy Steps X]</span></td></tr></table>       
               <ol>
-                <li>Unzip the <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> to trailhome/hybris-commerce-suite-6.2.0.1
-                <br>xnix: <q>cd trailhome; unzip hybris-commerce-suite-6.2.0.1.zip -d hybris-commerce-suite-6.2.0.1</q><span > [&#10064;X]</span>
-                <br>windows: create a new directory trailhome/hybris-commerce-suite-6.2.0.1 and unzip hybris-commerce-suite-6.2.0.1.zip into that.
+                <li>Unzip <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> to trailhome/hybris-commerce-suite-6.2.0.1
+                <ul><li>xnix: <q>cd trailhome; unzip hybris-commerce-suite-6.2.0.1.zip -d hybris-commerce-suite-6.2.0.1</q><span > [Copy Step X]</span></li>
+                <li>windows: create a new directory trailhome/hybris-commerce-suite-6.2.0.1 and unzip hybris-commerce-suite-6.2.0.1.zip into that.</li></ul>
                 </li>
                 <li>Run the test on the left to confirm.</li>
               </ol>
             </td>
        </tr>
+       
+       <tr><td colspan=3><br><hr/><br></td></tr>
 
-          <tr id=row2>
+       <tr id=row2>
           <td>
-          <h4>Setup minimal Suite</h4>
+          <h2>Setup minimal Suite</h2>
 
           <p id="testSuiteIsOnline">
           <script>// <![CDATA[
             $('#testSuiteIsOnline').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testSuiteIsOnline.html?nocache='+ (new Date()).getTime());
             // ]]></script>
             </p>
-            <q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testSuiteIsOnline test|| { echo "Test testSuiteIsOnline Unsuccessful";  }</q> <span>[&#10064;WX]</span></td>
+            <q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testSuiteIsOnline test|| { echo "Test testSuiteIsOnline Unsuccessful";  }</q> <span>[Copy Step WX]</span></td>
            <td>&nbsp;</td>
  
            <td width="50%">
-          <cite  class=windows id=row2cmdsWindows /></cite><span class=windows>[&#10064;W]</span>
-          <cite  class=xnix id=row2cmdsMac /></cite><span class=xnix>[&#10064;X]</span>
+           
+           <table><tr><td><cite  class=windows id=row2cmdswindows /></cite><span class=windows>[Copy Steps W]</span></td>
+          		<td><cite  class=xnix id=row2cmdsMac /></cite><span class=xnix>[Copy Steps X]</span></td></tr></table>
           <ol>
-          <li>Navigate to the installer directory: <q>cd trailhome/hybris-commerce-suite-6.2.0.1/installer</q><span>[&#10064;WX]</span></li>
+          <li>Navigate to the installer directory: 
+          	<ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/installer</q><span>[CopyStep WX]</span></li></ul></li>
           <li>Setup, initialize and start your suite with minimal installation
-          <ol class=xnix type="i">
-          <li><q class=xnix>./install.sh -r platform_only setup</q> <span>[&#10064;X]</span> (Takes &lt; 1 minute)</li>
-          <li><q class=xnix>./install.sh -r platform_only initialize</q> <span>[&#10064;X]</span> (Takes ~ 1 minutes)</li>
-          <li><q class=xnix>./install.sh -r platform_only start</q> <span>[&#10064;X]</span> (Takes ~ 1 minute)</li>
+          <br>xnix:<ol class=xnix type="i">
+          <li><q class=xnix>./install.sh -r platform_only setup</q> <span>[Copy Step X]</span> (Takes &lt; 1 minute)</li>
+          <li><q class=xnix>./install.sh -r platform_only initialize</q> <span>[Copy Step X]</span> (Takes ~ 1 minutes)</li>
+          <li><q class=xnix>./install.sh -r platform_only start</q> <span>[Copy Step X]</span> (Takes ~ 1 minute)</li>
           </ol>
-          <ol  class=windows type="i">
-          <li><q class=windows>install.bat -r platform_only setup</q> <span>[&#10064;W]</span>.</li>
-          <li><q class=windows>install.bat -r platform_only initialize</q> <span> [&#10064;W]</span>.</li>
-          <li><q class=windows>install.bat -r platform_only start</q> <span> [&#10064;W]</span></li>
+          windows: <ol  class=windows type="i">
+          <li><q class=windows>install.bat -r platform_only setup</q> <span>[Copy Step W]</span>.</li>
+          <li><q class=windows>install.bat -r platform_only initialize</q> <span> [Copy Step W]</span>.</li>
+          <li><q class=windows>install.bat -r platform_only start</q> <span> [Copy Step W]</span></li>
           </ol>
           </li>
           <li>Open the back office at <a href="http://localhost:9001" target="_blank">http://localhost:9001</a></li>
@@ -152,69 +155,72 @@
           </ol>
           </td>
        	</tr>
+       <tr><td colspan=3><br><hr/><br></td></tr>
 
           <tr id=row3>
                  <td>
-                <h4>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040 ">Notes..</a>)</h4>
+                <h2>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040 ">Notes..</a>)</h2>
                 <p id="testB">
                 <script>// <![CDATA[
                   $('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());
                   // ]]></script>
                   </p>
-                  <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionCreateddOk test || { echo "Test testExtensionCreateddOk Unsuccessful"; }</q><span>[&#10064;WX]</span></td>
+                  <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionCreateddOk test || { echo "Test testExtensionCreateddOk Unsuccessful"; }</q><span>[Copy Step WX]</span></td>
                 <td>&nbsp;</td>
            <td width="50%">
 
-                <cite  class=windows  id=row3cmdsWindows /></cite><span class=windows>[&#10064;W]</span>
-                <cite  class=xnix  id=row3cmdsMac /></cite><span  class=xnix >[&#10064;X]</span>
+                <table><tr><td><cite  class=windows  id=row3cmdswindows /></cite><span class=windows>[Copy Steps W]</span></td><td>
+                <cite  class=xnix  id=row3cmdsMac /></cite><span  class=xnix >[Copy Steps X]</span></td></tr></table>
 
                 <ol>
                 <li>Stop the hybris Suite: <ul>
-                  <li  class=xnix ><q>pkill -f 'hybris-commerce-suite-6.2.0.1/hybris/bin/platform/tomcat/bin'</q><span >[&#10064;X]</span></li>
-                  <liv class=windows >?</li>
+                  <li  class=xnix >xnix: <q>pkill -f 'hybris-commerce-suite-6.2.0.1/hybris/bin/platform/tomcat/bin'</q><span >[Copy Step X]</span></li>
+                  <li class=windows >windows: ?</li>
                   </ul>
                 </li>
-                <li>Navigate into the platform: <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform</q><span>[&#10064;WX]</span></li>
+                <li>Navigate into the platform: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform</q><span>[Copy Step WX]</span></li></ul></li>
                 <li>Configure your local Ant command:
                   <ul>
-                  <li  class=xnix ><q class=xnix>. ./setantenv.sh</q><span>[&#10064;X]</span></li>
-                  <li  class=windows ><q class=windows>./setantenv.bat</q><span>[&#10064;W]</span></li>
+                  <li  class=xnix >xnix: <q class=xnix>. ./setantenv.sh</q><span>[Copy Step X]</span></li>
+                  <li  class=windows >windows: <q class=windows>./setantenv.bat</q><span>[Copy Step W]</span></li>
                   </ul>
                 </li>
-                <li>Execute the ant task extgen to create a new extension: <q>ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"</q><span> [&#10064;WX]</span></li>
+                <li>Execute the ant task extgen to create a new extension: <ul><li> <q>ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"</q><span> [Copy Step WX]</span></li></ul></li>
                 <li><strong>Ask Stephen</strong> Ignore the steps that the ant command then prints in the console (such as "[echo] 1) Add your extension..."), as these are given more explicitly below.</li>
                 </ol>
                 </td>
              </tr>
+       <tr><td colspan=3><br><hr/><br></td></tr>
 
           	<tr id=row4>
                     <td>
-                   <h4>Add the new extension to your Suite</h4>
+                   <h2>Add the new extension to your Suite</h2>
                  <p id="testC">
                   <script>// <![CDATA[
                     $('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
                     // ]]></script>
                     </p>
-                    <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testCodeGeneratedOk test|| { echo "Test testCodeGeneratedOk Unsuccessful";  }</q><span>[&#10064;WX]</span></td>
+                    <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testCodeGeneratedOk test|| { echo "Test testCodeGeneratedOk Unsuccessful";  }</q><span>[Copy Step WX]</span></td>
                   <td>&nbsp;</td>
                  <td width="50%">
-                  <cite class=windows id=row4cmdsWindows /></cite><span class=windows>[&#10064;W]</span>
-                  <cite  class=xnix id=row4cmdsMac /></cite><span class=xnix>[&#10064;X]</span>
+                  <table><tr><td><cite class=windows id=row4cmdswindows /></cite><span class=windows>[Copy Steps W]</span></td><td>
+                  <cite  class=xnix id=row4cmdsMac /></cite><span class=xnix>[Copy Steps X]</span></td></tr></table>
 
                   <ol style="margin-bottom: 0px; margin-top: 0px;">
                   <li>Add &lt;extension dir="../custom/tddtrail"&gt; to the file hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml<ul>
-                    <li class=xnix ><q>cd /Users/d061192/trail/hybris-commerce-suite-6.2.0.1/hybris; sed -i '' 's/<\/extensions>/&lt;extension dir="..\/custom\/tddtrail"\/><\/extensions>/' config/localextensions.xml</q><span>[&#10064;X]</span></li>
-                    <li class=windows >?</li>
+                    <li class=xnix >xnix: <q>cd /Users/d061192/trail/hybris-commerce-suite-6.2.0.1/hybris; sed -i '' 's/<\/extensions>/&lt;extension dir="..\/custom\/tddtrail"\/><\/extensions>/' config/localextensions.xml</q><span>[Copy Step X]</span></li>
+                    <li class=windows >windows: ?</li>
                   </ul></li>
                   <li><strong>Ask stephen</strong>Stop the application server if it is running.</li>
-                  <li>Rebuild the suite: <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant clean all</q><span> [&#10064;WX]</span></li>
+                  <li>Rebuild the suite: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant clean all</q><span> [Copy Step WX]</span></li></ul></li>
                   </ol>
                   </td>
              </tr>
+       <tr><td colspan=3><br><hr/><br></td></tr>
 
               <tr id=row5>
-	                <td>Confirm you can see the TddTrail listed in the exentions. Some image showing the tddtrail extension
-	                <h4>Confirm the extension is recognized by the Suite</h4>
+	                <td>
+	                <h2>Confirm the extension is recognized by the Suite</h2>
 	                
 	                
 	                <p id="testnewex">
@@ -222,52 +228,54 @@
                     $('#testnewex').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/loginAndCheckForTddTrailExtension.html?nocache='+ (new Date()).getTime());
                     // ]]></script>
                     </p>
-                    <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#loginAndCheckForTddTrailExtension test|| { echo "Test loginAndCheckForTddTrailExtension Unsuccessful";  }</q><span>[&#10064;WX]</span></td>
+                    <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#loginAndCheckForTddTrailExtension test|| { echo "Test loginAndCheckForTddTrailExtension Unsuccessful";  }</q><span>[Copy Step WX]</span></td>
   	                <td>&nbsp;</td>
    
    	                <td width="50%">
-	                <cite class=windows id=row5cmdsWindows /></cite><span class=windows>[&#10064;W]</span>
-	                <cite  class=xnix id=row5cmdsMac /></cite><span class=xnix >[&#10064;X]</span>
+	                <table><tr><td><cite class=windows id=row5cmdswindows /></cite><span class=windows>[Copy Steps W]</span></td><td>
+	                <cite  class=xnix id=row5cmdsMac /></cite><span class=xnix >[Copy Steps X]</span></td></tr></table>
 	
 	                <ol>
 	                <li>Restart the application server<ul>
-	                  <li class=xnix ><q class=xnix>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;./install.sh -r platform_only start</q><span  class=xnix >[&#10064;X]</span></li>
-	                  <li class=windows ><q class=windows>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;install.bat -r platform_only start</q><span class=windows >[&#10064;W]</span></li>
+	                  <li class=xnix >xnix: <q class=xnix>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;./install.sh -r platform_only start</q><span  class=xnix >[Copy Step X]</span></li>
+	                  <li class=windows >windows: <q class=windows>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;install.bat -r platform_only start</q><span class=windows >[Copy Step W]</span></li>
 	                </ul>
 	                </li>
-	                <li>Open the hybris administration console <a href="http://localhost:9001/platform/extensions" target="_blank">http://localhost:9001/platform/extensions</a> in a web browser and log in as admin nimda. You will get an overview of the available extensions which should now include tddtrail.</li>
+	                <li>Open the hybris administration console <a href="http://localhost:9001/platform/extensions" target="_blank">http://localhost:9001/platform/extensions</a> in a web browser and log in as admin nimda. You will get an overview of the available extensions which must now include tddtrail.</li>
 	                </ol>
 	                </td>
   	    </tr>
+       <tr><td colspan=3><br><hr/><br></td></tr>
 	
             <tr id=row6>
                  <td>
-                 <h4>Extend the data model</h4>
+                 <h2>Extend the data model</h2>
                 <p id="testD">
                 <script>// <![CDATA[
                   $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
                   // ]]></script>
                   </p>
-                  <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test|| { echo "Test testExtensionModelOk Unsuccessful";  }</q><span>[&#10064;WX]</span></td>
+                  <q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test|| { echo "Test testExtensionModelOk Unsuccessful";  }</q><span>[Copy Step WX]</span></td>
                 <td>&nbsp;</td>
  
                <td width="50%">
-                <cite id=row6cmdsWindows /></cite><span class=windows>[&#10064;W]</span>
-                <cite id=row6cmdsMac /></cite><span class=xnix >[&#10064;X]</span>
+                <table><tr><td><cite id=row6cmdswindows /></cite><span class=windows>[Copy Steps W]</span></td><td>
+                <cite id=row6cmdsMac /></cite><span class=xnix >[Copy Steps X]</span></td></tr></table>
 
                 <ol>
                 <li>Replace trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml with Trail/TddTrail/trailMaterial/tddtrail-items.xml <ul>
-                  <li class=xnix ><q class=xnix>cp trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span>[&#10064;X]</span></li>
-                  <li class=windows><q class=windows>copy trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span>[&#10064;W]</span></li>
+                  <li class=xnix >xnix: <q class=xnix>cp trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span>[Copy Step X]</span></li>
+                  <li class=windows>windows: <q class=windows>copy trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span>[Copy Step W]</span></li>
                 </ul>
                 </li>
-                <li>Rebuild the suite: <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant build</q> <span>[&#10064;WX]</span></li>
+                <li>Rebuild the suite: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant build</q> <span>[Copy Step WX]</span></li></ul></li>
                 </ol>
                 </td>
          	 </tr>
+       <tr><td colspan=3><br><hr/><br></td></tr>
 
               <tr id=row7>
-	              <td>	              <h4>Import into Eclipse</h4>
+	              <td>	              <h2>Import into Eclipse</h2>
 	              Some picture showing Eclipse projects with no errors</td>
               <td>&nbsp;</td>
 	
@@ -305,23 +313,37 @@
 	
 	    clipboard.on('success',
 	    function(event) {
-	      event.clearSelection();
+	     	event.clearSelection();
+			event.trigger.textContent = event.trigger.textContent.toString().replace('Copy','Copied');
+			window.setTimeout(function() {
+			event.trigger.textContent = event.trigger.textContent.toString().replace('Copied','Copy');
+			}, 2000);
+			
+	      
 	    })
 
 
       function runATest(item_id) {
         $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_info")
-        $.ajax({url: "http://localhost:8080/tdd?test="+item_id, success: function(result){
-          $("#"+item_id+"Result").html(result);
-          if (result.includes("Success")){
-            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
-            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
-          }
-          else {
-            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
-            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error");
-          }
-        }});
+        $.ajax({url: "http://localhost:8080/tdd?test="+item_id, 
+        	success: function(result){
+	          $("#"+item_id+"Result").html(result);
+	          if (result.includes("Success")){
+	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
+	            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
+	          }
+	          else {
+	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
+	            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error");
+	          }
+	        },
+			error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				$("#"+item_id+"Result").html("Offline?");
+           		$("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
+	            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error");
+			 } 
+	        
+	        });
       };
 
       $('#snippetTestA2').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/TestA2.html?nocache='+ (new Date()).getTime());

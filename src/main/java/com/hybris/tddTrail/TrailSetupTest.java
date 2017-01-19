@@ -28,11 +28,11 @@ public class TrailSetupTest {
 	@Test
 	// TddTrailSnippetStart testTddTrailPrerequisites
 	public void testTddTrailPrerequisites() throws IOException {
-		// Confirm that the TddTrail folder is sitting alongside hybris-commerce-suite-6.2.0.1 :
+		// Confirm your file system is as follows:
 		// <yourTrailHome>
-		// |-- hybris-commerce-suite-6.2.0.1
-		// |-- hybris-commerce-suite-6.2.0.1.zip
-		// |-- tddTrailSite
+		//   |-- hybris-commerce-suite-6.2.0.1
+		//   |-- hybris-commerce-suite-6.2.0.1.zip
+		//   |-- TddTrail
 		assertTrue("TddTrail and Zip need to be in the same folder", fileExists("../hybris-commerce-suite-6.2.0.1.zip"));
 		assertTrue("TddTrail and Zip need to be in the same folder", directoryExists("../hybris-commerce-suite-6.2.0.1"));
 		assertTrue("TddTrail and Zip need to be in the same folder", directoryExists("../TddTrail"));

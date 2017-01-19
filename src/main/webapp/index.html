@@ -4,30 +4,39 @@
   <style>
   cite {
     display:block;
-line-height:0;
-height: 0;
-overflow: hidden;
+	line-height:0;
+	height: 0;
+	overflow: hidden;
   }
   q{
     color: #444444;
   }
-
-
-  </style><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
+  code{
+    color: #444444;
+  }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
-
-  <h1>PoC of a TDD Trail</h1>
+<table>
+<tr>
+<td nowrap><h1>PoC of a TDD Trail</h1>
+</td>
+<td width=30%>&nbsp;</td>
+<td align=left>
+  A PoC to show how we can embed live, real acceptance/test-driven tests into a new TddTrail, that the reader runs from their local web browser.<br>
+  On github @ https://github.com/KenLomax/tddtrailpoc
+  </td>
+</tr>
+</table>
   
-  On github @ https://github.com/KenLomax/tddtrailpoc<br>
-  A PoC to show how we can embed live, real acceptance/test-driven tests into a new TddTrail, that the reader runs from their local web browser.
-  <br> <br>
-
+  <hr/>
 	<h4>Download</h4>
 	  <ol>
         <li>Create a folder near the top of your file system, with no spaces, for example ~/Trail on *nix or C:/Trail on Windows.  This is referred to here as {TRAILHOME}. </li>
         <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
        to {TRAILHOME}</li>
       </ol>
+   <hr/>
       
 	<h4>Initial quick dive</h4>
       <ol>
@@ -36,14 +45,14 @@ overflow: hidden;
          <li>Navigate to <code>{TRAILHOME}/hybris-commerce-suite-6.2.0.1QuickTour/installer</code> and..</li>
          <li>Setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
            <li>on a Mac/Linux run:<ol type="i">
-             <li><button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup [Copy Me]</button> (Takes ~ 1 minutes) </li>
-             <li><button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me] </button> (Takes ~ 10 minutes)</li>
-             <li><button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
+             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup [Copy Me]</button>  </li>
+             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me] </button> (Takes ~ 10 minutes)</li>
+             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
            </li>
            <li>on Windows run:<ol type="i">
-             <li><button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup [Copy Me]</button>.</li>
-             <li><button data-clipboard-text="install.bat -r b2b_acc initialize">install.bat -r b2b_acc initialize [Copy Me]</button>.</li>
-             <li><button data-clipboard-text="install.bat -r b2b_acc start">install.bat -r b2b_acc start [Copy Me]</button></li></ol>
+             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup [Copy Me]</button>.</li>
+             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc initialize">install.bat -r b2b_acc initialize [Copy Me]</button> (Takes ~ 10 minutes).</li>
+             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc start">install.bat -r b2b_acc start [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
            </li>
          </ul>
          </li>
@@ -52,20 +61,21 @@ overflow: hidden;
          <li>Bla bla about what they can see and do.</li>
       </ol>
   
+  <hr/>
 
   <h4>Download and run the TddTrail</h4>
   <ol>
     <li>Navigate in to the folder {TRAILHOME} and run 
       <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button></li>  
-    <li>Verify that you now have the folder <code>{TRAILHOME}/tddtrailpoc</code>.
-    <li>Navigate in to the folder <code>{TRAILHOME}/tddtrailpoc</code> and run<br>
+    <li>Verify that you now have the folder <code>{TRAILHOME}/tddtrail</code>.
+    <li>Navigate in to the folder <code>{TRAILHOME}/tddtrail</code> and run<br>
       <code>java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome={trailhome} --osx=xnix|windows</code><br>
       for example<br>
       <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail --os=xnix">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail  --os=xnix [Copy Me]</button> <br>
       or<br>
-      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail --os=windows">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail --os=windows [Copy Me]</button>l <br>
+      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail --os=windows">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail --os=windows [Copy Me]</button> <br>
+      (Use a full path and avoid using "~")
       </li>
-(Use a full path and avoid using "~")
     <li>Open <a target="_blank" href="http://localhost:8080/tddTrail.html">localhost:8080/tddTrail.html</a> and follow the TddTrail.</li>
   </ol>
 
@@ -84,9 +94,9 @@ var clipboard = new Clipboard(btns);
 clipboard.on('success',
 function(event) {
 event.clearSelection();
-event.trigger.textContent = event.trigger.textContent.toString().replace('Copy Me','Copied!');
+event.trigger.textContent = event.trigger.textContent.toString().replace('Copy Me','Copied ! ');
 window.setTimeout(function() {
-event.trigger.textContent = event.trigger.textContent.toString().replace('Copied!','Copy Me');
+event.trigger.textContent = event.trigger.textContent.toString().replace('Copied ! ','Copy Me');
 }, 2000);
 })
 
