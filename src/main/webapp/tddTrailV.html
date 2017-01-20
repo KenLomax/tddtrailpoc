@@ -16,6 +16,9 @@
 		  border: 1px solid gray;
 		  display:block;
 	  }
+	  span {
+	   color: #dddddd;
+	  }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 
@@ -61,19 +64,13 @@
             $('#rowwindowscmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#rowxnixcmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
 
-			//if (actualOS.includes("indows"))
-			//	$("[class='xnix']").hide()
-			//else
-			//	$("[class='windows']").hide()
-			
-            $('q').css( "color", "#dddddd" )
           }
         });
       });
       
       // ]]></script>
   <body>
-      <table >
+      <table width=100%>
         <tbody>
 			<tr>
 				<td width=100% >
@@ -90,7 +87,7 @@
           </tr>
    </table>
    
-   <table>
+   <table  width=100%>
           <tr id=row1>
               <td>
 			<hr/>
@@ -273,12 +270,12 @@
          	 </tr>
 
               <tr id=row7>
+	          <td>	
 			<hr/>
-	              <td>	
 	              <table width=100%>
               	<tr><td width=100%> <h2>Import into Eclipse</h2> </td></tr></table>
               	
-	              Some picture showing Eclipse projects with no errors</td>
+	              Some picture showing Eclipse projects with no errors
              
 	              <a href="https://wiki.hybris.com/display/prodandtech/Preparing+to+Develop+with+the+Eclipse+IDE">Notes..</a>
 	              <ol>
