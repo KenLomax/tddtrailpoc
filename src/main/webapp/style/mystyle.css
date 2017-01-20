@@ -5,8 +5,8 @@
         .isa_info, .isa_success, .isa_warning, .isa_error {
             }
         .isa_info {
-            color: #00529B;
-            background-color: #edf1f5;
+            color: #000000;
+            background-color: #ffffff;
         }
         .isa_success {
             color: #4F8A10;

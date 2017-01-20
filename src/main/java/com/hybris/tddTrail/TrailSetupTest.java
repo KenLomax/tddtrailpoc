@@ -1,14 +1,11 @@
 package com.hybris.tddTrail;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -33,9 +30,10 @@ public class TrailSetupTest {
 		//   |-- hybris-commerce-suite-6.2.0.1
 		//   |-- hybris-commerce-suite-6.2.0.1.zip
 		//   |-- TddTrail
-		assertTrue("TddTrail and Zip need to be in the same folder", fileExists("../hybris-commerce-suite-6.2.0.1.zip"));
-		assertTrue("TddTrail and Zip need to be in the same folder", directoryExists("../hybris-commerce-suite-6.2.0.1"));
-		assertTrue("TddTrail and Zip need to be in the same folder", directoryExists("../TddTrail"));
+		assertTrue("TddTrail and Zip need to be in the same folder",
+				fileExists("../hybris-commerce-suite-6.2.0.1.zip") &&
+				directoryExists("../hybris-commerce-suite-6.2.0.1") && 
+				directoryExists("../TddTrail"));
 	}
 	// TddTrailSnippetEnd
 	
@@ -44,18 +42,18 @@ public class TrailSetupTest {
 	public void loginAndCheckForTddTrailExtension() throws Exception {
 		HelperToLoginToSuite suiteAccess = new HelperToLoginToSuite();
 		suiteAccess.login();
-		String content = suiteAccess.onceLoggedOnGetContentFrom("https://localhost:9002/platform/extensions");	
+		String content = suiteAccess.open("https://localhost:9002/platform/extensions");	
 		assertTrue("Content should include tddtrail", content.contains("tddtrail"));               
 	}
 	//TddTrailSnippetEnd
 	
 	@Test
 	// TddTrailSnippetStart testSuiteIsOnline
-	public void testSuiteIsOnline() throws Exception {
-		URL url = new URL("http://localhost:9001");
-		URLConnection con = url.openConnection();
-		String content = getWebsiteContent(con);
-        assertEquals("Expected redirect", HttpURLConnection.HTTP_MOVED_TEMP,  ((HttpURLConnection)con).getResponseCode());               
+	public void testSuiteIsOnline() throws Exception {		
+		HelperToLoginToSuite suiteAccess = new HelperToLoginToSuite();
+		suiteAccess.login();
+		String content = suiteAccess.open("https://localhost:9002");	
+		assertTrue("Content should include tddtrail", content.contains("hybris Administration Console"));               
 	}
 	// TddTrailSnippetEnd
 

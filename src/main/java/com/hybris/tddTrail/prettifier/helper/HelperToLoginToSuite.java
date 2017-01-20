@@ -49,7 +49,7 @@ public class HelperToLoginToSuite {
 		sendPost(ylogin2, postParams);
 	}
 
-	public String onceLoggedOnGetContentFrom(String hac) throws Exception {
+	public String open(String hac) throws Exception {
 		// 3. success then go to gmail.
 		String content = getPageContent(hac);
 		return content;
