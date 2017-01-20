@@ -29,9 +29,8 @@ import de.java2html.util.RGB;
 public class CodePrettifierEngine {
 	private final Logger LOG = LoggerFactory.getLogger(CodePrettifierEngine.class);
 	
-	private final String tddTrailPrefix=" <button onclick='runATest(\"xxx\")'>Acceptance Test &#9658; "+
-			"</button> Status: <span class=isa_info id='xxxResult' name='xxxResult'>Not yet run</span>"+
-			"<p id=xxxSnippet name=xxxSnippet>";
+	private final String tddTrailPrefix=
+			"<p onclick=runATest('xxx') id=xxxSnippet name=xxxSnippet><code>Acceptance Test Status: <span class=isa_info id='xxxResult' name='xxxResult'>Not yet run</span><br>";
 	private final String tddTrailPostfix="</p>";
 	
 	
@@ -61,7 +60,7 @@ public class CodePrettifierEngine {
 			snippet = snippet.substring(0, snippet.lastIndexOf("\n"));		
 			snippet = shiftLeft(snippet);					
 			snippet = convertStringToHTML(snippet);
-			snippet = snippet.substring(snippet.indexOf("<code>"), snippet.indexOf("</code>") + 7);		
+			snippet = snippet.substring(snippet.indexOf("<code>")+6, snippet.indexOf("</code>") + 7);		
 			snippet = tddTrailPrefix.replaceAll("xxx", snippetName).concat(snippet);
 			snippet = snippet.concat(tddTrailPostfix);
 			prettifiedSnippets.put(snippetName, snippet);

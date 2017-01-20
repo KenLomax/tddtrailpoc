@@ -34,7 +34,7 @@
             text-align: left;
         }
         td { vertical-align:top}
-        code { font: inherit;color: #00dd00; background:none; }
+        code { font: inherit;color: #000000; background:none; }
         a:link,a:visited {
             color: red;
         }

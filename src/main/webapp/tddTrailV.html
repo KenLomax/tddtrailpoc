@@ -98,11 +98,12 @@
               	<td nowrap align=right ><cite class=xnix id=row1cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
              
               <ol>
+              	<li>The <button  onclick='runATest("testTddTrailPrerequisites")'>acceptance test</button>  should currently fail.  It expects the suite, zip and tss trail to be sharing the same directory.</li>
                 <li>Unzip <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> to trailhome/hybris-commerce-suite-6.2.0.1
                 <ul><li>xnix: <q>cd trailhome; unzip hybris-commerce-suite-6.2.0.1.zip -d hybris-commerce-suite-6.2.0.1</q><span > [Copy Step X]</span></li>
                 <li>windows: create a new directory trailhome/hybris-commerce-suite-6.2.0.1 and unzip hybris-commerce-suite-6.2.0.1.zip into that.</li></ul>
                 </li>
-                <li>Confirm with a green acceptance test 
+                <li>Confirm the acceptance test passes
                <ul><li><button  onclick='runATest("testTddTrailPrerequisites")'>Here</button> or </li>
                <li><q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testTddTrailPrerequisites test|| { echo "Test testTddTrailPrerequisites Unsuccessful"; }</q>
               <span> [Copy Step WX]</span></li></ul></li>
@@ -126,6 +127,9 @@
               	<td nowrap align=right ><cite class=xnix id=row2cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
              
          <ol>
+          <li>The <button  onclick='runATest("testSuiteIsOnline")'>acceptance test</button>  should currently fail.  
+			It expects the suite to be setup, initialized and running at <a href="http://localhost:9001" target="_blank">http://localhost:9001</a>.</li>
+                
           <li>Navigate to the installer directory: 
           	<ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/installer</q><span> [CopyStep WX]</span></li></ul></li>
           <li>Setup, initialize and start your suite with minimal installation

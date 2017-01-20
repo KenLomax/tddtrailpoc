@@ -330,23 +330,21 @@
 			event.trigger.textContent = event.trigger.textContent.toString().replace('Copy','Copied');
 			window.setTimeout(function() {
 			event.trigger.textContent = event.trigger.textContent.toString().replace('Copied','Copy');
-			}, 2000);
-			
-	      
+			}, 2000);      
 	    })
 
 
       function runATest(item_id) {
-        $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_info")
+        //$("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_info")
         $.ajax({url: "http://localhost:8080/tdd?test="+item_id, 
         	success: function(result){
 	          $("#"+item_id+"Result").html(result);
 	          if (result.includes("Success")){
-	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
+//	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
 	            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
 	          }
 	          else {
-	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
+//	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
 	            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error");
 	          }
 	        },
