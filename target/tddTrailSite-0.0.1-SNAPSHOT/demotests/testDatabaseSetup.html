@@ -1,0 +1,14 @@
+<p onclick=runATest('testDatabaseSetup') id=testDatabaseSetupSnippet name=testDatabaseSetupSnippet><code>Acceptance Test Status: <span class=isa_info id='testDatabaseSetupResult' name='testDatabaseSetupResult'>Not yet run</span><br>
+<font color="#404040"><b>public&nbsp;</b></font><font color="#7f0055"><b>void&nbsp;</b></font><font color="#000000">testhsqldb</font><font color="#000000">()&nbsp;</font><font color="#404040"><b>throws&nbsp;</b></font><font color="#000000">Exception&nbsp;</font><font color="#000000">{</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">HsqlDBHelper&nbsp;hsqldb&nbsp;=&nbsp;</font><font color="#404040"><b>new&nbsp;</b></font><font color="#000000">HsqlDBHelper</font><font color="#000000">()</font><font color="#000000">;</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#404040"><b>try</b></font><font color="#000000">{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><br />
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">String&nbsp;res&nbsp;=&nbsp;hsqldb.select</font><font color="#000000">(&nbsp;&nbsp;</font><font color="#2a00ff">&#34;SELECT&nbsp;COUNT&nbsp;(*)&nbsp;FROM&nbsp;BANDS&#34;</font><font color="#000000">)</font><font color="#000000">;</font><br />
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">assertTrue</font><font color="#000000">(</font><font color="#2a00ff">&#34;0&nbsp;results&nbsp;currently&nbsp;in&nbsp;BANDS&#34;</font><font color="#000000">,&nbsp;res.equals</font><font color="#000000">(</font><font color="#2a00ff">&#34;0&#34;</font><font color="#000000">))</font><font color="#000000">;&nbsp;&nbsp;&nbsp;&nbsp;</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#404040"><b>catch</b></font><font color="#000000">(</font><font color="#000000">Exception&nbsp;e</font><font color="#000000">){</font><br />
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">fail</font><font color="#000000">(</font><font color="#2a00ff">&#34;HsqlDBTest&nbsp;failed:&nbsp;&#34;</font><font color="#000000">+e.getMessage</font><font color="#000000">())</font><font color="#000000">;</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#404040"><b>finally&nbsp;</b></font><font color="#000000">{</font><br />
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">hsqldb.shutdown</font><font color="#000000">(&nbsp;)</font><font color="#000000">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><br />
+<font color="#ffffff">&nbsp;&nbsp;</font><font color="#000000">}</font><br />
+<font color="#000000">}</font></code></p>

@@ -1,7 +1,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style/mystyle.css">
-    <style>
+  <style>
 	  cite {
 	    display:block;
 		line-height:1;
@@ -17,7 +17,7 @@
 		  display:block;
 	  }
 	  span {
-	   color: #dddddd;
+	   color: #bbbbbb;
 	  }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
@@ -64,14 +64,18 @@
             $('#rowwindowscmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#rowxnixcmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
 
-		
+			if (actualOS.includes("indows"))
+				$("[class='xnix']").hide()
+			else
+				$("[class='windows']").hide()
+			
           }
         });
       });
       
       // ]]></script>
   <body>
-      <table >
+      <table width=100%>
         <tbody>
 			<tr>
 				<td width=100% >
@@ -82,217 +86,248 @@
 			    </td>
 			    <td nowrap>
 			    	<p id=setup></p>
-			    	<table><tr><td nowrap><cite id=rowwindowscmds /></cite><kbd class=windows> [Copy Complete Steps W]</kbd></td><td nowrap>
-			        <cite id=rowxnixcmds /></cite><kbd class=xnix> [Copy Complete Steps X]</kbd></td></tr></table>
+			    	<table><tr><td nowrap><cite id=rowwindowscmds /></cite><span class=windows> [Copy Complete Steps W]</span></td><td nowrap>
+			        <cite id=rowxnixcmds /></cite><span class=xnix> [Copy Complete Steps X]</span></td></tr></table>
 			    </td>
           </tr>
    </table>
    
-   <table>
-       <tr><td colspan=3><br><hr/><br></td></tr>
-
+   <table  width=100%>
           <tr id=row1>
               <td>
-               <h2>Tdd Trail Setup</h2>          
-             <p id="testA">
+			<hr/>
+                      
+              <table width=100%>
+              	<tr><td width=100%> <h2>Tdd Trail Setup</h2> </td>
+             	<td nowrap align=right width=100%><cite class=windows id=row1cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
+              	<td nowrap align=right ><cite class=xnix id=row1cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
+             
+              <ol>
+              	<li>The <button  onclick='runATest("testTddTrailPrerequisites")'>acceptance test</button>  should currently fail.  It expects the suite, zip and tddtrail to be sharing the same directory.</li>
+                <li>Unzip <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> to trailhome/hybris-commerce-suite-6.2.0.1
+                <ul><li class=xnix ><q>cd trailhome; unzip hybris-commerce-suite-6.2.0.1.zip -d hybris-commerce-suite-6.2.0.1</q><span > [Copy Step X]</span></li>
+                <li class=windows > create a new directory trailhome/hybris-commerce-suite-6.2.0.1 and unzip hybris-commerce-suite-6.2.0.1.zip into that.</li></ul>
+                </li>
+                <li>Confirm the acceptance test passes
+               <ul><li><button  onclick='runATest("testTddTrailPrerequisites")'>Here</button> or </li>
+               <li><q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testTddTrailPrerequisites test</q>
+              <span> [Copy Step WX]</span></li></ul></li>
+              </ol>
+               <p id="testA" style="padding-left: 20px;">
                 <script>// <![CDATA[
                   $('#testA').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testTddTrailPrerequisites.html?nocache='+ (new Date()).getTime());
                   // ]]></script>
               </p>
               
             </td>
-           <td>&nbsp;</td>
-              <td width="50%">
-              <h3>&nbsp;</h3>
-              <table width=100%><tr><td align=right width=100%><cite class=windows id=row1cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
-              <td align=right nowrap><cite class=xnix id=row1cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
-              <ol>
-                <li>Unzip <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> to trailhome/hybris-commerce-suite-6.2.0.1
-                <ul><li>xnix: <q>cd trailhome; unzip hybris-commerce-suite-6.2.0.1.zip -d hybris-commerce-suite-6.2.0.1</q><span > [Copy Step X]</span></li>
-                <li>windows: create a new directory trailhome/hybris-commerce-suite-6.2.0.1 and unzip hybris-commerce-suite-6.2.0.1.zip into that.</li></ul>
-                </li>
-                <li>Confirm with a green acceptance test 
-               <ul><li><button  onclick='runATest("testTddTrailPrerequisites")'>Here</button> or </li>
-               <li><q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testTddTrailPrerequisites test|| { echo "Test testTddTrailPrerequisites Unsuccessful"; }</q>
-              <span> [Copy Step WX]</span></li></ul></li>
-              </ol>
-            </td>
        </tr>
        
-       <tr><td colspan=3><br><hr/><br></td></tr>
 
        <tr id=row2>
           <td>
-          <h2>Setup minimal Suite</h2>
-
-          <p id="testSuiteIsOnline">
-          <script>// <![CDATA[
-            $('#testSuiteIsOnline').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testSuiteIsOnline.html?nocache='+ (new Date()).getTime());
-            // ]]></script>
-            </p>
-            </td>
-           <td>&nbsp;</td>
- 
-           <td width="50%">
-           
-           <table width=100%><tr><td align=right width=100%><cite class=windows id=row2cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
-              <td align=right nowrap><cite class=xnix id=row2cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
-          <ol>
+			<hr/>
+			<table width=100%>
+              	<tr><td width=100%> <h2>Setup minimal Suite</h2> </td>
+             	<td nowrap align=right width=100%><cite class=windows id=row2cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
+              	<td nowrap align=right ><cite class=xnix id=row2cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
+             
+         <ol>
+          <li>The <button  onclick='runATest("testSuiteIsOnline")'>acceptance test</button>  should currently fail.  
+			It expects the suite to be setup, initialized and running at <a href="http://localhost:9001" target="_blank">http://localhost:9001</a>.</li>
+                
           <li>Navigate to the installer directory: 
           	<ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/installer</q><span> [CopyStep WX]</span></li></ul></li>
           <li>Setup, initialize and start your suite with minimal installation
-          <br>xnix:<ol class=xnix type="i">
-          <li><q class=xnix>./install.sh -r platform_only setup</q> <span> [Copy Step X]</span> </li>
-          <li><q class=xnix>./install.sh -r platform_only initialize</q> <span> [Copy Step X]</span> </li>
-          <li><q class=xnix>./install.sh -r platform_only start</q> <span> [Copy Step X]</span> </li>
+          <br><ol class=xnix type="i">
+          <li> <q class=xnix>./install.sh -r platform_only setup</q> <span> [Copy Step X]</span> </li>
+          <li> <q class=xnix>./install.sh -r platform_only initialize</q> <span> [Copy Step X]</span> </li>
+          <li> <q class=xnix>./install.sh -r platform_only start</q> <span> [Copy Step X]</span> </li>
           </ol>
-          windows: <ol  class=windows type="i">
-          <li><q class=windows>install.bat -r platform_only setup</q> <span> [Copy Step W]</span>.</li>
-          <li><q class=windows>install.bat -r platform_only initialize</q> <span> [Copy Step W]</span>.</li>
-          <li><q class=windows>install.bat -r platform_only start</q> <span> [Copy Step W]</span></li>
+          <ol  class=windows type="i">
+          <li> <q class=windows>install.bat -r platform_only setup</q> <span> [Copy Step W]</span>.</li>
+          <li> <q class=windows>install.bat -r platform_only initialize</q> <span> [Copy Step W]</span>.</li>
+          <li> <q class=windows>install.bat -r platform_only start</q> <span> [Copy Step W]</span></li>
           </ol>
           </li>
           <li>Open the back office at <a href="http://localhost:9001" target="_blank">http://localhost:9001</a></li>
           <li>Bla bla about what they can see and do.</li>
           <li>Confirm with a green acceptance test <ul>
           <li><button  onclick='runATest("testSuiteIsOnline")'>Here</button> or </li>
-          <li><q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testSuiteIsOnline test|| { echo "Test testSuiteIsOnline Unsuccessful";  }</q> <span> [Copy Step WX]</span></li></ul></li>
+          <li><q>cd trailhome/TddTrail; mvn  -Dtest=TrailSetupTest#testSuiteIsOnline test</q> <span> [Copy Step WX]</span></li></ul></li>
           </ol>
+           <p id="testSuiteIsOnline" style="padding-left: 20px;">
+          <script>// <![CDATA[
+            $('#testSuiteIsOnline').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testSuiteIsOnline.html?nocache='+ (new Date()).getTime());
+            // ]]></script>
+            </p>
           </td>
        	</tr>
-       <tr><td colspan=3><br><hr/><br></td></tr>
-
+ 
           <tr id=row3>
                  <td>
-                <h2>Create a new extension (<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094040 ">Notes..</a>)</h2>
-                <p id="testB">
-                <script>// <![CDATA[
-                  $('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());
-                  // ]]></script>
-                  </p>
-                  </td>
-                <td>&nbsp;</td>
-           <td width="50%">
+ 			<hr/>
+            <table width=100%>
+              	<tr><td width=100%> <h2>Create a new extension</h2> </td>
+             	<td nowrap align=right width=100%><cite class=windows id=row3cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
+              	<td nowrap align=right ><cite class=xnix id=row3cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
+             
 
-               <table width=100%><tr><td align=right width=100%><cite class=windows id=row3cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
-              <td align=right nowrap><cite class=xnix id=row3cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
-
-                <ol>
+       <ol>
+                <li>The <button  onclick='runATest("testExtensionCreateddOk")'>acceptance test</button>  should currently fail.  
+                It expects to find new classes generated by the ant extgen task.</li>
                 <li>Stop the hybris Suite: <ul>
-                  <li  class=xnix >xnix: <q>pkill -f 'hybris-commerce-suite-6.2.0.1/hybris/bin/platform/tomcat/bin'</q><span > [Copy Step X]</span></li>
-                  <li class=windows >windows: ?</li>
+                  <li  class=xnix > <q>pkill -f 'hybris-commerce-suite-6.2.0.1/hybris/bin/platform/tomcat/bin'</q><span > [Copy Step X]</span></li>
+                  <li class=windows > ?</li>
                   </ul>
                 </li>
                 <li>Navigate into the platform: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform</q><span> [Copy Step WX]</span></li></ul></li>
                 <li>Configure your local Ant command:
                   <ul>
-                  <li  class=xnix >xnix: <q class=xnix>. ./setantenv.sh</q><span> [Copy Step X]</span></li>
-                  <li  class=windows >windows: <q class=windows>./setantenv.bat</q><span> [Copy Step W]</span></li>
+                  <li  class=xnix > <q class=xnix>. ./setantenv.sh</q><span> [Copy Step X]</span></li>
+                  <li  class=windows > <q class=windows>./setantenv.bat</q><span> [Copy Step W]</span></li>
                   </ul>
                 </li>
                 <li>Execute the ant task extgen to create a new extension: <ul><li> <q>ant extgen -Dinput.template="yempty" -Dinput.name="tddtrail" -Dinput.package="com.hybris.tddtrail"</q><span> [Copy Step WX]</span></li></ul></li>
                 <li><strong>Ask Stephen</strong> Ignore the steps that the ant command then prints in the console (such as "[echo] 1) Add your extension..."), as these are given more explicitly below.</li>
                 <li>Confirm with a green acceptance test  <ul>
                 <li><button  onclick='runATest("testExtensionCreateddOk")'>Here</button> or </li>
-                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionCreateddOk test || { echo "Test testExtensionCreateddOk Unsuccessful"; }</q><span> [Copy Step WX]</span></li></ul></li></ol>
-                </td>
+                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionCreateddOk test</q><span> [Copy Step WX]</span></li></ul></li></ol>
+                
+                 <p id="testB" style="padding-left: 20px;">
+                <script>// <![CDATA[
+                  $('#testB').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionCreateddOk.html?nocache='+ (new Date()).getTime());
+                  // ]]></script>
+                  </p>
+                  </td>
              </tr>
-       <tr><td colspan=3><br><hr/><br></td></tr>
-
+  
           	<tr id=row4>
                     <td>
-                   <h2>Add the new extension to your Suite</h2>
-                 <p id="testC">
-                  <script>// <![CDATA[
-                    $('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
-                    // ]]></script>
-                    </p>
-                    </td>
-                  <td>&nbsp;</td>
-                 <td width="50%">
-                  <table width=100%><tr><td align=right width=100%><cite class=windows id=row4cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
-              <td align=right nowrap><cite class=xnix id=row4cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
-
+  			<hr/>
+   				 <table width=100%>
+              	<tr><td width=100%> <h2>Add the new extension to your Suite</h2> </td>
+             	<td nowrap align=right width=100%><cite class=windows id=row4cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
+              	<td nowrap align=right ><cite class=xnix id=row4cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
+             
                   <ol style="margin-bottom: 0px; margin-top: 0px;">
+                  <li>The <button  onclick='runATest("testCodeGeneratedOk")'>acceptance test</button>  should currently fail.  
+                It expects to find a new entry in localextensions to notify the Suite of your new extension.</li>
                   <li>Add &lt;extension dir="../custom/tddtrail"&gt; to the file hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml<ul>
-                    <li class=xnix >xnix: <q>cd /Users/d061192/trail/hybris-commerce-suite-6.2.0.1/hybris; sed -i '' 's/<\/extensions>/&lt;extension dir="..\/custom\/tddtrail"\/><\/extensions>/' config/localextensions.xml</q><span> [Copy Step X]</span></li>
-                    <li class=windows >windows: ?</li>
+                    <li class=xnix > <q>cd trailhome/trail/hybris-commerce-suite-6.2.0.1/hybris; sed -i '' 's/<\/extensions>/&lt;extension dir="..\/custom\/tddtrail"\/><\/extensions>/' config/localextensions.xml</q><span> [Copy Step X]</span></li>
+                    <li class=windows > ?</li>
                   </ul></li>
                   <li><strong>Ask stephen</strong>Stop the application server if it is running.</li>
                   <li>Rebuild the suite: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant clean all</q><span> [Copy Step WX]</span></li></ul></li>
                   <li>Confirm with a green acceptance test  <ul>
                   <li><button  onclick='runATest("testCodeGeneratedOk")'>Here</button> or </li>
-                  <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testCodeGeneratedOk test|| { echo "Test testCodeGeneratedOk Unsuccessful";  }</q><span> [Copy Step WX]</span></li></ul></li></ol>
-                  </td>
-             </tr>
-       <tr><td colspan=3><br><hr/><br></td></tr>
-
-              <tr id=row5>
-	                <td>
-	                <h2>Confirm the extension is recognized by the Suite</h2>
-	                
-	                
-	                <p id="testnewex">
-                 	 <script>// <![CDATA[
-                    $('#testnewex').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/loginAndCheckForTddTrailExtension.html?nocache='+ (new Date()).getTime());
+                  <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testCodeGeneratedOk test</q><span> [Copy Step WX]</span></li></ul></li></ol>
+                   <p id="testC" style="padding-left: 20px;">
+                  <script>// <![CDATA[
+                    $('#testC').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testCodeGeneratedOk.html?nocache='+ (new Date()).getTime());
                     // ]]></script>
                     </p>
-                    </td>
-  	                <td>&nbsp;</td>
-   
-   	                <td width="50%">
-	                <table width=100%><tr><td align=right width=100%><cite class=windows id=row5cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
-              <td align=right nowrap><cite class=xnix id=row5cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
+                  </td>
+             </tr>
+  
+              <tr id=row5>
+	                <td>
+				<hr/>
+	              <table width=100%>
+              	<tr><td width=100%> <h2>Confirm the extension is recognised by the Suite</h2> </td>
+             	<td nowrap align=right width=100%><cite class=windows id=row5cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
+              	<td nowrap align=right ><cite class=xnix id=row5cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>    
 	
 	                <ol>
+	                 <li>The <button  onclick='runATest("loginAndCheckForTddTrailExtension")'>acceptance test</button>  should currently fail.  
+                It expects to find your new extension listed in the suite's UI.</li>
 	                <li>Restart the application server<ul>
-	                  <li class=xnix >xnix: <q class=xnix>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;./install.sh -r platform_only start</q><span  class=xnix > [Copy Step X]</span></li>
-	                  <li class=windows >windows: <q class=windows>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;install.bat -r platform_only start</q><span class=windows > [Copy Step W]</span></li>
+	                  <li class=xnix > <q class=xnix>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;./install.sh -r platform_only start</q><span  class=xnix > [Copy Step X]</span></li>
+	                  <li class=windows > <q class=windows>cd trailhome/hybris-commerce-suite-6.2.0.1/installer;install.bat -r platform_only start</q><span class=windows > [Copy Step W]</span></li>
 	                </ul>
 	                </li>
 	                <li>Open the hybris administration console <a href="http://localhost:9001/platform/extensions" target="_blank">http://localhost:9001/platform/extensions</a> in a web browser and log in as admin nimda. You will get an overview of the available extensions which must now include tddtrail.</li>
 	                <li>Confirm with a green acceptance test  <ul>
 	                <li><button  onclick='runATest("loginAndCheckForTddTrailExtension")'>Here</button> or </li>
-	                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#loginAndCheckForTddTrailExtension test|| { echo "Test loginAndCheckForTddTrailExtension Unsuccessful";  }</q><span> [Copy Step WX]</span></li></ul></li></ol>
-	                </td>
+	                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#loginAndCheckForTddTrailExtension test</q><span> [Copy Step WX]</span></li></ul></li></ol>
+
+ 					<p id="testnewex" style="padding-left: 20px;">
+                 	 <script>// <![CDATA[
+                    $('#testnewex').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/loginAndCheckForTddTrailExtension.html?nocache='+ (new Date()).getTime());
+                    // ]]></script>
+                    </p>
+                    	                </td>
   	    </tr>
-       <tr><td colspan=3><br><hr/><br></td></tr>
 	
             <tr id=row6>
                  <td>
-                 <h2>Extend the data model</h2>
-                <p id="testD">
-                <script>// <![CDATA[
-                  $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
-                  // ]]></script>
-                  </p>
-                  </td>
-                <td>&nbsp;</td>
- 
-               <td width="50%">
-                <table width=100%><tr><td align=right width=100%><cite class=windows id=row6cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
-              <td align=right nowrap><cite class=xnix id=row6cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>       
-
+			<hr/>
+  
+              	<tr><td width=100%> <h2>Extend the Model</h2> </td>
+             	<td nowrap align=right width=100%><cite class=windows id=row6cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
+              	<td nowrap align=right ><cite class=xnix id=row6cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>
                 <ol>
+                 <li>The <button  onclick='runATest("testExtensionModelOk")'>acceptance test</button>  should currently fail.  
+                It expects to find new classes to represent your model.</li>
+                
                 <li>Replace trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml with Trail/TddTrail/trailMaterial/tddtrail-items.xml <ul>
-                  <li class=xnix >xnix: <q class=xnix>cp trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span> [Copy Step X]</span></li>
-                  <li class=windows>windows: <q class=windows>copy trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span> [Copy Step W]</span></li>
+                  <li class=xnix > <q class=xnix>cp trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span> [Copy Step X]</span></li>
+                  <li class=windows> <q class=windows>copy trailhome/TddTrail/trailMaterial/tddtrail-items.xml trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/resources/tddtrail-items.xml</q><span> [Copy Step W]</span></li>
                 </ul>
                 </li>
                 <li>Rebuild the suite: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant build</q> <span> [Copy Step WX]</span></li></ul></li>
                 <li>Confirm with a green acceptance test  <ul>
                 <li><button  onclick='runATest("testExtensionModelOk")'>Here</button> or </li>
-                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test|| { echo "Test testExtensionModelOk Unsuccessful";  }</q><span> [Copy Step WX]</span></li></ul></li></ol>
+                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test</q><span> [Copy Step WX]</span></li></ul></li></ol>
+                  <p id="testD" style="padding-left: 20px;">
+                <script>// <![CDATA[
+                  $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
+                  // ]]></script>
+                  </p>
+                  
                 </td>
          	 </tr>
-       <tr><td colspan=3><br><hr/><br></td></tr>
 
-              <tr id=row7>
-	              <td>	              <h2>Import into Eclipse</h2>
-	              Some picture showing Eclipse projects with no errors</td>
-              <td>&nbsp;</td>
-	
-	              <td width="50%">
+            <tr id=row7>
+	          <td>	
+			  <hr/>
+	           <table width=100%>
+              	<tr><td width=100%> <h2>Update and examine the database</h2> </td></tr></table>          	
+              	<ol>
+    	          	<li>Update the database ( and or what)? <ul>
+    	              <li> <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform;  ant updatesystem; </q><span> [Copy Step WX]</span>    	              
+               		 </ul></li>
+	            	<li>
+					Explore the Database with the default hsqldb DatabaseManager and confirm that you see a new table "Bands":<ul>
+		            	<li><q class=xnix>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris; java -cp ./bin/platform/lib/dbdriver/hsqldb-2.2.9.jar org.hsqldb.util.DatabaseManager --url jdbc:hsqldb:file:./data/hsqldb/mydb</q><span> [Copy Step WX]</span></li>        
+	             	</ul></li>
+	             </ol>
+	             <p id="testDb" style="padding-left: 20px;">
+                 <script>// <![CDATA[
+                  $('#testDb').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testDatabaseSetup.html?nocache='+ (new Date()).getTime());
+                  // ]]></script>
+                  </p>
+	             
+	             You can also view the database from the Suite:<ol>	
+	            	<li>
+	            	Restart the hybris suite<ul>
+                 	 	<li class=xnix> <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ./hybrisserver.sh</q><span> [Copy Step X]</span>
+ 				  		<li class=windows> <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ./hybrisserver.bat</q><span> [Copy Step W]</span>
+                	</ul></li>            	
+	                <li>Open <a href="http://localhost:9001" target="_blank">http://localhost:9001</a>...</li>
+                </ol>
+         
+	            </td>
+	            
+	          </tr>
+	                  
+              <tr id=row8>
+	          <td>	
+			<hr/>
+	              <table width=100%>
+              	<tr><td width=100%> <h2>Import into Eclipse</h2> </td></tr></table>
+              	
+	              Some picture showing Eclipse projects with no errors
+             
 	              <a href="https://wiki.hybris.com/display/prodandtech/Preparing+to+Develop+with+the+Eclipse+IDE">Notes..</a>
 	              <ol>
 	              <li>Import the platform, config and tddTrail extension into a new Eclipse Workspace</li>
@@ -300,12 +335,15 @@
 	              </ol>
 	              </td>
 	          </tr>
+	          
               </tbody>
               </table>
       <p>
 
-	  <a href="https://wiki.hybris.com/display/prodandtech/Platform+Trails">Stephen's platform trail</a><br /> <a href="https://help.hybris.com/6.2.0/hcd/d5582c7cd2d5443891003ed071b26193.html">6.2 Core Trail</a><br /> <a href="https://wiki.hybris.com/display/R5T/hybris+5+Developer+Training+Trails+5.7+-+Part+II+-+Commerce">y5 Commerce Trail</a></p>
-	
+	  <a href="https://wiki.hybris.com/display/prodandtech/Platform+Trails">Stephen's platform trail</a><br /> 
+	  <a href="https://help.hybris.com/6.2.0/hcd/d5582c7cd2d5443891003ed071b26193.html">6.2 Core Trail</a><br /> 
+	  <a href="https://wiki.hybris.com/display/R5T/hybris+5+Developer+Training+Trails+5.7+-+Part+II+-+Commerce">y5 Commerce Trail</a><br>
+	<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/Step_by_Step_Guide/ap-doslinux.html">Dos vw Windows Commands</a></p>
 	  <script>// <![CDATA[
 	    /*!
 	    * clipboard.js v1.5.12
@@ -330,21 +368,23 @@
 			event.trigger.textContent = event.trigger.textContent.toString().replace('Copy','Copied');
 			window.setTimeout(function() {
 			event.trigger.textContent = event.trigger.textContent.toString().replace('Copied','Copy');
-			}, 2000);      
+			}, 2000);
+			
+	      
 	    })
 
 
       function runATest(item_id) {
-        //$("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_info")
+        $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_info")
         $.ajax({url: "http://localhost:8080/tdd?test="+item_id, 
         	success: function(result){
 	          $("#"+item_id+"Result").html(result);
 	          if (result.includes("Success")){
-//	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
+	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
 	            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_success");
 	          }
 	          else {
-//	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
+	            $("#"+item_id+"Result").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error") ;
 	            $("#"+item_id+"Snippet").removeClass( "isa_error isa_success isa_info" ).addClass("isa_error");
 	          }
 	        },

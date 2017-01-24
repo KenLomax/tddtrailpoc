@@ -1,6 +1,7 @@
 package com.hybris.tddTrail;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +17,9 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.hybris.tddTrail.hsqldb.HsqlDBHelper;
 import com.hybris.tddTrail.prettifier.helper.HelperToLoginToSuite;
+
 
 @ManagedBean
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -58,8 +61,8 @@ public class TrailSetupTest {
 	// TddTrailSnippetEnd
 
 
-	// TddTrailSnippetStart testExtensionCreateddOk
 	@Test
+	// TddTrailSnippetStart testExtensionCreateddOk
 	public void testExtensionCreateddOk() {
 		// If you have correctly added an extension there should be some new
 		// folders and files
@@ -70,11 +73,10 @@ public class TrailSetupTest {
 	}
 	// TddTrailSnippetEnd
 
-	// TddTrailSnippetStart testCodeGeneratedOk
 	@Test
+	// TddTrailSnippetStart testCodeGeneratedOk
 	public void testCodeGeneratedOk() throws IOException {	
-		// If you have correctly added an extension there should be some new
-		// foldes and files
+		// If you have correctly added an extension there should be some new folders and files
 		assertTrue("You should have included tddtrail in localextensions.xml", fileExistsAndContains(
 				"../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "tddtrail"));
 		assertTrue("Running ant should have generated some sources for tddtrail",
@@ -82,23 +84,73 @@ public class TrailSetupTest {
 	}
 	// TddTrailSnippetEnd
 
-	// TddTrailSnippetStart testExtensionModelOk
+	private boolean fileContains( String file, String... setOfStrings) throws IOException{
+		 String content = new String(
+				 Files.readAllBytes(				 
+				 Paths.get(file)));	   		
+		for (String s : setOfStrings){
+	        if (!content.contains(s))
+	        	return false;
+		}
+		return true;
+	}
+	
 	@Test
-	public void testExtensionModelOk() {
-		assertTrue(
-				"File hybris-commerce-suite-6.2.0.1/hybris/bin/custom/training/gensrc/org/tddtrail/jalo/GeneratedBand.java does not exist. Have you done ABC?", 
-				fileExists(
-						"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedBand.java"));
-		assertTrue(fileExists(
-				"../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/BandModel.java"));
+	// TddTrailSnippetStart testExtensionModelOk
+	public void testExtensionModelOk() throws ClassNotFoundException, IOException {	
+		assertTrue( "ProductModel has been extended to support Hashtag and Band", 
+				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/de/hybris/platform/core/model/product/ProductModel.java",
+				"getHashtag", "getBand",
+				"setHashtag", "setBand") );
+		
+		assertTrue( "A new BandModel supports Code, Name, History, Tours", 
+				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/BandModel.java",
+						"getName","getHistory","getCode", "getTours",
+						"setName","setHistory","setCode", "setTours") );
+		
+		assertTrue( "A new ConcertModel extends VariantProductModel and supports Venue and Date", 
+				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/ConcertModel.java",
+						"ConcertModel extends VariantProductModel",
+						"getVenue","getDate",
+						"setVenue","setDate") );
+		
+		assertTrue( "The new GeneratedBand extends GenericItem and supports Code, Name,  History, Tours", 
+				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedBand.java",
+						"GeneratedBand extends GenericItem",
+						"getName","getHistory","getCode", "getTours",
+						"setName","setHistory","setCode", "setTours") );
+		
+		assertTrue( "The new GeneratedConcert extends VariantProduct and supports Venue, Date", 
+				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedConcert.java",
+						"GeneratedConcert extends VariantProduct",
+						"getVenue","getDate",
+						"setVenue","setDate") );
 	}
 	// TddTrailSnippetEnd
 
+
+	@Test
+	// TddTrailSnippetStart testDatabaseSetup
+    public void testDatabaseSetup() throws Exception {
+    	HsqlDBHelper hsqldb = new HsqlDBHelper();
+    	try{        	
+    		String res = hsqldb.select(  "SELECT COUNT (*) FROM BANDS");
+    		assertTrue("The table BANDS exists, and has 0 results", res.equals("0"));  	
+    	}
+    	catch(Exception e){
+    		fail("HsqlDBTest failed: "+e.getMessage());
+    	}
+    	finally {
+    		hsqldb.shutdown( );     
+    	}
+    }
+	// TddTrailSnippetEnd
+	
 	private boolean directoryExists(String f) {
 		System.out.println("CHECKING IF THIS FILE EXISTS " + new File(f).getPath());
 		return new File(f).exists();
 	}
-
+	
 	private boolean fileExists(String f) {
 		return new File(f).exists();	
 	}
@@ -113,15 +165,5 @@ public class TrailSetupTest {
 		return content.contains(s);
 	}
 	
-	private String getWebsiteContent(URLConnection con) throws IOException{
-		StringBuffer sb = new StringBuffer();
-		BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream()));
-		String input;
-		while ((input = br.readLine()) != null){
-			sb.append(input);
-		}
-		br.close();	
-		return sb.toString();
-	}
 	
 }
