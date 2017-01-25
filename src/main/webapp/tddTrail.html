@@ -60,9 +60,13 @@
             $('#row5cmdswindows').text($('#row5').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
             $('#row6cmdsMac').text($('#row6').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
             $('#row6cmdswindows').text($('#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+        	$('#row7cmdsMac').text($('#row7').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row7cmdswindows').text($('#row7').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
+       		$('#row8cmdsMac').text($('#row8').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
+            $('#row8cmdswindows').text($('#row8').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
 
-            $('#rowwindowscmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";"))
-            $('#rowxnixcmds').text($('#row1,#row2,#row3,#row4,#row5,#row6').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";"))
+            $('#rowwindowscmds').text($('#row1,#row2,#row3,#row4,#row5,#row6,#row7,#row8').find("q[class!='xnix']").map(function() { return $(this).text();}).get().join(";").replace("&;","& "))
+            $('#rowxnixcmds').text($('#row1,#row2,#row3,#row4,#row5,#row6,#row7,#row8').find("q[class!='windows']").map(function() { return $(this).text();}).get().join(";").replace("&;","& "))
 
 			if (actualOS.includes("indows"))
 				$("[class='xnix']").hide()
@@ -213,7 +217,7 @@
                   <li>The <button  onclick='runATest("testCodeGeneratedOk")'>acceptance test</button>  should currently fail.  
                 It expects to find a new entry in localextensions to notify the Suite of your new extension.</li>
                   <li>Add &lt;extension dir="../custom/tddtrail"&gt; to the file hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml<ul>
-                    <li class=xnix > <q>cd trailhome/trail/hybris-commerce-suite-6.2.0.1/hybris; sed -i '' 's/<\/extensions>/&lt;extension dir="..\/custom\/tddtrail"\/><\/extensions>/' config/localextensions.xml</q><span> [Copy Step X]</span></li>
+                    <li class=xnix > <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris; sed -i '' 's/<\/extensions>/&lt;extension dir="..\/custom\/tddtrail"\/><\/extensions>/' config/localextensions.xml</q><span> [Copy Step X]</span></li>
                     <li class=windows > ?</li>
                   </ul></li>
                   <li><strong>Ask stephen</strong>Stop the application server if it is running.</li>
@@ -261,7 +265,7 @@
             <tr id=row6>
                  <td>
 			<hr/>
-  
+			  <table width=100%>
               	<tr><td width=100%> <h2>Extend the Model</h2> </td>
              	<td nowrap align=right width=100%><cite class=windows id=row6cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
               	<td nowrap align=right ><cite class=xnix id=row6cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>
@@ -277,7 +281,8 @@
                 <li>Rebuild the suite: <ul><li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant build</q> <span> [Copy Step WX]</span></li></ul></li>
                 <li>Confirm with a green acceptance test  <ul>
                 <li><button  onclick='runATest("testExtensionModelOk")'>Here</button> or </li>
-                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test</q><span> [Copy Step WX]</span></li></ul></li></ol>
+                <li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testExtensionModelOk test</q><span> [Copy Step WX]</span></li></ul></li>
+                </ol>
                   <p id="testD" style="padding-left: 20px;">
                 <script>// <![CDATA[
                   $('#testD').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testExtensionModelOk.html?nocache='+ (new Date()).getTime());
@@ -291,16 +296,32 @@
 	          <td>	
 			  <hr/>
 	           <table width=100%>
-              	<tr><td width=100%> <h2>Update and examine the database</h2> </td></tr></table>          	
+              	<tr><td width=100%> <h2>Update and examine the database</h2> </td>
+				<td nowrap align=right width=100%><cite class=windows id=row7cmdswindows /></cite><span  class=windows> [Copy Steps W]</span></td>
+              	<td nowrap align=right ><cite class=xnix id=row7cmdsMac /></cite><span class=xnix> [Copy Steps X]</span></td></tr></table>  	
               	<ol>
+	              	<li>Stop the hybris Suite: <ul>
+	                  <li  class=xnix > <q>pkill -f 'hybris-commerce-suite-6.2.0.1/hybris/bin/platform/tomcat/bin'</q><span > [Copy Step X]</span></li>
+	                  <li class=windows > ?</li>
+	                  </ul>
+	                </li>
     	          	<li>Update the database ( and or what)? <ul>
-    	              <li> <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform;  ant updatesystem; </q><span> [Copy Step WX]</span>    	              
+    	              <li> <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ant updatesystem</q><span> [Copy Step WX]</span>    	              
                		 </ul></li>
 	            	<li>
 					Explore the Database with the default hsqldb DatabaseManager and confirm that you see a new table "Bands":<ul>
-		            	<li><q class=xnix>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris; java -cp ./bin/platform/lib/dbdriver/hsqldb-2.2.9.jar org.hsqldb.util.DatabaseManager --url jdbc:hsqldb:file:./data/hsqldb/mydb</q><span> [Copy Step WX]</span></li>        
+		            	<li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris; java -cp ./bin/platform/lib/dbdriver/hsqldb-2.2.9.jar org.hsqldb.util.DatabaseManager --url jdbc:hsqldb:file:./data/hsqldb/mydb &</q><span> [Copy Step WX]</span></li>        
 	             	</ul></li>
-	             </ol>
+	             	<li>Close the hsqldb DatabaseManager: <ul>
+	                  <li  class=xnix > <q>pkill -f 'DatabaseManager'</q><span > [Copy Step X]</span></li>
+	                  <li class=windows > ?</li>
+	                  </ul>
+	                </li> 
+					<li>Confirm with a green acceptance test  <ul>
+                		<li><button  onclick='runATest("testDatabaseSetup")'>Here</button> or </li>
+               			<li><q>cd trailhome/TddTrail; mvn -Dtest=TrailSetupTest#testDatabaseSetup test</q><span> [Copy Step WX]</span></li></ul>
+               		</li>
+                </ol>
 	             <p id="testDb" style="padding-left: 20px;">
                  <script>// <![CDATA[
                   $('#testDb').load('https://tddtrail.cfapps.us10.hana.ondemand.com/demotests/testDatabaseSetup.html?nocache='+ (new Date()).getTime());
@@ -308,12 +329,12 @@
                   </p>
 	             
 	             You can also view the database from the Suite:<ol>	
-	            	<li>
-	            	Restart the hybris suite<ul>
-                 	 	<li class=xnix> <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ./hybrisserver.sh</q><span> [Copy Step X]</span>
- 				  		<li class=windows> <q>cd trailhome/hybris-commerce-suite-6.2.0.1/hybris/bin/platform; ./hybrisserver.bat</q><span> [Copy Step W]</span>
-                	</ul></li>            	
-	                <li>Open <a href="http://localhost:9001" target="_blank">http://localhost:9001</a>...</li>
+					<li>Restart the Suite: <ul>
+		          		<li><q>cd trailhome/hybris-commerce-suite-6.2.0.1/installer</q><span> [CopyStep WX]</span></li>
+		          		<li class=xnix> <q class=xnix>./install.sh -r platform_only start</q> <span> [Copy Step X]</span> </li>
+						<li class=windows> <q class=windows>install.bat -r platform_only start</q> <span> [Copy Step W]</span></li>
+		         		</ul></li>	
+		            <li>Open <a href="http://localhost:9001" target="_blank">http://localhost:9001</a>...</li>
                 </ol>
          
 	            </td>

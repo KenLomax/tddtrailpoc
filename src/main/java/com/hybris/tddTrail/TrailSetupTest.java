@@ -133,9 +133,10 @@ public class TrailSetupTest {
 	// TddTrailSnippetStart testDatabaseSetup
     public void testDatabaseSetup() throws Exception {
     	HsqlDBHelper hsqldb = new HsqlDBHelper();
+    	// Note test will fail if the suite is running on this DB at the same time.
     	try{        	
     		String res = hsqldb.select(  "SELECT COUNT (*) FROM BANDS");
-    		assertTrue("The table BANDS exists, and has 0 results", res.equals("0"));  	
+    		assertTrue("Could not find the table BANDS", res.equals("0"));  	
     	}
     	catch(Exception e){
     		fail("HsqlDBTest failed: "+e.getMessage());
