@@ -97,6 +97,8 @@ public class HelperToLoginToSuite {
 	private String getPageContent(String url) throws Exception {
 		URL obj = new URL(url);
 		conn = (HttpsURLConnection) obj.openConnection();
+		conn.setConnectTimeout(2000); //set timeout to 2 seconds
+		conn.setReadTimeout(2000);
 		conn.setRequestMethod("GET");
 		conn.setUseCaches(false);
 
@@ -109,7 +111,9 @@ public class HelperToLoginToSuite {
 				conn.addRequestProperty("Cookie", cookie.split(";", 1)[0]);
 			}
 		}
-
+		if (conn.getResponseCode()==-1)
+			return "";
+		
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String inputLine;
 		StringBuffer response = new StringBuffer();

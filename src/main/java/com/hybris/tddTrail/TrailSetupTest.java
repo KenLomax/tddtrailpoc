@@ -3,39 +3,35 @@ package com.hybris.tddTrail;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.annotation.ManagedBean;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import com.hybris.tddTrail.hsqldb.HsqlDBHelper;
 import com.hybris.tddTrail.prettifier.helper.HelperToLoginToSuite;
 
-
 @ManagedBean
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TrailSetupTest {
 
+//	MAKE EASY TO UPDATE TO 6.3
+//	MYSQL
+	
 	@Test
 	// TddTrailSnippetStart testTddTrailPrerequisites
 	public void testTddTrailPrerequisites() throws IOException {
 		// Confirm your file system is as follows:
 		// <yourTrailHome>
-		//   |-- hybris-commerce-suite-6.2.0.1
-		//   |-- hybris-commerce-suite-6.2.0.1.zip
+		//   |-- hybris-commerce-suite-6.3.0.0
+		//   |-- hybris-commerce-suite-6.3.0.0.zip
 		//   |-- TddTrail
 		assertTrue("TddTrail and Zip need to be in the same folder",
-				fileExists("../hybris-commerce-suite-6.2.0.1.zip") &&
-				directoryExists("../hybris-commerce-suite-6.2.0.1") && 
+				fileExists("../hybris-commerce-suite-6.3.0.0.zip") &&
+				directoryExists("../hybris-commerce-suite-6.3.0.0") && 
 				directoryExists("../TddTrail"));
 	}
 	// TddTrailSnippetEnd
@@ -60,16 +56,15 @@ public class TrailSetupTest {
 	}
 	// TddTrailSnippetEnd
 
-
 	@Test
 	// TddTrailSnippetStart testExtensionCreateddOk
 	public void testExtensionCreateddOk() {
 		// If you have correctly added an extension there should be some new
 		// folders and files
 		assertTrue("I cannot find files expected for a new extension", directoryExists(
-				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo"));
+				"../hybris-commerce-suite-6.3.0.0/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/jalo"));
 		assertTrue("I cannot find files expected for a new extension", directoryExists(
-				"../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/service"));
+				"../hybris-commerce-suite-6.3.0.0/hybris/bin/custom/tddtrail/src/com/hybris/tddtrail/service"));
 	}
 	// TddTrailSnippetEnd
 
@@ -78,9 +73,9 @@ public class TrailSetupTest {
 	public void testCodeGeneratedOk() throws IOException {	
 		// If you have correctly added an extension there should be some new folders and files
 		assertTrue("You should have included tddtrail in localextensions.xml", fileExistsAndContains(
-				"../hybris-commerce-suite-6.2.0.1/hybris/config/localextensions.xml", "tddtrail"));
+				"../hybris-commerce-suite-6.3.0.0/hybris/config/localextensions.xml", "tddtrail"));
 		assertTrue("Running ant should have generated some sources for tddtrail",
-				directoryExists("../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc"));
+				directoryExists("../hybris-commerce-suite-6.3.0.0/hybris/bin/custom/tddtrail/gensrc"));
 	}
 	// TddTrailSnippetEnd
 
@@ -99,35 +94,34 @@ public class TrailSetupTest {
 	// TddTrailSnippetStart testExtensionModelOk
 	public void testExtensionModelOk() throws ClassNotFoundException, IOException {	
 		assertTrue( "ProductModel has been extended to support Hashtag and Band", 
-				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/de/hybris/platform/core/model/product/ProductModel.java",
+				fileContains( "../hybris-commerce-suite-6.3.0.0/hybris/bin/platform/bootstrap/gensrc/de/hybris/platform/core/model/product/ProductModel.java",
 				"getHashtag", "getBand",
 				"setHashtag", "setBand") );
 		
 		assertTrue( "A new BandModel supports Code, Name, History, Tours", 
-				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/BandModel.java",
+				fileContains( "../hybris-commerce-suite-6.3.0.0/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/BandModel.java",
 						"getName","getHistory","getCode", "getTours",
 						"setName","setHistory","setCode", "setTours") );
 		
 		assertTrue( "A new ConcertModel extends VariantProductModel and supports Venue and Date", 
-				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/ConcertModel.java",
+				fileContains( "../hybris-commerce-suite-6.3.0.0/hybris/bin/platform/bootstrap/gensrc/com/hybris/tddtrail/model/ConcertModel.java",
 						"ConcertModel extends VariantProductModel",
 						"getVenue","getDate",
 						"setVenue","setDate") );
 		
 		assertTrue( "The new GeneratedBand extends GenericItem and supports Code, Name,  History, Tours", 
-				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedBand.java",
+				fileContains( "../hybris-commerce-suite-6.3.0.0/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedBand.java",
 						"GeneratedBand extends GenericItem",
 						"getName","getHistory","getCode", "getTours",
 						"setName","setHistory","setCode", "setTours") );
 		
 		assertTrue( "The new GeneratedConcert extends VariantProduct and supports Venue, Date", 
-				fileContains( "../hybris-commerce-suite-6.2.0.1/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedConcert.java",
+				fileContains( "../hybris-commerce-suite-6.3.0.0/hybris/bin/custom/tddtrail/gensrc/com/hybris/tddtrail/jalo/GeneratedConcert.java",
 						"GeneratedConcert extends VariantProduct",
 						"getVenue","getDate",
 						"setVenue","setDate") );
 	}
 	// TddTrailSnippetEnd
-
 
 	@Test
 	// TddTrailSnippetStart testDatabaseSetup
@@ -164,7 +158,6 @@ public class TrailSetupTest {
 			return false;
 		}
 		return content.contains(s);
-	}
-	
+	}	
 	
 }

@@ -33,42 +33,48 @@
 	<h4>Download</h4>
 	  <ol>
         <li>Create a folder near the top of your file system, with no spaces, for example ~/Trail on *nix or C:/Trail on Windows.  This is referred to here as {TRAILHOME}. </li>
-        <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
-       to {TRAILHOME}</li>
+        <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.3.0.0/hybris-commerce-suite-6.3.0.0.zip">hybris 6.3.0.0 zip</a> 
+       and move the zip into the folder {TRAILHOME}</li>
       </ol>
    <hr/>
       
 	<h4>Initial quick dive</h4>
       <ol>
-        <li>Create a new folder <code>{TRAILHOME}/hybris-commerce-suite-6.2.0.1QuickTour</code> and unzip <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.2.0.1/hybris-commerce-suite-6.2.0.1.zip">hybris 6.2.0.1 zip</a> 
-        in to that, to give you <code>{TRAILHOME}/hybris-commerce-suite-6.2.0.1QuickTour/installer</code> and many more.</li>
-         <li>Navigate to <code>{TRAILHOME}/hybris-commerce-suite-6.2.0.1QuickTour/installer</code> and..</li>
-         <li>Setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
+        <li>Unzip <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0.zip</code> to give you <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0/installer</code>,  <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0/bin</code> and other folders.</li>
+         <li>Navigate to <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0/installer</code> and setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
            <li>on a Mac/Linux run:<ol type="i">
              <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup [Copy Me]</button>  </li>
              <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me] </button> (Takes ~ 10 minutes)</li>
-             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
+             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start & [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
            </li>
            <li>on Windows run:<ol type="i">
              <li>windows> <button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup [Copy Me]</button>.</li>
              <li>windows> <button data-clipboard-text="install.bat -r b2b_acc initialize">install.bat -r b2b_acc initialize [Copy Me]</button> (Takes ~ 10 minutes).</li>
-             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc start">install.bat -r b2b_acc start [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
+             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc start">install.bat -r b2b_acc start & [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
            </li>
          </ul>
          </li>
          <li>Open the Storefront at <a target="_blank" href="https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true">https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true</a></li>
          <li>Open the suite's backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a></li>
          <li>Bla bla about what they can see and do.</li>
+         <li>Stop the server <ul >
+           <li>on a Mac/Linux run:  <button  data-clipboard-text="./install.sh -r b2b_acc stop">./install.sh -r b2b_acc stop [Copy Me]</button> 
+           </li>
+           <li>on Windows run: <button data-clipboard-text="install.bat -r b2b_acc stop">install.bat -r b2b_acc stop [Copy Me]</button> 
+           </li>
+         </ul></li>
       </ol>
   
   <hr/>
 
   <h4>Download and run the TddTrail</h4>
   <ol>
-    <li>Navigate in to the folder {TRAILHOME} and run 
+    <li>Rename the folder <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0</code> to <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0B2bAcc</code> 
+    so it will not clash with files you will create in the TddTrail.</li>        
+    <li>Navigate in to {TRAILHOME} and run 
       <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button></li>  
     <li>Verify that you now have the folder <code>{TRAILHOME}/tddtrail</code>.
-    <li>Navigate in to the folder <code>{TRAILHOME}/tddtrail</code> and run<br>
+    <li>Navigate in to <code>{TRAILHOME}/tddtrail</code> and run<br>
       <code>java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome={trailhome} --osx=xnix|windows</code><br>
       for example<br>
       <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail --os=xnix">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail  --os=xnix [Copy Me]</button> <br>

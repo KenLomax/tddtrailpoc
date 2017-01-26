@@ -1,7 +1,5 @@
 package com.hybris.tddTrail.hsqldb;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,13 +7,11 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.junit.Test;
-
 public class HsqlDBHelper {
 	
 	private Connection conn;
 	
-	private final String HSQLDB = "jdbc:hsqldb:file:./../hybris-commerce-suite-6.2.0.1/hybris/data/hsqldb/mydb";
+	private final String HSQLDB = "jdbc:hsqldb:file:./../hybris-commerce-suite-6.3.0.0/hybris/data/hsqldb/mydb";
 	
 	public HsqlDBHelper() throws Exception{
        Class.forName("org.hsqldb.jdbcDriver");        // Load the HSQL Database Engine JDBC driver
