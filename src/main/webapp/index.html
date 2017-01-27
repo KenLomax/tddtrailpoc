@@ -17,72 +17,38 @@
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
 <body>
-<table>
-<tr>
-<td nowrap><h1>PoC of a TDD Trail</h1>
-</td>
-<td width=30%>&nbsp;</td>
-<td align=left>
-  A PoC to show how we can embed live, real acceptance/test-driven tests into a new TddTrail, that the reader runs from their local web browser.<br>
-  On github @ https://github.com/KenLomax/tddtrailpoc
-  </td>
-</tr>
-</table>
-  
-  <hr/>
-	<h4>Download</h4>
-	  <ol>
-        <li>Create a folder near the top of your file system, with no spaces, for example ~/Trail on *nix or C:/Trail on Windows.  This is referred to here as {TRAILHOME}. </li>
-        <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.3.0.0/hybris-commerce-suite-6.3.0.0.zip">hybris 6.3.0.0 zip</a> 
-       and move the zip into the folder {TRAILHOME}</li>
-      </ol>
-   <hr/>
-      
-	<h4>Initial quick dive</h4>
-      <ol>
-        <li>Unzip <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0.zip</code> to give you <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0/installer</code>,  <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0/bin</code> and other folders.</li>
-         <li>Navigate to <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0/installer</code> and setup, initialize and start your suite with the B2B Accelerator Recipe<ul >
-           <li>on a Mac/Linux run:<ol type="i">
-             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc setup">./install.sh -r b2b_acc setup [Copy Me]</button>  </li>
-             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc initialize">./install.sh -r b2b_acc initialize [Copy Me] </button> (Takes ~ 10 minutes)</li>
-             <li>xnix> <button  data-clipboard-text="./install.sh -r b2b_acc start">./install.sh -r b2b_acc start & [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
-           </li>
-           <li>on Windows run:<ol type="i">
-             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc setup">install.bat -r b2b_acc setup [Copy Me]</button>.</li>
-             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc initialize">install.bat -r b2b_acc initialize [Copy Me]</button> (Takes ~ 10 minutes).</li>
-             <li>windows> <button data-clipboard-text="install.bat -r b2b_acc start">install.bat -r b2b_acc start & [Copy Me]</button> (Takes ~ 3 minutes)</li></ol>
-           </li>
-         </ul>
-         </li>
-         <li>Open the Storefront at <a target="_blank" href="https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true">https://localhost:9002/yb2bacceleratorstorefront/?site=powertools&clear=true</a></li>
-         <li>Open the suite's backend at <a target="_blank" href="http://localhost:9001">http://localhost:9001</a></li>
-         <li>Bla bla about what they can see and do.</li>
-         <li>Stop the server <ul >
-           <li>on a Mac/Linux run:  <button  data-clipboard-text="./install.sh -r b2b_acc stop">./install.sh -r b2b_acc stop [Copy Me]</button> 
-           </li>
-           <li>on Windows run: <button data-clipboard-text="install.bat -r b2b_acc stop">install.bat -r b2b_acc stop [Copy Me]</button> 
-           </li>
-         </ul></li>
-      </ol>
-  
-  <hr/>
+<h1>PoC of "Enterprise Commerce Bites"</h1>
+<h3>Trails re-pimped for the 21st Century</h3>
 
-  <h4>Download and run the TddTrail</h4>
+<b>Background</b><br><br>
+Companies such as <a href="https://spring.io/guides">Spring</a>, <a href="http://www.lightbend.com/">LightBend</a> and <a href="https://www.shopify.com/guides">Shopify</a> are gaining a reputation for having high-quality, scalable, self-study, on-boarding material, that is attracting developers to their solutions.
+
+<b>YaaS</b> is addressing this with <a href="https://devportal.yaas.io/gettingstarted/yaasbitesoverview/index.html" target="_blank">YaaS Bites</a> and a requirement for teams to produce self-study material for their own micro-services.
+<b>Enterprise Commerce</b> also needs high-quality, scalable, self-study material, if it is to attract developers to its solutions, and give companies the impression that coding EC solutions is efficient.<br><br>
+
+<b><a href="https://tddtrail.cfapps.us10.hana.ondemand.com/">Enterprise Commerce Bites</a></b> is a first step in this direction, and if approved, can form the basic pattern for much future scalable on-boarding material from EC.
+
+<hr/>
+<h3>Enterprise Commerce Bites entry point</h3> 
+	<h4>Download the Suite</h4>
+	  <ol>
+        <li>Create a folder, referred to here as TRAILHOME, near the top of your file system, with no spaces, 
+        for example <code>~/ecbites</code> on *nix or <code>C:/ecbites</code> on Windows.</li>
+        <li>Download <a href="https://repository.hybris.com/webapp/#/artifacts/browse/tree/General/hybris-public-release/de/hybris/platform/hybris-commerce-suite/6.3.0.0/hybris-commerce-suite-6.3.0.0.zip">hybris 6.3.0.0 zip</a> 
+       in to TRAILHOME, giving you <code>TRAILHOME/hybris-commerce-suite-6.3.0.0.zip</code></li>
+      </ol>
+      <h4>Download ECBites</h4>
   <ol>
-    <li>Rename the folder <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0</code> to <code>{TRAILHOME}/hybris-commerce-suite-6.3.0.0B2bAcc</code> 
-    so it will not clash with files you will create in the TddTrail.</li>        
-    <li>Navigate in to {TRAILHOME} and run 
-      <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button></li>  
-    <li>Verify that you now have the folder <code>{TRAILHOME}/tddtrail</code>.
-    <li>Navigate in to <code>{TRAILHOME}/tddtrail</code> and run<br>
-      <code>java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome={trailhome} --osx=xnix|windows</code><br>
-      for example<br>
-      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail --os=xnix">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/trail  --os=xnix [Copy Me]</button> <br>
+    <li>Navigate in to TRAILHOME and run <MOVETOSTASH and ECBITES> 
+      <button data-clipboard-text="git clone https://github.com/KenLomax/tddtrailpoc.git">git clone https://github.com/KenLomax/tddtrailpoc.git [Copy Me]</button>, giving you <code>TRAILHOME/ecbites</code>.
+      <li>Navigate in to <code>TRAILHOME/tddtrail</code> and run the web application:<br>
+      <code>java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome={trailhome} --osx=xnix | windows</code>,  for example<br>
+      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/ecbites --os=xnix">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=/Users/d061192/ecbites  --os=xnix [Copy Me]</button> <br>
       or<br>
-      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail --os=windows">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/trail --os=windows [Copy Me]</button> <br>
+      <button data-clipboard-text="java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/ecbites --os=windows">java -jar target/tddTrailSite-0.0.1-SNAPSHOT.war --trailHome=C:/ecbites --os=windows [Copy Me]</button> <br>
       (Use a full path and avoid using "~")
       </li>
-    <li>Open <a target="_blank" href="http://localhost:8080/tddTrail.html">localhost:8080/tddTrail.html</a> and follow the TddTrail.</li>
+    <li>Open <a target="_blank" href="http://localhost:8080/tddTrail.html">localhost:8080/tddTrail.html</a> and follow the ECBites.</li>
   </ol>
 
 
